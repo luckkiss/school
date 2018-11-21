@@ -4,6 +4,7 @@ cs***0**j
 project: https://github.com/Halliwood/school
 handbook: http://www.runoob.com/w3cnote/git-gui-window.html
 example: https://blog.csdn.net/qq_32842925/article/details/80273534
+         https://blog.csdn.net/fym0512/article/details/7713006
 
 2. NotePad++
 
