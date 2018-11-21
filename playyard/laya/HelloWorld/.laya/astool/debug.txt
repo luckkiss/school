@@ -14,6 +14,6 @@ Project configuration:f:\school\playyard\laya\HelloWorld/.actionScriptProperties
 1,2.00,,0,read class message
 1,89.67,,0,Disable Flash3D f:/school/playyard/laya/HelloWorld/src/Root.as
 12,89.67,f:/school/playyard/laya/HelloWorld/bin/h5/Root.max.js,1169723,
-11,89.67,f:/school/playyard/laya/HelloWorld/bin/h5/Root.max.html,0,
+11,89.67,f:/school/playyard/laya/HelloWorld/bin/h5/Root.max.html,887,
 ******************************************************************************
 14,89.67,,0,

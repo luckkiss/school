@@ -1,0 +1,43 @@
+package view
+{
+	import laya.display.Sprite;
+	
+	public class Candle extends Sprite
+	{
+		private var chartWidth: Number = 14;
+		private var chartHeight: Number = 140;
+		
+		private var index: int;
+		private var min: Number;
+		private var max: Number;
+		private var open: Number;
+		private var close: Number;
+		private var lowest: Number;
+		private var highest: Number;
+		
+		public function Candle()
+		{
+			super();
+		}
+		
+		public function setChartSize(width: Number, height: Number): void {
+			this.chartWidth = width;
+			this.chartHeight = height;
+		}
+		
+		public function draw(index: int, min: Number, max: Number, open: Number, close: Number, lowest: Number, highest: Number): void {
+			this.index = index;
+			this.min = min;
+			this.max = max;
+			this.open = open;
+			this.close = close;
+			this.lowest = lowest;
+			this.highest = highest;
+			this.redraw();
+		}
+		
+		private function redraw(): void {
+			this.graphics.drawRect(this.index * this.width, (this.highest - this.min) / () 
+		}
+	}
+}

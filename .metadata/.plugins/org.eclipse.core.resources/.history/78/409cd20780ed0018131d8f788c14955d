@@ -1,0 +1,9 @@
+package data
+{
+	public class SingleInfo
+	{
+		public function SingleInfo()
+		{
+		}
+	}
+}

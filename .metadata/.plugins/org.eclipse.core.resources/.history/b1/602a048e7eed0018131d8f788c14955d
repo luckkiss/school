@@ -1,0 +1,30 @@
+package view
+{
+	import laya.display.Sprite;
+	
+	public class Candle extends Sprite
+	{
+		private var maxWidth: Number = 14;
+		private var maxHeight: Number = 140;
+		
+		private var min: Number;
+		private var max: Number;
+		private var open: Number;
+		private var close: Number;
+		private var lowest: Number;
+		private var highest: Number;
+		
+		public function Candle()
+		{
+			super();
+		}
+		
+		public function setSize(width: Number, height: Number): void {
+			
+		}
+		
+		public function draw(min: Number, max: Number, open: Number, close: Number, lowest: Number, highest: Number): void {
+			
+		}
+	}
+}

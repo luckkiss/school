@@ -1,0 +1,12 @@
+package view
+{
+	import laya.display.Sprite;
+	
+	public class Candle extends Sprite
+	{
+		public function Candle()
+		{
+			super();
+		}
+	}
+}
