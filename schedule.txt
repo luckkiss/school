@@ -1,0 +1,10 @@
+1. Github
+li***********2@**6.com
+cs***0**j
+project: https://github.com/Halliwood/school
+handbook: http://www.runoob.com/w3cnote/git-gui-window.html
+example: https://blog.csdn.net/qq_32842925/article/details/80273534
+
+2. NotePad++
+
+3. Laya
