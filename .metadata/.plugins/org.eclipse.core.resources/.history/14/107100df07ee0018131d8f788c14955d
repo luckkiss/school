@@ -1,0 +1,82 @@
+package view {
+	import data.SingleInfo;
+	
+	import laya.events.Event;
+	import laya.net.HttpRequest;
+	import laya.ui.Box;
+	import laya.ui.Label;
+	
+	import ui.MainViewUI;
+	
+	public class MainView extends MainViewUI	 {
+		private var stockCode: int;
+		private var chart: CandleChart;
+		
+		private var dataUtl: String = 'http://quotes.money.163.com/service/chddata.html?code={0}&start=20140101&end=20181121&fields=TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;VOTURNOVER;VATURNOVER';
+		private var code: String = '000400';
+		
+		private var dataMap: Object = {};
+		
+		public function MainView() {
+			this.chart = new CandleChart();
+			this.addChild(this.chart);
+			
+			this.draw(code);
+		}
+		
+		private function draw(code: String): void {
+			var codeData: Vector.<SingleInfo> = this.dataMap[code];
+			if(codeData) {
+				
+			} else {
+				this.dataMap[code] = [];
+				var isSz: Boolean = (code.match(/^000/) || code.match(/^001/) || code.match(/^002/) || code.match(/^000/) || code.match(/^200/) || code.match(/^300/))
+				var url: String = this.dataUtl.replace('{0}', (isSz ? '1' : '0') + code);
+				var request:HttpRequest = new HttpRequest();
+				request.once(Event.COMPLETE, this, onLoadComplete);
+				request.once(Event.ERROR, this, onLoadError);
+				request.send(url);
+			}			
+		}
+		
+		private function onLoadComplete(content: String): void {
+			var arr: Array = content.split(/[\r|\n]+/);
+			var len: int = arr.length;
+			if(arr.length > 1) {				
+				for(var i: int = 0; i < len; i++) {
+					//TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;VOTURNOVER;VATURNOVER
+					var info: SingleInfo = new SingleInfo();
+					
+					var oneLine: String = arr[i];
+					var lineArr: Array = oneLine.split(',');
+					var lineLen: int = lineArr.length;
+					if(lineLen > 0) {
+						info.close = lineArr[0];
+					}
+					if(lineLen > 1) {
+						info.high = lineArr[0];
+					}
+					if(lineLen > 2) {
+						info.low = lineArr[0];
+					}
+					if(lineLen > 3) {
+						info.open = lineArr[0];
+					}
+					if(lineLen > 4) {
+						info.close = lineArr[0];
+					}
+					if(lineLen > 5) {
+						info.close = lineArr[0];
+					}
+					if(lineLen > 6) {
+						info.close = lineArr[0];
+					}
+				}
+			}
+		}
+		
+		private function onLoadError(e: Error): void {
+			console.error('load data error: ' + e.message);
+		}
+	}
+}

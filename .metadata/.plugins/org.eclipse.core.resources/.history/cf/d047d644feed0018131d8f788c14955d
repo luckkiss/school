@@ -1,0 +1,9 @@
+package toolkit
+{
+	public class GB2UTF8
+	{
+		public function GB2UTF8()
+		{
+		}
+	}
+}

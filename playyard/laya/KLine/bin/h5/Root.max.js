@@ -438,12 +438,15 @@ var ___Laya=(function(){
 var SingleInfo=(function(){
 	function SingleInfo(){
 		this.index=0;
-		this.min=NaN;
-		this.max=NaN;
 		this.open=NaN;
 		this.close=NaN;
-		this.lowest=NaN;
-		this.highest=NaN;
+		this.lastOpen=NaN;
+		this.lastClose=NaN;
+		this.changed=NaN;
+		this.percentChanged=NaN;
+		this.low=NaN;
+		this.high=NaN;
+		this.voTurnOver=NaN;
 	}
 
 	__class(SingleInfo,'data.SingleInfo');
@@ -24508,9 +24511,10 @@ var CandleChart=(function(_super){
 	function CandleChart(){
 		this.chartWidth=960;
 		this.chartHeight=140;
+		this.showMaxCnt=500;
 		this.barDefaultWidth=14;
 		this.barScale=1;
-		this.infoArr=[];
+		this.codeData=[];
 		CandleChart.__super.call(this);
 	}
 
@@ -24521,30 +24525,48 @@ var CandleChart=(function(_super){
 		this.chartHeight=height;
 	}
 
-	__proto.draw=function(infoContent){
+	__proto.draw=function(codeData){
+		this.codeData=codeData;
 		this.redraw();
 	}
 
 	__proto.redraw=function(){
 		this.graphics.clear();
 		var barWidth=this.barDefaultWidth *this.barScale;
-		var len=this.infoArr.length;
-		for(var i=0;i < len;i++){
-			var info=this.infoArr[i];
-			var cx=i *barWidth;
-			var openY=this.chartHeight-(info.open-info.min)/ (info.max-info.min)*this.chartHeight;
-			var closeY=this.chartHeight-(info.close-info.min)/ (info.max-info.min)*this.chartHeight;
+		var len=this.codeData.length;
+		var info;
+		var min=0;
+		var max=0;
+		var start=len-this.showMaxCnt;
+		if(start < 0){
+			start=0;
+		}
+		for(var i=start;i < len;i++){
+			info=this.codeData[i];
+			if(0==min || info.low < min){
+				min=info.low;
+			}
+			if(info.high > max){
+				max=info.high;
+			}
+		}
+		for(var i=start;i < len;i++){
+			info=this.codeData[i];
+			var color=info.close > info.open ? '#ff0000' :'#00fff00';
+			var cx=(i-start)*barWidth;
+			var openY=this.chartHeight-(info.open-min)/ (max-min)*this.chartHeight;
+			var closeY=this.chartHeight-(info.close-min)/ (max-min)*this.chartHeight;
 			var tailX=cx+barWidth / 2;
-			var highestY=this.chartHeight-(info.highest-info.min)/ (info.max-info.min)*this.chartHeight;
-			var lowestY=this.chartHeight-(info.lowest-info.min)/ (info.max-info.min)*this.chartHeight;
+			var highestY=this.chartHeight-(info.high-min)/ (max-min)*this.chartHeight;
+			var lowestY=this.chartHeight-(info.low-min)/ (max-min)*this.chartHeight;
 			if(info.open > info.close){
-				this.graphics.drawRect(cx,openY,barWidth,closeY-openY);
-				this.graphics.drawLine(tailX,openY,tailX,highestY);
-				this.graphics.drawLine(tailX,closeY,tailX,lowestY);
+				this.graphics.drawRect(cx,openY,barWidth,closeY-openY,color);
+				this.graphics.drawLine(tailX,openY,tailX,highestY,color);
+				this.graphics.drawLine(tailX,closeY,tailX,lowestY,color);
 				}else {
-				this.graphics.drawRect(cx,closeY,barWidth,openY-closeY);
-				this.graphics.drawLine(tailX,closeY,tailX,highestY);
-				this.graphics.drawLine(tailX,closeY,tailX,lowestY);
+				this.graphics.drawRect(cx,closeY,barWidth,openY-closeY,color);
+				this.graphics.drawLine(tailX,closeY,tailX,highestY,color);
+				this.graphics.drawLine(tailX,closeY,tailX,lowestY,color);
 			}
 		}
 	}
@@ -38429,8 +38451,8 @@ var MainView=(function(_super){
 	function MainView(){
 		this.stockCode=0;
 		this.chart=null;
-		this.dataUtl='http://quotes.money.163.com/service/chddata.html?code={0}&start=20140101&end=20181121&fields=TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;VOTURNOVER;VATURNOVER';
 		this.code='000400';
+		this.dataMap={};
 		MainView.__super.call(this);
 		this.chart=new CandleChart();
 		this.addChild(this.chart);
@@ -38440,20 +38462,56 @@ var MainView=(function(_super){
 	__class(MainView,'view.MainView',_super);
 	var __proto=MainView.prototype;
 	__proto.draw=function(code){
-		var isSz=(code.match(/^000/)|| code.match(/^001/)|| code.match(/^002/)|| code.match(/^000/)|| code.match(/^200/)|| code.match(/^300/))
-		var url=this.dataUtl.replace('{0}',(isSz ? '1' :'0')+code);
-		var request=new HttpRequest();
-		request.once("complete",this,this.onLoadComplete);
-		request.once("error",this,this.onLoadError);
-		request.send(url);
+		var codeData=this.dataMap[code];
+		if(codeData){
+			this.chart.draw(codeData);
+			}else {
+			this.dataMap[code]=[];
+			Laya.loader.load('res/data/'+this.code+'.csv',Handler.create(this,this.onLoadComplete));
+		}
 	}
 
-	__proto.onLoadComplete=function(data){
-		console.log(data);
-	}
-
-	__proto.onLoadError=function(e){
-		console.log(e);
+	__proto.onLoadComplete=function(content){
+		var codeData=this.dataMap[this.code];
+		var arr=content.split(/[\r|\n]+/);
+		var len=arr.length;
+		if(arr.length > 1){
+			for(var i=1;i < len;i++){
+				var info=new SingleInfo();
+				codeData.push(info);
+				var oneLine=arr[i];
+				var lineArr=oneLine.split(',');
+				var lineLen=lineArr.length;
+				if(lineLen > 3){
+					info.close=lineArr[3];
+				}
+				if(lineLen > 4){
+					info.high=lineArr[4];
+				}
+				if(lineLen > 5){
+					info.low=lineArr[5];
+				}
+				if(lineLen > 6){
+					info.open=lineArr[6];
+				}
+				if(lineLen > 7){
+					info.lastClose=lineArr[7];
+				}
+				if(lineLen > 8){
+					info.changed=lineArr[8];
+				}
+				if(lineLen > 9){
+					info.percentChanged=lineArr[9];
+				}
+				if(lineLen > 10){
+					info.voTurnOver=lineArr[10];
+				}
+				if(lineLen > 11){
+					info.vaTurnOver=lineArr[11];
+				}
+			}
+		}
+		this.chart.draw(codeData);
 	}
 
 	return MainView;
