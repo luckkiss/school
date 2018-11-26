@@ -1,0 +1,29 @@
+/**以下声明的类放在默认包(package)中*/
+package
+{
+	import flash.display.Sprite;
+	
+	/**类(Class)的声明*/
+	public class ReadCode extends Sprite
+	{
+		/**声明了一个公有的成员变量(var)，这个变量名字为id，是整数(int)类型的，其初始值为10*/
+		public var id: int = 10;
+		
+		/**声明了一个公有的成员变量(var)，这个变量名字为price，是整数(int)类型的，其初始值为10*/
+		public var price: Number = 20.5;
+		
+		/**类的构造函数
+		 * 构造函数不需要声明返回值类型，也就是括号右面不需要带任何东西*/
+		public function ReadCode()
+		{
+			
+		}
+		
+		/**这是一个公有的方法，也叫接口
+		 * 这个方法不需要参数，因此括号里面没有东西
+		 * 这个方法没有返回值，所以返回值类型为void*/
+		public function doSomething(): void {
+			// 这个方法是空的
+		}
+	}
+}

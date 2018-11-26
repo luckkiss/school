@@ -18,8 +18,11 @@ package view {
 		private var dataMap: Object = {};
 		
 		public function MainView() {
+			this.chartCtn.vScrollBar = '';
+			this.chartCtn.hScrollBar = '';
+			
 			this.chart = new CandleChart();
-			this.addChild(this.chart);
+			this.chartCtn.addChild(this.chart);
 			
 			this.draw(code);
 		}

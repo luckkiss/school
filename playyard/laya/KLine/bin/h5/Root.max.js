@@ -37909,7 +37909,8 @@ var WebGLImage=(function(_super){
 //class ui.MainViewUI extends laya.ui.View
 var MainViewUI=(function(_super){
 	function MainViewUI(){
-		MainViewUI.__super.call(this);;
+		this.chartCtn=null;
+		MainViewUI.__super.call(this);
 	}
 
 	__class(MainViewUI,'ui.MainViewUI',_super);
@@ -37919,7 +37920,7 @@ var MainViewUI=(function(_super){
 		this.createView(MainViewUI.uiView);
 	}
 
-	MainViewUI.uiView={"type":"View","props":{"width":1125,"top":0,"right":0,"left":0,"height":2436,"bottom":0}};
+	MainViewUI.uiView={"type":"View","props":{"width":1125,"top":0,"right":0,"left":0,"height":2436,"bottom":0},"child":[{"type":"Panel","props":{"var":"chartCtn","top":0,"right":0,"left":0,"bottom":0}}]};
 	return MainViewUI;
 })(View)
 
@@ -38454,8 +38455,10 @@ var MainView=(function(_super){
 		this.code='000400';
 		this.dataMap={};
 		MainView.__super.call(this);
+		this.chartCtn.vScrollBar='';
+		this.chartCtn.hScrollBar='';
 		this.chart=new CandleChart();
-		this.addChild(this.chart);
+		this.chartCtn.addChild(this.chart);
 		this.draw(this.code);
 	}
 

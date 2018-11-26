@@ -1,0 +1,14 @@
+package
+{
+	import flash.display.Sprite;
+	
+	/**类的声明*/
+	public class ReadCode extends Sprite
+	{
+		/**类的构造函数*/
+		public function ReadCode()
+		{
+			
+		}
+	}
+}
