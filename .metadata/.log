@@ -301,3 +301,16 @@ Binding(CTRL+SHIFT+G,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY com.adobe.flexbuilder.project 4 43 2018-11-27 17:56:22.509
+!MESSAGE Error en SocketClientReceiver 69
+!STACK 0
+java.net.SocketException: Unrecognized Windows Sockets error: 0: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(Unknown Source)
+	at java.net.ServerSocket.bind(Unknown Source)
+	at java.net.ServerSocket.<init>(Unknown Source)
+	at java.net.ServerSocket.<init>(Unknown Source)
+	at com.adobe.flexbuilder.flexunitrunresults.data.ClientSocketsManager.listen(ClientSocketsManager.java:57)
+	at com.adobe.flexbuilder.flexunitrunresults.data.ClientSocketsManager.run(ClientSocketsManager.java:113)
+	at java.lang.Thread.run(Unknown Source)
