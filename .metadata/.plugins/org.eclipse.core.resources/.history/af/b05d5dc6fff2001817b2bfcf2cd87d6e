@@ -1,8 +1,6 @@
 ﻿package {
 	import laya.webgl.WebGL;
 	
-	import view.MainView;
-	
 	/**根*/
 	public class Root {
 		private var myInt: int = 0;
@@ -113,12 +111,7 @@
 			
 			// 在此，是否发现数组和Object很相似，实际上，数组就是一种特殊的Object，只不过其
 			// key全部都是连续的数字而已
-			// 实际上，Object类是所有类型的基类，也就是说，其他任何的类型，都可以看做是Object
-			// 衍生出来的类型，所以Object是最基本的类型
-			
-			// 如下，MainView这个类也可以作为Object看待
-			var mainViewAsObject: Object = new MainView();
-			
+			// Object类实际上
 		}
 	}
 }
