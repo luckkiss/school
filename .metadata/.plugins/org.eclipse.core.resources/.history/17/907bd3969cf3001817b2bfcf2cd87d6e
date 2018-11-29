@@ -204,16 +204,6 @@
 			} else {
 				console.log('不可能');
 			}
-			
-			// Math.random会随机返回一个0~1的浮点数
-			var numA: Number = Math.random();
-			var numB: Number = Math.random();
-			var result: Boolean = numA < numB;
-			if(result) {
-				console.log(numA + ' < ' + numB);
-			} else {
-				console.log(numA + ' >= ' + numB);
-			}
 		}
 	}
 }

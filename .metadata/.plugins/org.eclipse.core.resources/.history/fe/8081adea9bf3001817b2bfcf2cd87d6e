@@ -14,7 +14,6 @@
 			this.testArray();
 			this.testObject();
 			this.testString();
-			this.testNumber();
 		}
 		
 		private function testArray(): void {
@@ -171,48 +170,6 @@
 				console.log(toFind2 + '位于字符串的第' + idx2 + '位');
 			} else {
 				console.log('字符串不包含' + toFind2);
-			}
-		}
-		
-		private function testNumber(): void {
-			console.log('----------------Number----------------');
-			// 以下演示浮点数
-			var num: Number = 2 / 3;
-			console.log('num = ' + num);
-			
-			// 对浮点数进行向上取整
-			var numCeil: int = Math.ceil(num);
-			console.log(num + '向上取整：' + numCeil);
-			
-			// 对浮点数进行向下取整
-			var numFloor: int = Math.floor(num);
-			console.log(num + '向下取整：' + numFloor);
-		}
-		
-		private function testBoolean(): void {
-			console.log('----------------Boolean----------------');	
-			// 以下演示布尔值
-			var bTrue: Boolean = true;
-			var bFalse: Boolean = false;
-			if(bTrue && bFalse) {
-				console.log('不可能');
-			} else {
-				console.log('正与负=负');
-			}
-			if(bTrue || bFalse) {
-				console.log('正或负=负');
-			} else {
-				console.log('不可能');
-			}
-			
-			// Math.random会随机返回一个0~1的浮点数
-			var numA: Number = Math.random();
-			var numB: Number = Math.random();
-			var result: Boolean = numA < numB;
-			if(result) {
-				console.log(numA + ' < ' + numB);
-			} else {
-				console.log(numA + ' >= ' + numB);
 			}
 		}
 	}
