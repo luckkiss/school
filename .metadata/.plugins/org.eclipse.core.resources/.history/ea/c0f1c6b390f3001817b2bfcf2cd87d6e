@@ -149,23 +149,6 @@
 			// 猜猜以下两种用法和上面两种有什么区别
 			var partOfStr3: String = str.substr(1);
 			var partOfStr4: String = str.substring(1);
-			
-			// 查找字符串是否包含某些字符
-			var toFind1: String = 'de'
-			var idx1: int = str.indexOf(toFind1);
-			if(idx1 >= 0) {
-				console.log(toFind1 + '位于字符串的第' + idx1 + '位');
-			} else {
-				console.log('字符串不包含' + toFind1);
-			}
-			
-			var toFind2: String = 'df'
-			var idx2: int = str.indexOf(toFind2);
-			if(idx2 >= 0) {
-				console.log(toFind2 + '位于字符串的第' + idx2 + '位');
-			} else {
-				console.log('字符串不包含' + toFind2);
-			}
 		}
 	}
 }
