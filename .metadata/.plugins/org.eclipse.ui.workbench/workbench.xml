@@ -31,18 +31,31 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
+<part id="2"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="ReadCode.as" partName="ReadCode.as" path="F:/school/ReadCode/src/ReadCode.as" title="ReadCode.as" tooltip="ReadCode/src/ReadCode.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ReadCode/src/ReadCode.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2501" selectionTopPixel="0"/>
+<editor activePart="true" focus="true" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Root.as" partName="Root.as" path="F:/school/playyard/laya/HelloWorld/src/Root.as" title="Root.as" tooltip="HelloWorld/src/Root.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/HelloWorld/src/Root.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4044" selectionTopPixel="1248"/>
+</editor>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="MainView.as" partName="MainView.as" path="F:/school/playyard/laya/HelloWorld/src/view/MainView.as" title="MainView.as" tooltip="HelloWorld/src/view/MainView.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/HelloWorld/src/view/MainView.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="MainViewUI.as" partName="MainViewUI.as" path="F:/school/playyard/laya/HelloWorld/src/ui/test/MainViewUI.as" title="MainViewUI.as" tooltip="HelloWorld/src/ui/test/MainViewUI.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/HelloWorld/src/ui/test/MainViewUI.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.views.ProblemView" partName="问题">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="问题">
+<expanded>
+<category IMemento.internal.id="错误（3 项）"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="64" org.eclipse.ui.ide.markerType="94" org.eclipse.ui.ide.pathField="124" org.eclipse.ui.ide.resourceField="94" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -54,12 +67,13 @@
 <view id="com.adobe.flexbuilder.packageexplorer" partName="包资源管理器">
 <viewState LINK_NAVIGATOR_TO_EDITOR="0" fpeIsFlat="0" fpeSortBy="1" sorter="1">
 <fpeExpanded>
-<fpeElement fpePath="/ReadCode"/>
-<fpeElement fpePath="/ReadCode/src"/>
-<fpeElement fpePath="/ReadCode/src/%typeDefaultPackage"/>
+<fpeElement fpePath="/HelloWorld"/>
+<fpeElement fpePath="/HelloWorld/src"/>
+<fpeElement fpePath="/HelloWorld/src/%typeDefaultPackage"/>
+<fpeElement fpePath="/HelloWorld/src/view"/>
 </fpeExpanded>
 <fpeSelection>
-<fpeElement fpePath="/ReadCode"/>
+<fpeElement fpePath="/HelloWorld/src/Root.as"/>
 </fpeSelection>
 <filters>
 <filter element=".flexProperties" isEnabled="true"/>
@@ -82,10 +96,10 @@
 <filter element=".*" isEnabled="false"/>
 </filters>
 <expanded>
-<element path="/ReadCode"/>
+<element path="/HelloWorld"/>
 </expanded>
 <selection>
-<element path="/ReadCode"/>
+<element path="/HelloWorld/src/Root.as"/>
 </selection>
 </viewState>
 </view>
@@ -233,86 +247,13 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/KLine/src/view/MainView.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/KLine/src/data/SingleInfo.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/KLine/src/view/CandleChart.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/KLine/src/toolkit/GB2UTF8.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/KLine/libs/laya/src/laya/net/HttpRequest.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/KLine/libs/laya/src/laya/ui/Panel.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/ReadCode/src/ReadCode.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/HelloWorld/src/Root.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/HelloWorld/src/view/MainView.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/HelloWorld/src/ui/test/MainViewUI.as"/>
 </editors>
-<item historyLabel="MainView.as" index="1">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position info="not_deleted" x="1258" y="0"/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position info="not_deleted" x="1320" y="0"/>
-</item>
-<item historyLabel="GB2UTF8.as" index="4">
-<position info="not_deleted" x="1424" y="4"/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position info="not_deleted" x="1320" y="0"/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position info="not_deleted" x="1227" y="0"/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position info="not_deleted" x="1176" y="7"/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position info="not_deleted" x="1994" y="0"/>
-</item>
-<item historyLabel="SingleInfo.as" index="2">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position info="not_deleted" x="1994" y="0"/>
-</item>
-<item historyLabel="SingleInfo.as" index="2">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position/>
-</item>
-<item historyLabel="SingleInfo.as" index="2">
-<position/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position info="not_deleted" x="851" y="0"/>
-</item>
-<item historyLabel="CandleChart.as" index="3">
-<position info="not_deleted" x="657" y="0"/>
-</item>
 <item historyLabel="Root.as" index="0">
 <position info="not_deleted" x="488" y="0"/>
 </item>
@@ -343,7 +284,7 @@
 <item historyLabel="MainView.as" index="1">
 <position info="not_deleted" x="1719" y="0"/>
 </item>
-<item historyLabel="HttpRequest.as" index="5">
+<item historyLabel="HttpRequest.as" index="4">
 <position info="not_deleted" x="3963" y="49"/>
 </item>
 <item historyLabel="SingleInfo.as" index="2">
@@ -355,7 +296,7 @@
 <item historyLabel="CandleChart.as" index="3">
 <position info="not_deleted" x="2262" y="0"/>
 </item>
-<item historyLabel="Panel.as" index="6">
+<item historyLabel="Panel.as" index="5">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="CandleChart.as" index="3">
@@ -373,19 +314,94 @@
 <item historyLabel="SingleInfo.as" index="2">
 <position info="not_deleted" x="73" y="0"/>
 </item>
-<item historyLabel="ReadCode.as" index="7">
+<item historyLabel="ReadCode.as" index="6">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="ReadCode.as" index="7">
+<item historyLabel="ReadCode.as" index="6">
 <position/>
 </item>
-<item historyLabel="ReadCode.as" index="7">
+<item historyLabel="ReadCode.as" index="6">
 <position/>
 </item>
-<item historyLabel="ReadCode.as" index="7">
+<item historyLabel="ReadCode.as" index="6">
 <position/>
 </item>
-<item active="true" historyLabel="ReadCode.as" index="7">
+<item historyLabel="ReadCode.as" index="6">
+<position info="not_deleted" x="2379" y="0"/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MainView.as" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MainViewUI.as" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MainView.as" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item historyLabel="Root.as" index="7">
+<position/>
+</item>
+<item active="true" historyLabel="Root.as" index="7">
 <position/>
 </item>
 </navigationHistory>
@@ -405,6 +421,15 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="MainViewUI.as" tooltip="HelloWorld/src/ui/test/MainViewUI.as">
+<persistable path="/HelloWorld/src/ui/test/MainViewUI.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="MainView.as" tooltip="HelloWorld/src/view/MainView.as">
+<persistable path="/HelloWorld/src/view/MainView.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Root.as" tooltip="HelloWorld/src/Root.as">
+<persistable path="/HelloWorld/src/Root.as"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="ReadCode.as" tooltip="ReadCode/src/ReadCode.as">
 <persistable path="/ReadCode/src/ReadCode.as"/>
 </file>

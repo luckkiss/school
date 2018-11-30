@@ -1,0 +1,9 @@
+package animals
+{
+	public class Horse
+	{
+		public function Horse()
+		{
+		}
+	}
+}
