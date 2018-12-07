@@ -1,0 +1,37 @@
+package animals
+{	
+	import laya.display.Sprite;
+	import laya.ui.Image;
+
+	// 需要继承自Sprite这样才能显示出来
+	public class Horse extends Sprite
+	{
+		// 用来存放马的名字，每匹马都有一个名字
+		public var name: String;
+		
+		// 用来存放马的黑白类型，每匹马不是黑的就是白的
+		public var isWhite: Boolean = false;
+		
+		private var model: Image;
+		
+		public function Horse()
+		{
+			// new了一张图片(image)作为马的外形
+			this.model = new Image();
+			// 设置图片加载的地址，也就是用哪一张图
+			this.model.skin = 'res/images/horse.png';
+			// 将图片添加到马的身上
+			this.addChild(this.model);
+		}
+		
+		public function idle(): void {
+			var kind: String;
+			if(this.isWhite) {
+				kind = 'white';
+			} else {
+				kind = 'black';
+			}
+			console.log("Hi, I'm " + this.name + ", I'm a " + kind + 'horse!');
+		}
+	}
+}

@@ -1,0 +1,19 @@
+1,0.00,,0,Project command:f:\school\playyard\laya\KLine/.actionScriptProperties;iflash=false;windowshow=false;chromerun=false;quickcompile=true
+Project configuration:f:\school\playyard\laya\KLine/.actionScriptProperties.
+1,0.00,,0,output path:f:/school/playyard/laya/KLine/bin/h5/
+1,0.00,,0,Main Class:f:/school/playyard/laya/KLine/src/Root.as
+1,0.00,,0,output file:Root
+1,0.00,,0,compilerSourcePath f:/school/playyard/laya/KLine/libs/laya/src/
+
+1,0.00,,0,Compile Path:f:/school/playyard/laya/KLine/src/
+
+1,0.00,,0,Compile Path:f:/school/playyard/laya/KLine/libs/laya/src/
+
+1,0.00,f:/school/playyard/laya/KLine/src,0,Collect
+1,0.00,f:/school/playyard/laya/KLine/libs/laya/src,0,Collect
+1,2.00,,0,read class message
+1,89.95,,0,Disable Flash3D f:/school/playyard/laya/KLine/src/Root.as
+12,89.95,f:/school/playyard/laya/KLine/bin/h5/Root.max.js,1174659,
+11,89.95,f:/school/playyard/laya/KLine/bin/h5/Root.max.html,887,
+******************************************************************************
+14,89.95,,0,

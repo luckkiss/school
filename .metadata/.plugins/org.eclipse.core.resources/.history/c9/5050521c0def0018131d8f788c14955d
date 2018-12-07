@@ -1,0 +1,78 @@
+/**以下声明的类放在默认包(package)中*/
+package
+{
+	/**引入显示精灵(Sprite)的定义以便使用*/
+	import flash.display.Sprite;
+	
+	/**类(Class)的声明，它继承自显示精灵(Sprite)，拥有Sprite的所有特效*/
+	public class ReadCode extends Sprite
+	{
+		/**声明了一个公有的(Public)成员变量(member var)，这个变量名字为id(编号/身份证号)，是整数(int)类型的，其初始值为10*/
+		public var id: int = 10;
+		
+		/**声明了一个公有的(Public)成员变量(member var)，这个变量名字为price(价格)，是浮点数(Number)类型的，其初始值为20.5*/
+		public var price: Number = 20.5;
+		
+		/**声明了一个私有的(Private)成员变量(member var)，这个变量名字为secondName(名字)，是字符串(String)类型的，其初始值为'Fullen'*/
+		private var secondName: String = 'Fullen';
+		
+		/**这个例子和上一个相似，这里想说明的是变量并不必须在声明的时候进行初始化赋值*/
+		private var firstName: String;
+		
+		/**类的构造函数
+		 * 构造函数不需要声明返回值类型，也就是括号右面不需要带任何东西*/
+		public function ReadCode()
+		{
+			// 这里的this是一个指针，其指向ReadCode实例自身
+			// 这里演示的是一个常见的做法，在构造函数中初始化一些东西
+			// this.firstName表示ReadCode实例自身的firstName
+			this.firstName = 'Cai';
+			
+			// 声明了一个临时变量，并使用secondName和firstName连接起来的字符串进行赋值，即fullName为FullenCai
+			var fullName: String = this.secondName + this.firstName;
+		}
+		
+		/**这是一个公有的(public)方法(function)，也叫接口(interface)，外部可以直接调用(call)
+		 * 这个方法不需要参数，因此括号里面没有东西
+		 * 这个方法没有返回值，所以返回值类型为void*/
+		public function doSomething(): void {
+			// 在这里可以调用本类的任意方法
+			this.doSomethingPrivate();
+		}
+		
+		/**这是一个私有的(private)方法(function)，只有本类内部可以调用
+		 * 这个方法不需要参数，因此括号里面没有东西
+		 * 这个方法没有返回值，所以返回值类型为void*/
+		private function doSomethingPrivate(): void {
+			// 这个方法是空的
+		}
+		
+		/**这是一个公有的(public)方法(function)，意思是获取名字
+		 * 这个方法需要一个布尔值(Boolean)类型的参数(parameter)，表示是获取姓(first name)还是名(second name)
+		 * 这个方法需要返回字符串(String)类型的结果*/
+		public function getName(firstOrSecond: Boolean): String {
+			// 以下演示if(如果) else(否则)条件判断结构
+			if(firstOrSecond) {
+				// 当if内部的表达式结果为true(真)时进入
+				// return关键字表示返回后面的值，同时该方法执行结束
+				return this.firstName;
+			} else {
+				// 当if内部的表达式结果为false(假)时进入
+				return this.secondName;
+			}
+		}
+		
+		// 下面演示getName的其他同样含义的写法
+		
+		public function getName2(firstOrSecond: Boolean): String {
+			// 以下演示if(如果) else(否则)条件判断结构
+			if(firstOrSecond) {
+				// 当if内部的表达式结果为true(真)时进入
+				// return关键字表示返回后面的值，同时该方法执行结束
+				return this.firstName;
+			} 
+			// 当if内部的表达式结果为false(假)时进入
+			return this.secondName;
+		}
+	}
+}

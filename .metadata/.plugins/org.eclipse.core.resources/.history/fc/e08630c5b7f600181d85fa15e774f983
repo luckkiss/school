@@ -1,0 +1,33 @@
+﻿package {
+	import animals.BlackHorse;
+	import animals.Horse;
+	import animals.WhiteHorse;
+	
+	import laya.webgl.WebGL;
+
+	public class Root {
+		
+		private var myAnimals: Array = [];
+		public function Root() {
+			//初始化引擎
+			Laya.init(1136, 640,WebGL);
+			
+			console.log('welcome to our zoo!');
+			
+			// 2只马
+			var whiteHorse: WhiteHorse = new WhiteHorse();
+			whiteHorse.name = 'Jimmy';
+			
+			var blakeHorse: BlackHorse = new BlackHorse();
+			blakeHorse.name = 'Jerry';
+			
+			this.myAnimals.push(whiteHorse, blakeHorse);
+			
+			// 2只马都在闲逛
+			for(var i: int = 0; i < this.myAnimals.length; i++) {
+				var tmpHorse: Horse = this.myAnimals[i];
+				tmpHorse.idle();
+			}
+		}		
+	}
+}

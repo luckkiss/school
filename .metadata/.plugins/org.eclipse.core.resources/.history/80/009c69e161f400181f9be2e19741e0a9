@@ -1,0 +1,15 @@
+package animals
+{
+	public class Horse
+	{
+		public var name: String;
+		public function Horse()
+		{
+			thsi.idle();
+		}
+		
+		public function idle(): void {
+			console.log("Hi, I'm " + this.name);
+		}
+	}
+}
