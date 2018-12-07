@@ -1,0 +1,20 @@
+按钮类Button
+
+var btn: Button = new Button();
+
+// 坐标
+btn.x
+btn.y
+
+// 一次性设置x和y
+btn.pos(x, y);
+
+// 显示/隐藏
+btn.visible = true;
+btn.visible = false;
+
+// 设置按钮标签
+btn.label
+
+// 点击监听
+btn.on(Event.CLICK, this, onClickBtn);
