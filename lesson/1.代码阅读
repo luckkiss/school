@@ -1,0 +1,33 @@
+1. int/Number  ->整数/浮点数
+    parseInt('0')  ->将字符串'0'转化为整数0
+	Math.floor(1.23)  ->地板，取不大于浮点数1.23的最大整数，即1
+	Math.ceil(1.23)  ->天花板，取不小于浮点数1.23的最小整数，即2
+	Math.floor(num + 0.5)  ->四舍五入算法
+	
+2. String  ->字符串，用单/双引号括起来
+    str.length  ->字符串长度，即多少个字符，比如"abc"的长度为3
+	str.split(',')  ->字符串拆分，即将字符串按照逗号分割开来
+	str.subString(1)  ->截取部分字符串，截取第2个字符开始的剩余字符串
+	
+3. Boolean  ->布尔值，用于条件判断
+    true/false  ->真/假
+	
+4. Array/Vector.<XXX>  ->数组
+    arr[i]
+    arr.push(a)
+	arr.pop()
+	arr.unshift(a)
+	arr.shift()
+	for...
+	while...
+	
+5. Object
+    { name: 'CaiFullen', gender: 1 }
+	
+6. if(...) {...} else {...}
+
+7. while(...)
+
+8. for(var i: int = 0; i < 10; i++) {...}
+
+9. break/continue

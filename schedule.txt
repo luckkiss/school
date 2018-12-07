@@ -10,6 +10,18 @@ example: https://blog.csdn.net/qq_32842925/article/details/80273534
 
 3. Laya
 
-4. HelloWorld - 了解如何显示一张图片和一段文字
+4. 怎么写一个类：Class/var/function/void/public/protected/private
 
-5. 
+5. 一些基本类型：int/Number/String/Array([])/Object({})
+
+6. 模计算求余%/Math.floor/Math.ceil
+
+7. 坐标x/y，宽高width/height，透明度alpha
+
+8. 舞台Laya.stage/添加子节点addChild
+
+9. 图片Image，Image::skin
+
+10. 文本Text，Text::text
+
+11. 点击事件：xxx.on(Event.CLICK, this, onClick)
