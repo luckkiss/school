@@ -690,3 +690,308 @@ Binding(CTRL+`,
 
 !ENTRY org.eclipse.osgi 2 1 2018-12-04 16:55:06.000
 !MESSAGE NLS unused message: AutomaticUpdater_ResolutionOperationLabel in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+!SESSION 2018-12-17 18:17:54.252 -----------------------------------------------
+eclipse.buildId=I20100608-0911
+java.version=1.6.0_16
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86 -data F:\school
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:18:02.047
+!MESSAGE NLS unused message: FileBuffer_status_ok in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:18:02.090
+!MESSAGE NLS unused message: DocumentInputStream_error_read in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.jface 2 0 2018-12-17 18:18:16.890
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-12-17 18:18:16.890
+!MESSAGE A conflict occurred for CTRL+`:
+Binding(CTRL+`,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.editorcore.modeswitch.toggle.def.depricated,切换源代码/设计模式,
+		,
+		Category(com.adobe.flexbuilder.editorcore.modeswitch.category,源代码/设计模式切换,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+`,
+	ParameterizedCommand(Command(cn.ieclipse.pde.explorer.command.explorer,Open in Explorer,
+		,
+		Category(org.eclipse.ui.category.window,窗口,null,true),
+		cn.ieclipse.pde.explorer.handlers.OpenExplorerHandler,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:18:17.762
+!MESSAGE NLS unused message: AutomaticUpdater_ErrorCheckingUpdates in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:18:17.762
+!MESSAGE NLS unused message: AutomaticUpdater_ResolutionOperationLabel in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+
+!ENTRY org.eclipse.jface 2 0 2018-12-17 18:18:20.231
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-12-17 18:18:20.231
+!MESSAGE A conflict occurred for CTRL+G:
+Binding(CTRL+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.declarations.in.workspace,在工作空间中查找所有声明,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,导航,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllDeclarationsAction@13cb1cb)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexide.editorcore.flexEditorScope,,,system)
+Binding(CTRL+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.declarations.in.workspace,在工作空间中查找所有声明,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,导航,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllDeclarationsAction@13cb1cb)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexbuilder.as.editor.context.packageexplorer,,,system)
+Binding(CTRL+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.declarations.in.workspace,工作空间中的声明,
+		在工作空间中搜索对所选元素的声明,
+		Category(org.eclipse.search.ui.category.search,搜索,搜索命令类别,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-12-17 18:18:20.231
+!MESSAGE A conflict occurred for CTRL+SHIFT+G:
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.references.in.workspace,在工作空间中查找所有引用,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,导航,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllReferencesAction@1bc8d37)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexide.editorcore.flexEditorScope,,,system)
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.references.in.workspace,在工作空间中查找所有引用,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,导航,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllReferencesAction@1bc8d37)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexbuilder.as.editor.context.packageexplorer,,,system)
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace,工作空间中的引用,
+		在工作空间中搜索对所选元素的引用,
+		Category(org.eclipse.search.ui.category.search,搜索,搜索命令类别,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY CodeModel 4 1 2018-12-17 18:20:10.353
+!MESSAGE Could not decode ABC0 in D:\layaair_dev\as\LayaAirFlash\LayaAirFlash.swc
+!STACK 0
+macromedia.abc.DecoderException: abc Decoder Error: constant constantPool index '56' is not a MultiName type. The actual type is '7'
+	at macromedia.abc.ConstantPool.getMultiName(ConstantPool.java:438)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.abc.TypeVisitor.startInstance(TypeVisitor.java:113)
+	at macromedia.abc.Decoder$ClassInfo.decodeInstance(Decoder.java:416)
+	at macromedia.abc.Decoder$ClassInfo.decode(Decoder.java:384)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.abc.ABCToASNodeVisitor.classTrait(ABCToASNodeVisitor.java:553)
+	at macromedia.abc.Decoder$Traits.decode(Decoder.java:613)
+	at macromedia.abc.Decoder$ScriptInfo.decode(Decoder.java:472)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.abc.ABCDecoder.decode(ABCDecoder.java:296)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.abc.ABCParser.parse(ABCParser.java:98)
+	at com.adobe.flexbuilder.codemodel.internal.resourcehandlers.SWCFileHandler.parseFile(SWCFileHandler.java:173)
+	at com.adobe.flexbuilder.codemodel.internal.concurrent.SWCLibraryWorkerFactory$LibraryWorker.run(SWCLibraryWorkerFactory.java:58)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY CodeModel 4 1 2018-12-17 18:20:10.355
+!MESSAGE Could not decode ABC0 in D:\layaair_dev\as\LayaAirFlash\LayaAirFlash.swc
+!STACK 0
+macromedia.abc.DecoderException: abc Decoder Error: constant constantPool index '14' is not a MultiName type. The actual type is '7'
+	at macromedia.abc.ConstantPool.getMultiName(ConstantPool.java:438)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.abc.TypeVisitor.startInstance(TypeVisitor.java:113)
+	at macromedia.abc.Decoder$ClassInfo.decodeInstance(Decoder.java:416)
+	at macromedia.abc.Decoder$ClassInfo.decode(Decoder.java:384)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.abc.ABCToASNodeVisitor.classTrait(ABCToASNodeVisitor.java:553)
+	at macromedia.abc.Decoder$Traits.decode(Decoder.java:613)
+	at macromedia.abc.Decoder$ScriptInfo.decode(Decoder.java:472)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.abc.ABCDecoder.decode(ABCDecoder.java:296)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.abc.ABCParser.parse(ABCParser.java:98)
+	at com.adobe.flexbuilder.codemodel.internal.resourcehandlers.SWCFileHandler.parseFile(SWCFileHandler.java:173)
+	at com.adobe.flexbuilder.codemodel.internal.concurrent.SWCLibraryWorkerFactory$LibraryWorker.run(SWCLibraryWorkerFactory.java:58)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY CodeModel 4 1 2018-12-17 18:20:10.369
+!MESSAGE Could not decode ABC0 in D:\layaair_dev\as\LayaAirFlash\LayaAirFlash.swc
+!STACK 0
+macromedia.abc.DecoderException: abc Decoder Error: constant constantPool index '181' is not a MultiName type. The actual type is '7'
+	at macromedia.abc.ConstantPool.getMultiName(ConstantPool.java:438)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.abc.TypeVisitor.startInstance(TypeVisitor.java:113)
+	at macromedia.abc.Decoder$ClassInfo.decodeInstance(Decoder.java:416)
+	at macromedia.abc.Decoder$ClassInfo.decode(Decoder.java:384)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.abc.ABCToASNodeVisitor.classTrait(ABCToASNodeVisitor.java:553)
+	at macromedia.abc.Decoder$Traits.decode(Decoder.java:613)
+	at macromedia.abc.Decoder$ScriptInfo.decode(Decoder.java:472)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.abc.ABCDecoder.decode(ABCDecoder.java:296)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.abc.ABCParser.parse(ABCParser.java:98)
+	at com.adobe.flexbuilder.codemodel.internal.resourcehandlers.SWCFileHandler.parseFile(SWCFileHandler.java:173)
+	at com.adobe.flexbuilder.codemodel.internal.concurrent.SWCLibraryWorkerFactory$LibraryWorker.run(SWCLibraryWorkerFactory.java:58)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+!SESSION 2018-12-17 18:38:51.058 -----------------------------------------------
+eclipse.buildId=I20100608-0911
+java.version=1.6.0_16
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:39:35.132
+!MESSAGE NLS unused message: FileBuffer_status_ok in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:39:35.133
+!MESSAGE NLS unused message: DocumentInputStream_error_read in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.jface 2 0 2018-12-17 18:39:42.348
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-12-17 18:39:42.348
+!MESSAGE A conflict occurred for CTRL+`:
+Binding(CTRL+`,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.editorcore.modeswitch.toggle.def.depricated,切换源代码/设计模式,
+		,
+		Category(com.adobe.flexbuilder.editorcore.modeswitch.category,源代码/设计模式切换,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+`,
+	ParameterizedCommand(Command(cn.ieclipse.pde.explorer.command.explorer,Open in Explorer,
+		,
+		Category(org.eclipse.ui.category.window,窗口,null,true),
+		cn.ieclipse.pde.explorer.handlers.OpenExplorerHandler,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:39:43.157
+!MESSAGE NLS unused message: AutomaticUpdater_ErrorCheckingUpdates in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:39:43.160
+!MESSAGE NLS unused message: AutomaticUpdater_ResolutionOperationLabel in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+
+!ENTRY org.eclipse.jface 2 0 2018-12-17 18:39:55.310
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-12-17 18:39:55.310
+!MESSAGE A conflict occurred for CTRL+G:
+Binding(CTRL+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.declarations.in.workspace,在工作空间中查找所有声明,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,导航,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllDeclarationsAction@1ebe3f0)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexide.editorcore.flexEditorScope,,,system)
+Binding(CTRL+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.declarations.in.workspace,在工作空间中查找所有声明,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,导航,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllDeclarationsAction@1ebe3f0)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexbuilder.as.editor.context.packageexplorer,,,system)
+Binding(CTRL+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.declarations.in.workspace,工作空间中的声明,
+		在工作空间中搜索对所选元素的声明,
+		Category(org.eclipse.search.ui.category.search,搜索,搜索命令类别,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-12-17 18:39:55.310
+!MESSAGE A conflict occurred for CTRL+SHIFT+G:
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.references.in.workspace,在工作空间中查找所有引用,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,导航,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllReferencesAction@1c1ca8e)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexide.editorcore.flexEditorScope,,,system)
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.references.in.workspace,在工作空间中查找所有引用,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,导航,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllReferencesAction@1c1ca8e)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexbuilder.as.editor.context.packageexplorer,,,system)
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace,工作空间中的引用,
+		在工作空间中搜索对所选元素的引用,
+		Category(org.eclipse.search.ui.category.search,搜索,搜索命令类别,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.053
+!MESSAGE NLS unused message: RefactoringHistoryWizard_no_refactorings_error in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.054
+!MESSAGE NLS unused message: RefactoringHistoryWizard_no_refactorings_message in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.054
+!MESSAGE NLS unused message: RefactoringHistoryLabelProvider_label_country in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.055
+!MESSAGE NLS unused message: RefactoringHistoryLabelProvider_label_language in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.055
+!MESSAGE NLS unused message: RefactoringHistoryLabelProvider_this_month_format in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.056
+!MESSAGE NLS unused message: RefactoringHistoryLabelProvider_last_month_format in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.056
+!MESSAGE NLS unused message: RefactoringHistoryLabelProvider_label_variant in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.056
+!MESSAGE NLS unused message: RefactoringHistoryLabelProvider_month_format in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.057
+!MESSAGE NLS unused message: RefactoringHistoryOverviewPage_description in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.057
+!MESSAGE NLS unused message: ShowRefactoringHistoryControl_edit_label in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.058
+!MESSAGE NLS unused message: RefactoringPropertyPage_confirm_delete_pattern in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.058
+!MESSAGE NLS unused message: RefactoringPropertyPage_edit_caption in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.059
+!MESSAGE NLS unused message: RefactoringPropertyPage_edit_message in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:02.059
+!MESSAGE NLS unused message: DeleteResourcesWizard_outOfSync in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:06.382
+!MESSAGE NLS unused message: TextChanges_error_unsaved_changes in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:06.383
+!MESSAGE NLS unused message: ParticipantDescriptor_correct in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:06.383
+!MESSAGE NLS unused message: UnknownRefactoringDescriptor_initialization_error in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:06.384
+!MESSAGE NLS unused message: DeleteFileOrFolderChange_deleting in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:06.385
+!MESSAGE NLS unused message: DeleteFileOrFolderChange_name in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 18:40:06.399
+!MESSAGE NLS unused message: MoveResourceChange_error_destination_already_exists in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
