@@ -13,7 +13,7 @@ Project configuration:f:\school\playyard\laya\GameDemo/.actionScriptProperties.
 1,0.00,f:/school/playyard/laya/GameDemo/libs/laya/src,0,Collect
 1,2.00,,0,read class message
 1,89.78,,0,Disable Flash3D f:/school/playyard/laya/GameDemo/src/Root.as
-12,89.78,f:/school/playyard/laya/GameDemo/bin/h5/Root.max.js,2316034,
+12,89.78,f:/school/playyard/laya/GameDemo/bin/h5/Root.max.js,2315972,
 11,89.78,f:/school/playyard/laya/GameDemo/bin/h5/Root.max.html,887,
 ******************************************************************************
 14,89.78,,0,

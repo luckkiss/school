@@ -438,7 +438,6 @@ var ___Laya=(function(){
 //class Root
 var Root=(function(){
 	function Root(){
-		console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
 		MiniAdpter.init();
 		Laya3D.init(0,0,true);
 		Laya.stage.scaleMode="full";
