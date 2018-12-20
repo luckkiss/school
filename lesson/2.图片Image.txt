@@ -1,0 +1,26 @@
+图片类Image
+
+var img: Image = new Image();
+
+// 宽度
+img.width
+
+// 高度
+img.height
+
+// 坐标
+img.x
+img.y
+
+// 一次性设置x和y
+img.pos(x, y);
+
+// 显示/隐藏
+img.visible = true;
+img.visible = false;
+
+// 半透明
+img.alpha = 0.5;
+
+// 设置图片皮肤
+img.skin = '...';
