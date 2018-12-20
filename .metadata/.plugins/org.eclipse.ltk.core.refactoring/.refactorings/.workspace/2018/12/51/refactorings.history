@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="将资源“myLaya”重命名为“GameDemo”" description="重命名资源“myLaya”" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/myLaya" name="GameDemo" stamp="1545220807824" updateReferences="true"/>
+</session>
