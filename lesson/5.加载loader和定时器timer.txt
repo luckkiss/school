@@ -1,0 +1,27 @@
+加载
+Laya.loader.load('xxx', this, this.onLoaded);
+令Laya.loader加载文件'xxx'，并在加载完成后调用this.onLoaded
+'xxx'表示文件的路径
+this是执行域，表示回调函数属于当前环境
+this.onLoaded加载完成后的回调，Laya.loader将传入文件的数据
+
+private function onLoaded(data: Object): void {
+    // ....
+}
+
+
+定时器 - 定时不限次
+Laya.timer.loop(500, this, this.onTimer);
+令Laya.timer每隔500毫秒调用1次this.onTimer
+500表示tick间隔，单位毫秒
+this是执行域，表示回调函数属于当前环境
+this.onTimer每次tick执行的回掉函数
+
+定时器 - 定时限1次
+Laya.timer.once(500, this, this.onTimer);
+与loop的区别是，loop每隔一段时间执行1次，而once仅仅在指定时间后执行1次回调
+因此loop是用于定期无限操作的情形，而once是用于延迟操作一次的情形
+
+private function onTimer(): void {
+    // ....
+}
