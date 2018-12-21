@@ -37,17 +37,17 @@
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Root.as" partName="Root.as" path="F:/school/playyard/laya/ZooExample/src/Root.as" title="Root.as" tooltip="ZooExample/src/Root.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ZooExample/src/Root.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="536" selectionTopPixel="0"/>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="HttpRequest.as" partName="HttpRequest.as" path="F:/school/playyard/laya/GameDemo/libs/laya/src/laya/net/HttpRequest.as" title="HttpRequest.as" tooltip="myLaya/libs/laya/src/laya/net/HttpRequest.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/myLaya/libs/laya/src/laya/net/HttpRequest.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="49" selectionOffset="3963" selectionTopPixel="712"/>
 </editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Horse.as" partName="Horse.as" path="F:/school/playyard/laya/ZooExample/src/animals/Horse.as" title="Horse.as" tooltip="ZooExample/src/animals/Horse.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ZooExample/src/animals/Horse.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="365" selectionTopPixel="0"/>
+<editor activePart="true" focus="true" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="XmlDom.as" partName="XmlDom.as" path="F:/school/playyard/laya/GameDemo/libs/laya/src/XmlDom.as" title="XmlDom.as" tooltip="myLaya/libs/laya/src/XmlDom.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/myLaya/libs/laya/src/XmlDom.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="7136" selectionTopPixel="3380"/>
 </editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="BlackHorse.as" partName="BlackHorse.as" path="F:/school/playyard/laya/ZooExample/src/animals/BlackHorse.as" title="BlackHorse.as" tooltip="ZooExample/src/animals/BlackHorse.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ZooExample/src/animals/BlackHorse.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="138" selectionTopPixel="0"/>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="LayaAir3D.as" partName="LayaAir3D.as" path="F:/school/playyard/laya/GameDemo/src/LayaAir3D.as" title="LayaAir3D.as" tooltip="myLaya/src/LayaAir3D.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/myLaya/src/LayaAir3D.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1585" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -64,12 +64,15 @@
 <view id="com.adobe.flexbuilder.packageexplorer" partName="包资源管理器">
 <viewState LINK_NAVIGATOR_TO_EDITOR="0" fpeIsFlat="0" fpeSortBy="1" sorter="1">
 <fpeExpanded>
-<fpeElement fpePath="/ZooExample"/>
-<fpeElement fpePath="/ZooExample/src"/>
-<fpeElement fpePath="/ZooExample/src/animals"/>
+<fpeElement fpePath="/myLaya"/>
+<fpeElement fpePath="/myLaya/src"/>
+<fpeElement fpePath="/myLaya/src/%typeDefaultPackage"/>
+<fpeElement fpePath="/myLaya/libs"/>
+<fpeElement fpePath="/myLaya/libs/laya"/>
+<fpeElement fpePath="/myLaya/libs/laya/src"/>
 </fpeExpanded>
 <fpeSelection>
-<fpeElement fpePath="/ZooExample/src/animals/BlackHorse.as"/>
+<fpeElement fpePath="/myLaya"/>
 </fpeSelection>
 <filters>
 <filter element=".flexProperties" isEnabled="true"/>
@@ -92,10 +95,12 @@
 <filter element=".*" isEnabled="false"/>
 </filters>
 <expanded>
-<element path="/ZooExample"/>
+<element path="/myLaya"/>
+<element path="/myLaya/libs"/>
+<element path="/myLaya/libs/laya"/>
 </expanded>
 <selection>
-<element path="/ZooExample/src/animals/BlackHorse.as"/>
+<element path="/myLaya"/>
 </selection>
 </viewState>
 </view>
@@ -207,7 +212,7 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="bottomLayout" ratio="0.7496136" ratioLeft="485" ratioRight="162" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="bottomLayout" ratio="0.824393" ratioLeft="1460" ratioRight="311" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="问题"/>
 <page content="com.adobe.flexbuilder.dcrad.views.DataServicesView" label="数据/服务"/>
@@ -239,11 +244,6 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/KLine/src/Root.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/KLine/src/view/MainView.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/KLine/src/data/SingleInfo.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/KLine/src/view/CandleChart.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/KLine/libs/laya/src/laya/ui/Panel.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/ReadCode/src/ReadCode.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/HelloWorld/src/Root.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/HelloWorld/src/view/MainView.as"/>
@@ -254,156 +254,159 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/ZooExample/src/animals/WhiteHorse.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/ZooExample/src/animals/BlackHorse.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/ZooExample/src/Root.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/myLaya/libs/laya/src/laya/net/HttpRequest.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/myLaya/libs/laya/src/XmlDom.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/myLaya/src/LayaAir3D.as"/>
 </editors>
-<item historyLabel="Panel.as" index="4">
+<item historyLabel="ReadCode.as" index="0">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="CandleChart.as" index="3">
-<position info="not_deleted" x="2428" y="0"/>
-</item>
-<item historyLabel="Root.as" index="0">
-<position info="not_deleted" x="488" y="0"/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position info="not_deleted" x="1117" y="0"/>
-</item>
-<item historyLabel="MainView.as" index="1">
-<position info="not_deleted" x="622" y="0"/>
-</item>
-<item historyLabel="SingleInfo.as" index="2">
-<position info="not_deleted" x="73" y="0"/>
-</item>
-<item historyLabel="ReadCode.as" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ReadCode.as" index="5">
+<item historyLabel="ReadCode.as" index="0">
 <position/>
 </item>
-<item historyLabel="ReadCode.as" index="5">
+<item historyLabel="ReadCode.as" index="0">
 <position/>
 </item>
-<item historyLabel="ReadCode.as" index="5">
+<item historyLabel="ReadCode.as" index="0">
 <position/>
 </item>
-<item historyLabel="ReadCode.as" index="5">
+<item historyLabel="ReadCode.as" index="0">
 <position info="not_deleted" x="2379" y="0"/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="MainView.as" index="7">
+<item historyLabel="MainView.as" index="2">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="MainViewUI.as" index="8">
+<item historyLabel="MainViewUI.as" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="MainView.as" index="7">
+<item historyLabel="MainView.as" index="2">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position/>
 </item>
-<item historyLabel="Root.as" index="6">
+<item historyLabel="Root.as" index="1">
 <position info="not_deleted" x="3287" y="0"/>
 </item>
-<item historyLabel="MainView.as" index="9">
+<item historyLabel="MainView.as" index="4">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Root.as" index="10">
+<item historyLabel="Root.as" index="5">
 <position info="not_deleted" x="176" y="0"/>
 </item>
-<item historyLabel="Horse.as" index="11">
+<item historyLabel="Horse.as" index="6">
 <position info="not_deleted" x="111" y="0"/>
 </item>
-<item historyLabel="Root.as" index="10">
+<item historyLabel="Root.as" index="5">
 <position info="not_deleted" x="176" y="0"/>
 </item>
-<item historyLabel="Horse.as" index="11">
+<item historyLabel="Horse.as" index="6">
 <position info="not_deleted" x="164" y="0"/>
 </item>
-<item historyLabel="Root.as" index="10">
+<item historyLabel="Root.as" index="5">
 <position/>
 </item>
-<item historyLabel="Horse.as" index="11">
+<item historyLabel="Horse.as" index="6">
 <position info="not_deleted" x="147" y="0"/>
 </item>
-<item historyLabel="Root.as" index="10">
+<item historyLabel="Root.as" index="5">
 <position info="not_deleted" x="668" y="0"/>
 </item>
-<item historyLabel="Horse.as" index="11">
+<item historyLabel="Horse.as" index="6">
 <position info="not_deleted" x="176" y="4"/>
 </item>
-<item historyLabel="WhiteHorse.as" index="12">
+<item historyLabel="WhiteHorse.as" index="7">
 <position info="not_deleted" x="137" y="0"/>
 </item>
-<item historyLabel="Horse.as" index="11">
+<item historyLabel="Horse.as" index="6">
 <position info="not_deleted" x="365" y="0"/>
 </item>
-<item historyLabel="BlackHorse.as" index="13">
+<item historyLabel="BlackHorse.as" index="8">
 <position info="not_deleted" x="138" y="0"/>
 </item>
-<item historyLabel="Horse.as" index="11">
+<item historyLabel="Horse.as" index="6">
 <position info="not_deleted" x="365" y="0"/>
 </item>
-<item active="true" historyLabel="Root.as" index="14">
-<position info="not_deleted" x="668" y="0"/>
+<item historyLabel="Root.as" index="9">
+<position info="not_deleted" x="536" y="0"/>
+</item>
+<item historyLabel="HttpRequest.as" index="10">
+<position info="not_deleted" x="3963" y="49"/>
+</item>
+<item historyLabel="XmlDom.as" index="11">
+<position info="not_deleted" x="6878" y="0"/>
+</item>
+<item historyLabel="LayaAir3D.as" index="12">
+<position info="not_deleted" x="266" y="0"/>
+</item>
+<item historyLabel="XmlDom.as" index="11">
+<position info="not_deleted" x="8096" y="0"/>
+</item>
+<item historyLabel="LayaAir3D.as" index="12">
+<position info="not_deleted" x="1585" y="0"/>
+</item>
+<item active="true" historyLabel="XmlDom.as" index="11">
+<position info="not_deleted" x="7108" y="37"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -422,6 +425,15 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="LayaAir3D.as" tooltip="myLaya/src/LayaAir3D.as">
+<persistable path="/myLaya/src/LayaAir3D.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="XmlDom.as" tooltip="myLaya/libs/laya/src/XmlDom.as">
+<persistable path="/myLaya/libs/laya/src/XmlDom.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="HttpRequest.as" tooltip="myLaya/libs/laya/src/laya/net/HttpRequest.as">
+<persistable path="/myLaya/libs/laya/src/laya/net/HttpRequest.as"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="BlackHorse.as" tooltip="ZooExample/src/animals/BlackHorse.as">
 <persistable path="/ZooExample/src/animals/BlackHorse.as"/>
 </file>
@@ -457,15 +469,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="GB2UTF8.as" tooltip="KLine/src/toolkit/GB2UTF8.as">
 <persistable path="/KLine/src/toolkit/GB2UTF8.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="MainView.as" tooltip="KLine/src/view/MainView.as">
-<persistable path="/KLine/src/view/MainView.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Candle.as" tooltip="KLine/src/view/Candle.as">
-<persistable path="/KLine/src/view/Candle.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Root.as" tooltip="KLine/src/Root.as">
-<persistable path="/KLine/src/Root.as"/>
 </file>
 </mruList>
 </workbench>

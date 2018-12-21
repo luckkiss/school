@@ -1,0 +1,19 @@
+1,0.00,,0,Project command:f:\school\playyard\laya\GameDemo/.actionScriptProperties;iflash=false;windowshow=false;chromerun=false;quickcompile=true
+Project configuration:f:\school\playyard\laya\GameDemo/.actionScriptProperties.
+1,0.00,,0,output path:f:/school/playyard/laya/GameDemo/bin/h5/
+1,0.00,,0,Main Class:f:/school/playyard/laya/GameDemo/src/Root.as
+1,0.00,,0,output file:Root
+1,0.00,,0,compilerSourcePath f:/school/playyard/laya/GameDemo/libs/laya/src/
+
+1,0.00,,0,Compile Path:f:/school/playyard/laya/GameDemo/src/
+
+1,0.00,,0,Compile Path:f:/school/playyard/laya/GameDemo/libs/laya/src/
+
+1,0.00,f:/school/playyard/laya/GameDemo/src,0,Collect
+1,0.00,f:/school/playyard/laya/GameDemo/libs/laya/src,0,Collect
+1,2.00,,0,read class message
+1,89.78,,0,Disable Flash3D f:/school/playyard/laya/GameDemo/src/Root.as
+12,89.78,f:/school/playyard/laya/GameDemo/bin/h5/Root.max.js,2315972,
+11,89.78,f:/school/playyard/laya/GameDemo/bin/h5/Root.max.html,887,
+******************************************************************************
+14,89.78,,0,
