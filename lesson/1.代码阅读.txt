@@ -31,3 +31,7 @@
 8. for(var i: int = 0; i < 10; i++) {...}
 
 9. break/continue
+
+10. a ? b : c  ->三元判断，假如a为true则为b，否则为c
+
+11. !a  ->取反
