@@ -1,0 +1,18 @@
+package view {
+	import laya.events.Event;
+	import laya.ui.Box;
+	import laya.ui.Label;
+	
+	import ui.test.MainViewUI;
+	
+	public class TestView extends MainViewUI {
+		
+		public function TestView() {
+			//btn是编辑器界面设定的，代码里面能直接使用，并且有代码提示
+			this.btnGo.on(Event.CLICK, this, onBtnClick);
+		}
+		
+		private function onBtnClick(e:Event):void {
+		}
+	}
+}
