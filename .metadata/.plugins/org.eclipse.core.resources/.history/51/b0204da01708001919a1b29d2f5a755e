@@ -29,7 +29,9 @@ package view {
 		
 		public function MainView() {
 			//先初始化界面
-			this.initView();
+			this.textCountDown.visible = false;
+			this.textRound.visible = false;
+			this.roundResult.visible = false;
 			
 			//创建左右两个玩家
 			this.leftPlayer = new PlayerView();
@@ -49,13 +51,6 @@ package view {
 			this.imgLeftCard.on(Event.CLICK, this, this.onClickCard);
 			this.imgRightCard.on(Event.CLICK, this, this.onClickCard);
 			this.btnGo.on(Event.CLICK, this, this.onClickBtnGo);
-		}
-		
-		private function initView(): void {
-			this.textCountDown.visible = false;
-			this.textRound.visible = false;
-			this.roundResult.visible = false;
-			this.btnGo.visible = true;
 		}
 		
 		private function onClickCard(e: Event): void {
@@ -87,12 +82,12 @@ package view {
 			this.roundResult.visible = true;
 			//淡入
 			this.roundResult.alpha = 0;
-			Tween.to(this.roundResult, {"alpha": 1}, 1000, null, Handler.create(this, this.onTweenInComplete));
+			Tween.to(this.roundResult, {"alpha", 1}, 1000, null, Handler.create(this, this.onTweenInComplete));
 		}
 		
 		private function onTweenInComplete(): void {
 			// 1秒后自动隐藏
-			Tween.to(this.roundResult, {"alpha": 0}, 1000, null, Handler.create(this, this.onTweenOutComplete));
+			Tween.to(this.roundResult, {"alpha", 0}, 1000, null, Handler.create(this, this.onTweenOutComplete));
 		}
 		
 		private function onTweenOutComplete(): void {
@@ -112,12 +107,7 @@ package view {
 				this.resultView = new ResultView();
 				this.addChild(this.resultView);
 			}
-			this.resultView.showResult(Root.gameData.results, Handler.create(this, this.onResultClosed));
-		}
-		
-		private function onResultClosed(): void {
-			//关闭结算界面后显示开始按钮
-			this.initView();
+			this.resultView.visible = true;
 		}
 		
 		private function onClickBtnGo(e: Event):void {

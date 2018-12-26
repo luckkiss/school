@@ -6,8 +6,6 @@ package data
 		
 		public var leftCards: Vector.<int> = [] as Vector.<int>;
 		public var rightCards: Vector.<int> = [] as Vector.<int>;
-		
-		public var results: Vector.<int> = [] as Vector.<int>;
 		public function GameData()
 		{
 		}

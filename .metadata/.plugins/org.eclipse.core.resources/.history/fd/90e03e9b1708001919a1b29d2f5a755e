@@ -1,0 +1,12 @@
+package view
+{
+	import ui.test.ResultViewUI;
+	
+	public class ResultView extends ResultViewUI
+	{
+		public function ResultView()
+		{
+			super();
+		}
+	}
+}

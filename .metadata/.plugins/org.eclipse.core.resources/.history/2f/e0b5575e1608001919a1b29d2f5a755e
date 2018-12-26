@@ -11,7 +11,6 @@ package view {
 		private const CountDownSeconds: int = 5;
 		private var leftSeconds: int = 0;
 		
-		private const MaxRoundCnt: int = 5;
 		/**第几场*/
 		private var roundCnt: int = 0;
 		
@@ -23,13 +22,13 @@ package view {
 		private var leftPlayer: PlayerView;
 		private var rightPlayer: PlayerView;
 		
-		private var resultView: ResultView;
-		
-		private var isDisplayingScore: Boolean = false;
+		private var isDisplayingResult: Boolean = false;
 		
 		public function MainView() {
 			//先初始化界面
-			this.initView();
+			this.textCountDown.visible = false;
+			this.textRound.visible = false;
+			this.roundResult.visible = false;
 			
 			//创建左右两个玩家
 			this.leftPlayer = new PlayerView();
@@ -51,19 +50,12 @@ package view {
 			this.btnGo.on(Event.CLICK, this, this.onClickBtnGo);
 		}
 		
-		private function initView(): void {
-			this.textCountDown.visible = false;
-			this.textRound.visible = false;
-			this.roundResult.visible = false;
-			this.btnGo.visible = true;
-		}
-		
 		private function onClickCard(e: Event): void {
-			if(this.isDisplayingScore) {
+			if(this.isDisplayingResult) {
 				// 不让重复点击
 				return;
 			}
-			this.isDisplayingScore = true;
+			this.isDisplayingResult = true;
 			
 			var leftCards: Vector.<int> = Root.gameData.leftCards;
 			var leftCard: int = leftCards[leftCards.length - 1];
@@ -87,37 +79,18 @@ package view {
 			this.roundResult.visible = true;
 			//淡入
 			this.roundResult.alpha = 0;
-			Tween.to(this.roundResult, {"alpha": 1}, 1000, null, Handler.create(this, this.onTweenInComplete));
+			Tween.to(this.roundResult, {"alpha", 1}, 1000, null, Handler.create(this, this.onTweenInComplete));
 		}
 		
 		private function onTweenInComplete(): void {
 			// 1秒后自动隐藏
-			Tween.to(this.roundResult, {"alpha": 0}, 1000, null, Handler.create(this, this.onTweenOutComplete));
+			Tween.to(this.roundResult, {"alpha", 0}, 1000, null, Handler.create(this, this.onTweenOutComplete));
 		}
 		
 		private function onTweenOutComplete(): void {
 			//继续发牌
 			this.roundResult.visible = false;
-			if(this.roundCnt >= this.MaxRoundCnt) {
-				// 5场结束显示结算面板
-				this.displayResult();
-			} else {
-				// 直接进入下一场发牌
-				this.dealCards();
-			}
-		}
-		
-		private function displayResult(): void {
-			if(!this.resultView) {
-				this.resultView = new ResultView();
-				this.addChild(this.resultView);
-			}
-			this.resultView.showResult(Root.gameData.results, Handler.create(this, this.onResultClosed));
-		}
-		
-		private function onResultClosed(): void {
-			//关闭结算界面后显示开始按钮
-			this.initView();
+			this.dealCards();
 		}
 		
 		private function onClickBtnGo(e: Event):void {
@@ -149,7 +122,6 @@ package view {
 		}
 		
 		private function dealCards(): void {
-			this.isDisplayingScore = false;
 			this.roundCnt++;
 			this.textRound.text = '第' + this.roundCnt + '场';
 			this.roundResult.visible = false;

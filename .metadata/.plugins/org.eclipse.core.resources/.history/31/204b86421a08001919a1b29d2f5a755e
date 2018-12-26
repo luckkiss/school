@@ -117,7 +117,7 @@ package view {
 		
 		private function onResultClosed(): void {
 			//关闭结算界面后显示开始按钮
-			this.initView();
+			
 		}
 		
 		private function onClickBtnGo(e: Event):void {
