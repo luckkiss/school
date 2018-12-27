@@ -1,0 +1,27 @@
+package view
+{
+	import laya.utils.Handler;
+	
+	import ui.ResultItemUI;
+	import ui.test.ResultViewUI;
+	
+	public class ResultView extends ResultViewUI
+	{
+		public function ResultView()
+		{
+			super();
+			
+			this.list.itemRender = ResultItemUI;
+			this.list.renderHandler = Handler.create(this, this.onRenderList);
+		}
+		
+		public function showResult(resultData: Array): void {
+			this.visible = true;
+			this.list.array = resultData;
+		}
+		
+		private function onRenderList(cell: ResultItemUI, index: int): void {
+			cell.textInfo.text = '第' + (index + 1) + '场    ' + 
+		}
+	}
+}

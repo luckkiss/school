@@ -1,0 +1,26 @@
+package view
+{
+	import laya.utils.Handler;
+	
+	import ui.test.ResultViewUI;
+	
+	public class ResultView extends ResultViewUI
+	{
+		public function ResultView()
+		{
+			super();
+			
+			this.list.itemRender = ResultViewUI;
+			this.list.renderHandler = Handler.create(this, this.onRenderList);
+		}
+		
+		public function showResult(): void {
+			this.visible = true;
+			this.list.array = [];
+		}
+		
+		private function onRenderList(cell: result): void {
+			
+		}
+	}
+}

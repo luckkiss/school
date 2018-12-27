@@ -1,0 +1,66 @@
+package view {
+	import laya.events.Event;
+	import laya.ui.Box;
+	import laya.ui.Label;
+	
+	import ui.test.MainViewUI;
+	
+	public class MainView extends MainViewUI {
+		private const CountDownSeconds: int = 5;
+		private var leftSeconds: int = 0;
+		
+		/**第几场*/
+		private var roundCnt: int = 0;
+		
+		private var leftPlayer: PlayerView;
+		private var rightPlayer: PlayerView;
+		
+		public function MainView() {
+			//先初始化界面
+			this.textCountDown.visible = false;
+			
+			//创建左右两个玩家
+			this.leftPlayer = new PlayerView();
+			this.leftPlayer.pos(0, 580);
+			this.addChild(this.leftPlayer);
+			this.rightPlayer = new PlayerView();
+			this.rightPlayer.right = 0;
+			this.rightPlayer.y = 580;
+			this.addChild(this.rightPlayer);
+			
+			//btn是编辑器界面设定的，代码里面能直接使用，并且有代码提示
+			this.btnGo.on(Event.CLICK, this, onClickBtnGo);
+		}
+		
+		private function onClickBtnGo(e:Event):void {
+			//开始倒计时
+			this.startCountDown();
+		}
+		
+		private function startCountDown(): void {
+			this.leftSeconds = this.CountDownSeconds;
+			this.textCountDown.text = this.leftSeconds + '';
+			this.textCountDown.visible = true;
+			Laya.timer.loop(1000, this, this.onTimer);
+		}
+		
+		private function onTimer(): void {
+			this.leftSeconds--;
+			this.textCountDown.text = this.leftSeconds + '';
+			if(this.leftSeconds <= 0) {
+				// 倒计时结束
+				this.textCountDown.visible = false;
+				// 移除定时器
+				Laya.timer.clear(this, this.onTimer);
+				// 初始化场次
+				this.roundCnt = 0;
+				this.dealCards();
+			}
+		}
+		
+		private function dealCards(): void {
+			this.roundCnt++;
+			this.textRound.text = this.roundCnt + '';
+		}
+	}
+}

@@ -1,0 +1,4 @@
+<res>
+   <item name="ui/dialog/bg_dlgII.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=60,24,24,24" picType="0" scale="0"/>
+   <item name="ui/btn/btn_gold.png" type="Button" compress="0" pack="0" quality="80" props="stateNum=1@@!@@labelPadding=0,0,4,0@@!@@labelSize=24" picType="0" scale="0"/>
+</res>

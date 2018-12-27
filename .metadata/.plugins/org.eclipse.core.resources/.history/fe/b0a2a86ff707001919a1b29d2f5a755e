@@ -1,0 +1,30 @@
+﻿package {
+	import laya.net.ResourceVersion;
+	import laya.utils.Handler;
+	import laya.webgl.WebGL;
+	
+	import view.MainView;
+	
+	public class Root {
+		private var mainView: MainView;
+		
+		public function Root() {
+			//初始化引擎
+			Laya.init(1024, 768,WebGL);
+			Laya.stage.scaleMode = Stage.SCALE_FIXED_AUTO;
+			
+			//激活资源版本控制
+            ResourceVersion.enable("version.json", Handler.create(this, beginLoad), ResourceVersion.FILENAME_VERSION);
+		}
+		
+		private function beginLoad():void {
+			//加载引擎需要的资源
+			Laya.loader.load(["res/atlas/ui/btn.atlas", "res/atlas/ui/dialog.atlas"], Handler.create(this, onLoaded));
+		}
+		
+		private function onLoaded():void {
+			this.mainView = new MainView();
+			Laya.stage.addChild(this.mainView);
+		}
+	}
+}

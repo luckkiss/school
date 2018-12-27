@@ -1716,3 +1716,294 @@ Binding(CTRL+SHIFT+G,
 
 !ENTRY org.eclipse.osgi 2 1 2018-12-19 19:59:59.966
 !MESSAGE NLS unused message: MoveResourceChange_error_destination_already_exists in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+!SESSION 2018-12-24 11:23:56.878 -----------------------------------------------
+eclipse.buildId=I20100608-0911
+java.version=1.6.0_16
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-24 11:24:13.008
+!MESSAGE NLS unused message: FileBuffer_status_ok in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-24 11:24:13.026
+!MESSAGE NLS unused message: DocumentInputStream_error_read in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.jface 2 0 2018-12-24 11:24:32.606
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-12-24 11:24:32.606
+!MESSAGE A conflict occurred for CTRL+`:
+Binding(CTRL+`,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.editorcore.modeswitch.toggle.def.depricated,切换源代码/设计模式,
+		,
+		Category(com.adobe.flexbuilder.editorcore.modeswitch.category,源代码/设计模式切换,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+`,
+	ParameterizedCommand(Command(cn.ieclipse.pde.explorer.command.explorer,Open in Explorer,
+		,
+		Category(org.eclipse.ui.category.window,窗口,null,true),
+		cn.ieclipse.pde.explorer.handlers.OpenExplorerHandler,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-24 11:24:35.152
+!MESSAGE NLS unused message: AutomaticUpdater_ErrorCheckingUpdates in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-24 11:24:35.153
+!MESSAGE NLS unused message: AutomaticUpdater_ResolutionOperationLabel in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+
+!ENTRY org.eclipse.jface 2 0 2018-12-24 19:47:45.937
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-12-24 19:47:45.937
+!MESSAGE A conflict occurred for CTRL+G:
+Binding(CTRL+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.declarations.in.workspace,在工作空间中查找所有声明,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,导航,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllDeclarationsAction@1a4d25d)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexide.editorcore.flexEditorScope,,,system)
+Binding(CTRL+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.declarations.in.workspace,在工作空间中查找所有声明,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,导航,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllDeclarationsAction@1a4d25d)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexbuilder.as.editor.context.packageexplorer,,,system)
+Binding(CTRL+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.declarations.in.workspace,工作空间中的声明,
+		在工作空间中搜索对所选元素的声明,
+		Category(org.eclipse.search.ui.category.search,搜索,搜索命令类别,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-12-24 19:47:45.937
+!MESSAGE A conflict occurred for CTRL+SHIFT+G:
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.references.in.workspace,在工作空间中查找所有引用,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,导航,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllReferencesAction@1ef12fb)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexide.editorcore.flexEditorScope,,,system)
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.references.in.workspace,在工作空间中查找所有引用,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,导航,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllReferencesAction@1ef12fb)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexbuilder.as.editor.context.packageexplorer,,,system)
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace,工作空间中的引用,
+		在工作空间中搜索对所选元素的引用,
+		Category(org.eclipse.search.ui.category.search,搜索,搜索命令类别,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY com.adobe.flexbuilder.project 4 43 2018-12-25 09:57:59.054
+!MESSAGE Error en SocketClientReceiver 69
+!STACK 0
+java.net.SocketException: Unrecognized Windows Sockets error: 0: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(Unknown Source)
+	at java.net.ServerSocket.bind(Unknown Source)
+	at java.net.ServerSocket.<init>(Unknown Source)
+	at java.net.ServerSocket.<init>(Unknown Source)
+	at com.adobe.flexbuilder.flexunitrunresults.data.ClientSocketsManager.listen(ClientSocketsManager.java:57)
+	at com.adobe.flexbuilder.flexunitrunresults.data.ClientSocketsManager.run(ClientSocketsManager.java:113)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.714
+!MESSAGE NLS unused message: RefactoringHistoryWizard_no_refactorings_error in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.714
+!MESSAGE NLS unused message: RefactoringHistoryWizard_no_refactorings_message in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.715
+!MESSAGE NLS unused message: RefactoringHistoryLabelProvider_label_country in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.715
+!MESSAGE NLS unused message: RefactoringHistoryLabelProvider_label_language in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.715
+!MESSAGE NLS unused message: RefactoringHistoryLabelProvider_this_month_format in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.715
+!MESSAGE NLS unused message: RefactoringHistoryLabelProvider_last_month_format in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.716
+!MESSAGE NLS unused message: RefactoringHistoryLabelProvider_label_variant in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.716
+!MESSAGE NLS unused message: RefactoringHistoryLabelProvider_month_format in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.716
+!MESSAGE NLS unused message: RefactoringHistoryOverviewPage_description in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.717
+!MESSAGE NLS unused message: ShowRefactoringHistoryControl_edit_label in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.717
+!MESSAGE NLS unused message: RefactoringPropertyPage_confirm_delete_pattern in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.717
+!MESSAGE NLS unused message: RefactoringPropertyPage_edit_caption in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.717
+!MESSAGE NLS unused message: RefactoringPropertyPage_edit_message in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:28.718
+!MESSAGE NLS unused message: DeleteResourcesWizard_outOfSync in: org.eclipse.ltk.internal.ui.refactoring.RefactoringUIMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:34.076
+!MESSAGE NLS unused message: TextChanges_error_unsaved_changes in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:34.077
+!MESSAGE NLS unused message: ParticipantDescriptor_correct in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:34.078
+!MESSAGE NLS unused message: UnknownRefactoringDescriptor_initialization_error in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:34.078
+!MESSAGE NLS unused message: DeleteFileOrFolderChange_deleting in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:34.078
+!MESSAGE NLS unused message: DeleteFileOrFolderChange_name in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-25 11:16:34.079
+!MESSAGE NLS unused message: MoveResourceChange_error_destination_already_exists in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+
+!ENTRY CodeModel 4 1 2018-12-25 11:39:54.897
+!MESSAGE Parsing error
+!STACK 0
+java.lang.NullPointerException
+	at com.adobe.flexbuilder.codemodel.internal.tree.NodeBase.fillInOffsets(NodeBase.java:527)
+	at com.adobe.flexbuilder.codemodel.internal.tree.ExpressionNode.normalize(ExpressionNode.java:66)
+	at com.adobe.flexbuilder.codemodel.internal.tree.TreeNode.addChildInOrder(TreeNode.java:150)
+	at com.adobe.flexbuilder.codemodel.internal.tree.VariableNode.setChildren(VariableNode.java:116)
+	at com.adobe.flexbuilder.codemodel.internal.tree.NodeBase.normalize(NodeBase.java:471)
+	at com.adobe.flexbuilder.codemodel.internal.tree.TreeNode.normalize(TreeNode.java:122)
+	at com.adobe.flexbuilder.codemodel.internal.tree.BaseDefinitionNode.normalize(BaseDefinitionNode.java:84)
+	at com.adobe.flexbuilder.codemodel.internal.tree.VariableNode.normalize(VariableNode.java:103)
+	at com.adobe.flexbuilder.codemodel.internal.tree.NodeBase.normalize(NodeBase.java:467)
+	at com.adobe.flexbuilder.codemodel.internal.tree.TreeNode.normalize(TreeNode.java:122)
+	at com.adobe.flexbuilder.codemodel.internal.tree.TreeNode.addChildInOrder(TreeNode.java:150)
+	at com.adobe.flexbuilder.codemodel.internal.tree.FunctionNode.setChildren(FunctionNode.java:152)
+	at com.adobe.flexbuilder.codemodel.internal.tree.NodeBase.normalize(NodeBase.java:471)
+	at com.adobe.flexbuilder.codemodel.internal.tree.TreeNode.normalize(TreeNode.java:122)
+	at com.adobe.flexbuilder.codemodel.internal.tree.BaseDefinitionNode.normalize(BaseDefinitionNode.java:84)
+	at com.adobe.flexbuilder.codemodel.internal.tree.FunctionNode.normalize(FunctionNode.java:177)
+	at com.adobe.flexbuilder.codemodel.internal.tree.NodeBase.normalize(NodeBase.java:467)
+	at com.adobe.flexbuilder.codemodel.internal.tree.TreeNode.normalize(TreeNode.java:122)
+	at com.adobe.flexbuilder.codemodel.internal.tree.TreeNode.addChildInOrder(TreeNode.java:150)
+	at com.adobe.flexbuilder.codemodel.internal.tree.ClassNode.setChildren(ClassNode.java:224)
+	at com.adobe.flexbuilder.codemodel.internal.tree.NodeBase.normalize(NodeBase.java:471)
+	at com.adobe.flexbuilder.codemodel.internal.tree.TreeNode.normalize(TreeNode.java:122)
+	at com.adobe.flexbuilder.codemodel.internal.tree.BaseDefinitionNode.normalize(BaseDefinitionNode.java:84)
+	at com.adobe.flexbuilder.codemodel.internal.tree.ClassNode.normalize(ClassNode.java:232)
+	at com.adobe.flexbuilder.codemodel.internal.tree.NodeBase.normalize(NodeBase.java:467)
+	at com.adobe.flexbuilder.codemodel.internal.tree.TreeNode.normalize(TreeNode.java:122)
+	at com.adobe.flexbuilder.codemodel.internal.tree.TreeNode.addChildInOrder(TreeNode.java:150)
+	at com.adobe.flexbuilder.codemodel.internal.tree.PackageNode.setChildren(PackageNode.java:106)
+	at com.adobe.flexbuilder.codemodel.internal.tree.NodeBase.normalize(NodeBase.java:471)
+	at com.adobe.flexbuilder.codemodel.internal.tree.TreeNode.normalize(TreeNode.java:122)
+	at com.adobe.flexbuilder.codemodel.internal.tree.BaseDefinitionNode.normalize(BaseDefinitionNode.java:84)
+	at com.adobe.flexbuilder.codemodel.internal.tree.NodeBase.normalize(NodeBase.java:467)
+	at com.adobe.flexbuilder.codemodel.internal.tree.TreeNode.normalize(TreeNode.java:122)
+	at com.adobe.flexbuilder.codemodel.internal.tree.NodeBase.postProcess(NodeBase.java:440)
+	at com.adobe.flexbuilder.codemodel.internal.parsing.BaseASTreeParser.parseFile(BaseASTreeParser.java:180)
+	at com.adobe.flexbuilder.codemodel.internal.resourcehandlers.BaseFileHandler.parseToASTree(BaseFileHandler.java:244)
+	at com.adobe.flexbuilder.codemodel.internal.resourcehandlers.ASFileHandler.parseFile(ASFileHandler.java:101)
+	at com.adobe.flexbuilder.codemodel.internal.resourcehandlers.ResourceHandlerManager.parseFile(ResourceHandlerManager.java:242)
+	at com.adobe.flexbuilder.codemodel.internal.project.Project.parseFile(Project.java:1137)
+	at com.adobe.flexbuilder.codemodel.internal.project.Project.addUnsavedFile(Project.java:705)
+	at com.adobe.flexbuilder.codemodel.internal.project.Project.processDeferredFiles(Project.java:799)
+	at com.adobe.flexbuilder.codemodel.internal.project.Project.processDeferredUpdates(Project.java:771)
+	at com.adobe.flexbuilder.codemodel.internal.project.Project.getLiveTreeBaseNode(Project.java:1174)
+	at com.adobe.flexbuilder.codemodel.internal.project.Project.findFileNodeInProject(Project.java:1238)
+	at com.adobe.flexide.as.core.document.internal.BaseASModel.getBaseFileNode(BaseASModel.java:739)
+	at com.adobe.flexide.as.core.document.internal.BaseASModel.getOffsetInformation(BaseASModel.java:1424)
+	at com.adobe.flexide.as.core.document.internal.BaseASModel.getOffsetInformation(BaseASModel.java:1416)
+	at com.adobe.flexbuilder.debug.ui.variables.FlexDebugHover.getExpression(FlexDebugHover.java:132)
+	at com.adobe.flexbuilder.debug.ui.actions.FlexEditorWatchAction.update(FlexEditorWatchAction.java:149)
+	at com.adobe.flexbuilder.debug.ui.actions.FlexEditorWatchAction.selectionChanged(FlexEditorWatchAction.java:104)
+	at org.eclipse.ui.internal.PluginAction.refreshEnablement(PluginAction.java:206)
+	at org.eclipse.ui.internal.PluginAction.selectionChanged(PluginAction.java:277)
+	at org.eclipse.ui.internal.PluginAction.selectionChanged(PluginAction.java:289)
+	at org.eclipse.ui.internal.ViewerActionBuilder$ViewerContribution.selectionChanged(ViewerActionBuilder.java:191)
+	at org.eclipse.jface.viewers.Viewer$2.run(Viewer.java:162)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:49)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:175)
+	at org.eclipse.jface.viewers.Viewer.fireSelectionChanged(Viewer.java:160)
+	at org.eclipse.jface.text.TextViewer.fireSelectionChanged(TextViewer.java:2728)
+	at org.eclipse.jface.text.TextViewer.selectionChanged(TextViewer.java:2707)
+	at org.eclipse.jface.text.TextViewer$4.widgetSelected(TextViewer.java:1828)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:234)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1077)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1062)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:774)
+	at org.eclipse.swt.custom.StyledText.sendSelectionEvent(StyledText.java:8027)
+	at org.eclipse.swt.custom.StyledText.clearSelection(StyledText.java:1713)
+	at org.eclipse.swt.custom.StyledText.setSelection(StyledText.java:9481)
+	at org.eclipse.swt.custom.StyledText.updateSelection(StyledText.java:10189)
+	at org.eclipse.swt.custom.StyledText.handleTextChanged(StyledText.java:6227)
+	at org.eclipse.swt.custom.StyledText$6.textChanged(StyledText.java:5636)
+	at org.eclipse.jface.text.DefaultDocumentAdapter.fireTextChanged(DefaultDocumentAdapter.java:347)
+	at org.eclipse.jface.text.DefaultDocumentAdapter.documentChanged(DefaultDocumentAdapter.java:291)
+	at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged2(AbstractDocument.java:760)
+	at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged(AbstractDocument.java:736)
+	at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged(AbstractDocument.java:721)
+	at org.eclipse.jface.text.AbstractDocument.fireDocumentChanged(AbstractDocument.java:796)
+	at org.eclipse.jface.text.projection.ProjectionDocument.fireDocumentChanged(ProjectionDocument.java:777)
+	at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1191)
+	at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1210)
+	at org.eclipse.jface.text.projection.ProjectionDocument.replace(ProjectionDocument.java:629)
+	at org.eclipse.jface.text.DefaultDocumentAdapter.replaceTextRange(DefaultDocumentAdapter.java:248)
+	at org.eclipse.swt.custom.StyledText.handleCompositionChanged(StyledText.java:5804)
+	at org.eclipse.swt.custom.StyledText$8.handleEvent(StyledText.java:5680)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1077)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1062)
+	at org.eclipse.swt.widgets.IME.WM_IME_COMPOSITION(IME.java:505)
+	at org.eclipse.swt.widgets.Canvas.WM_IME_COMPOSITION(Canvas.java:368)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4185)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:341)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4873)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2459)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3655)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2640)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2604)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2438)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:671)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:664)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at com.adobe.flexbuilder.standalone.FlashBuilderApplication.start(FlashBuilderApplication.java:108)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:619)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:574)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1407)

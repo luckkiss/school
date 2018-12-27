@@ -1,0 +1,19 @@
+package view
+{
+	import ui.test.ResultViewUI;
+	
+	public class ResultView extends ResultViewUI
+	{
+		public function ResultView()
+		{
+			super();
+			
+			this.list.itemRender = ResultViewUI;
+		}
+		
+		public function showResult(): void {
+			this.visible = true;
+			this.list.array = [];
+		}
+	}
+}

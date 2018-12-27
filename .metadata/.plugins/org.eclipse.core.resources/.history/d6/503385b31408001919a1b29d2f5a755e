@@ -1,0 +1,132 @@
+package view {
+	import laya.events.Event;
+	import laya.ui.Box;
+	import laya.ui.Label;
+	import laya.utils.Handler;
+	import laya.utils.Tween;
+	
+	import ui.test.MainViewUI;
+	
+	public class MainView extends MainViewUI {
+		private const CountDownSeconds: int = 5;
+		private var leftSeconds: int = 0;
+		
+		/**第几场*/
+		private var roundCnt: int = 0;
+		
+		private const CardShapes: Vector.<String> = ['fk', 'mh', 'ht', 'ht'] as Vector.<String>;
+		private const CardMaxNum: int = 13;
+		
+		private var leftPlayer: PlayerView;
+		private var rightPlayer: PlayerView;
+		
+		public function MainView() {
+			//先初始化界面
+			this.textCountDown.visible = false;
+			this.textRound.visible = false;
+			this.roundResult.visible = false;
+			
+			//创建左右两个玩家
+			this.leftPlayer = new PlayerView();
+			this.leftPlayer.pos(0, 580);
+			this.addChild(this.leftPlayer);
+			this.rightPlayer = new PlayerView();
+			this.rightPlayer.right = 0;
+			this.rightPlayer.y = 580;
+			this.addChild(this.rightPlayer);
+			
+			//初始化玩家信息
+			var players: Vector.<String> = Root.gameData.players;
+			this.leftPlayer.setName(players[0]);
+			this.rightPlayer.setName(players[1]);
+			
+			//btn是编辑器界面设定的，代码里面能直接使用，并且有代码提示
+			this.imgLeftCard.on(Event.CLICK, this, this.onClickCard);
+			this.imgRightCard.on(Event.CLICK, this, this.onClickCard);
+			this.btnGo.on(Event.CLICK, this, this.onClickBtnGo);
+		}
+		
+		private function onClickCard(e: Event): void {
+			var leftCards: Vector.<int> = Root.gameData.leftCards;
+			var leftCard: int = leftCards[leftCards.length - 1];
+			this.imgLeftCard.skin = getCardSkin(leftCard);
+			
+			var rightCards: Vector.<int> = Root.gameData.rightCards;
+			var rightCard: int = rightCards[rightCards.length - 1];
+			this.imgRightCard.skin = getCardSkin(rightCards);
+			
+			// 比较大小
+			var compareResult: int = (leftCard % this.CardMaxNum) - (rightCard % this.CardMaxNum);
+			if(0 == compareResult) {
+				// 平手
+				this.textResult.text = '平局';
+			} else if(1 == compareResult) {
+				this.textResult.text = '胜利';
+			} else {
+				this.textResult.text = '失败';
+			}
+			this.roundResult.visible = true;
+			//淡入
+			this.roundResult.alpha = 0;
+			Tween.to(this.roundResult, {"alpha", 1}, 1000, null, Handler.create(this, this.onTweenInComplete));
+		}
+		
+		private function onTweenInComplete(): void {
+			// 1秒后自动隐藏
+			Tween.to(this.roundResult, {"alpha", 0}, 1000, null, Handler.create(this, this.onTweenOutComplete));
+		}
+		
+		private function onTweenOutComplete(): void {
+			// 1秒后自动隐藏
+			this.roundResult.visible = false;
+		}
+		
+		private function onClickBtnGo(e: Event):void {
+			//开始倒计时
+			this.startCountDown();
+		}
+		
+		private function startCountDown(): void {
+			this.leftSeconds = this.CountDownSeconds;
+			this.textCountDown.text = this.leftSeconds + '';
+			this.textCountDown.visible = true;
+			Laya.timer.loop(1000, this, this.onTimer);
+		}
+		
+		private function onTimer(): void {
+			this.leftSeconds--;
+			this.textCountDown.text = this.leftSeconds + '';
+			if(this.leftSeconds <= 0) {
+				// 倒计时结束
+				this.textCountDown.visible = false;
+				// 移除定时器
+				Laya.timer.clear(this, this.onTimer);
+				// 初始化场次
+				this.roundCnt = 0;
+				this.textRound.visible = true;
+				this.dealCards();
+			}
+		}
+		
+		private function dealCards(): void {
+			this.roundCnt++;
+			this.textRound.text = '第' + this.roundCnt + '场';
+			this.roundResult.visible = false;
+			
+			// 给每位玩家发牌
+			var leftCard: int = Math.floor(Math.random() * this.CardShapes * this.CardMaxNum);
+			Root.gameData.leftCards.push(leftCard);
+			this.imgLeftCard.skin = getCardSkin(leftCard);
+			
+			var rightCard: int = Math.floor(Math.random() * this.CardShapes * this.CardMaxNum);
+			Root.gameData.rightCards.push(rightCard);
+			this.imgRightCard.skin = getCardSkin(rightCard);
+		}
+		
+		private function getCardSkin(card: int): String {
+			var shape: String = this.CardShapes[Math.floor(card / this.CardMaxNum)];
+			var num: int = card % this.CardMaxNum;
+			return shape + num;
+		}
+	}
+}

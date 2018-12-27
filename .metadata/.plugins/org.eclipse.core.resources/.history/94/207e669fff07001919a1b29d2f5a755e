@@ -1,0 +1,12 @@
+package view
+{
+	import ui.PlayerUI;
+	
+	public class PlayerView extends PlayerUI
+	{
+		public function PlayerView()
+		{
+			super();
+		}
+	}
+}
