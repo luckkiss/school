@@ -1,0 +1,13 @@
+package data
+{
+	public class ItemInfo
+	{
+		public var id: String;
+		public var name: String;
+		public var popular: int;
+		public var itemClass: int;
+		public function ItemInfo()
+		{
+		}
+	}
+}
