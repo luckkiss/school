@@ -1,0 +1,9 @@
+package data
+{
+	public class StoreInfo
+	{
+		public function StoreInfo()
+		{
+		}
+	}
+}

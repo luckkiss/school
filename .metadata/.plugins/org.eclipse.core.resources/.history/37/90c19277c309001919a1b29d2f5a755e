@@ -1,0 +1,38 @@
+package data
+{
+	public class StoreData
+	{
+		/**品类配置映射表，Object为{id: ClassInfo}的键值对，方便通过id来查询品类信息*/
+		private var classCfgMap: Object = {};
+		
+		/**品类配置映射表，Object为{id: ClassInfo}的键值对，方便通过id来查询品类信息*/
+		private var itemCfgMap: Object = {};
+		
+		public function StoreData()
+		{
+		}
+		
+		public function init(globalJson: Object, itemJson: Object, storeJson: Object): void {
+			// Vector.<ClassInfo>表示这个数组元素的类型为ClassInfo
+			var classCfgs: Vector.<ClassInfo> = globalJson.classes;
+			// 以下演示了一个var关键字可以同时声明多个变量的写法
+			// var后面同时声明了i和len两个变量
+			for(var i: int = 0, len: int = classCfgs.length; i < len; i++) {
+				var classCfg: ClassInfo = classCfgs[i];
+				// 使用ClassInfo的id作为key，其对于的Value为ClassInfo
+				this.classCfgMap[classCfg.id] = classCfg;
+			}
+			
+		}
+		
+		/**通过id获取对应的ClassInfo*/
+		public function getClassCfgById(id: int): ClassInfo {
+			return this.classCfgMap[id];
+		}
+		
+		/**通过id获取对应的ClassInfo*/
+		public function getItemCfgById(id: int): ItemInfo {
+			return this.itemCfgMap[id];
+		}
+	}
+}

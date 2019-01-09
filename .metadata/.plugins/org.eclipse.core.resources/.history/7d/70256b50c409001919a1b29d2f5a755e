@@ -1,0 +1,11 @@
+[
+	{
+	    "id": "i001", 
+		"name": "草莓棒棒糖", 
+		"popular": 777, 
+		"price": 1.2, 
+		"itemClass": "c001",
+		"salesVolumn": 221, 
+		"stock": 892  
+	}
+]
