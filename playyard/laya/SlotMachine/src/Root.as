@@ -25,7 +25,7 @@
 		
 		private function beginLoad():void {
 			//加载引擎需要的资源
-			Laya.loader.load(["res/atlas/ui.atlas", "res/atlas/p.atlas", "res/out.tp"], Handler.create(this, onLoaded));
+			Laya.loader.load(["res/atlas/ui.atlas", "res/out.tp"], Handler.create(this, onLoaded));
 		}
 		
 		private function onLoaded():void {
@@ -47,13 +47,28 @@
 				pswds.push(pswd);
 			}
 			Root.data.pswds = pswds;
-			console.log(pswds.join(','));
 			
+			var userImgSkins: Array = [];
 			var userCnt: int = byte.getUint32();
-			
 			for(var i: int = 0; i < userCnt; i++) {
-				Root.data.users.push(byte.getUTFBytes(9));
+				var uname: String = byte.getUTFBytes(9)
+				Root.data.users.push(uname);
+				userImgSkins.push('p/' + uname + '.jpg');
 			}
+			
+			var stCnt: int = byte.getByte();
+			for(var i: int = 0; i < stCnt; i++) {
+				var idx: int = byte.getByte();
+				Root.data.stList.push(Root.data.users[idx]);
+			}
+			
+			var bossCnt: int = byte.getByte();
+			for(var i: int = 0; i < bossCnt; i++) {
+				var idx: int = byte.getByte();
+				Root.data.bossList.push(Root.data.users[idx]);
+			}
+			
+			Laya.loader.load(userImgSkins);
 			
 			var mainView: MainView = new MainView();
 			Laya.stage.addChild(mainView);

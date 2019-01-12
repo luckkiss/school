@@ -40,14 +40,34 @@ my $worksheet = $workbook->worksheet(0);
 my ($row_min, $row_max) = $worksheet->row_range();
 my ($col_min, $col_max) = $worksheet->col_range();
 print "row_max: $row_max\n";
+my @stList = ();
+my @bossList = ();
 $outStr.=pack('I', $row_max);
 for my $row (1..$row_max){
-    for my $col (0..0){
-        my $cell = $worksheet->get_cell($row, $col);
-        next unless $cell;
-        # print "Value=", $cell->value(), "\n";
-        $outStr.=pack('a9', encode("utf8", decode("CP936", $cell->value())));
+    my $cell = $worksheet->get_cell($row, 0);
+    next unless $cell;
+    # print "Value=", $cell->value(), "\n";
+    $outStr.=pack('a9', encode("utf8", decode("CP936", $cell->value())));
+    
+    $cell = $worksheet->get_cell($row, 1);
+    if($cell) {
+        my $flag = $cell->value();
+        if(0 == $flag) {
+            push @stList, $row - 1;
+        } elsif(1 == $flag) {
+            push @bossList, $row - 1;
+        }
     }
+}
+my $stListCnt = @stList;
+$outStr.=pack('C', $stListCnt);
+for(@stList){
+    $outStr.=pack('C', $_);
+}
+my $bossListCnt = @bossList;
+$outStr.=pack('C', $bossListCnt);
+for(@bossList){
+    $outStr.=pack('C', $_);
 }
 open ( OUTFILE, ">", "out.tp" ) or die ("Son of bitch!\n");
 binmode OUTFILE;

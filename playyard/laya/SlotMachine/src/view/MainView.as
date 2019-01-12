@@ -32,6 +32,8 @@ package view {
 			var pswd: String = this.inputPswd.text;
 			var pswdIdx: int = Root.data.pswds.indexOf(pswd);
 			if(pswdIdx >= 0) {
+				Root.data.isGuest = pswdIdx > 0;
+				console.log(Root.data.toString());
 				this.loginCtn.visible = false;
 				this.playCtn.visible = true;
 			} 
@@ -46,7 +48,7 @@ package view {
 		}
 		
 		private function onEndRoll(): void {
-			this.btnGo.scaleY = 0;
+			this.btnGo.scaleY = 1;
 		}
 	}
 }

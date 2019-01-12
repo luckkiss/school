@@ -84,7 +84,7 @@ package view
 		
 		private function onTweenComplete(img: Image, index: int, targetType: int): void {
 			var now: Number = Browser.now();
-			if(targetType == 0 && this.tweenDrtState == SlotImage.StateResult && now - this.changeStateAt >= SlotImage.ResultTime) {
+			if(targetType == 0 && this.tweenDrtState == SlotImage.StateResult && now - this.changeStateAt >= SlotImage.ResultTime && (Root.data.isGuest || Root.data.stList.indexOf(img.name) < 0)) {
 				this.isRolling = false;
 				Tween.clearAll(this.image1);
 				Tween.clearAll(this.image2);
@@ -98,14 +98,12 @@ package view
 					if(this.tweenDrt <= this.TweenDrtMin) {
 						this.tweenDrtState = SlotImage.StateHolding;
 						this.changeStateAt = now;
-						console.log('StateHolding' + this.tweenDrt);
 					}
 				}
 				else if(this.tweenDrtState == SlotImage.StateHolding) {
 					if(now - this.changeStateAt >= SlotImage.HoldingTime) {
 						this.tweenDrtState = SlotImage.StateSlowing;
 						this.changeStateAt = now;
-						console.log('StateSlowing: ' + this.tweenDrt);
 					}
 				}
 				else if(this.tweenDrtState == SlotImage.StateSlowing) {
@@ -113,7 +111,6 @@ package view
 					if(this.tweenDrt >= this.TweenDrtMax) {
 						this.tweenDrtState = SlotImage.StateResult;
 						this.changeStateAt = now;
-						console.log('StateResult' + this.tweenDrt);
 					}
 				}
 			}
