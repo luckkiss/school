@@ -19,10 +19,11 @@ my %letterMap = ();
 for(my $i = 0, $len = @allLetters; $i < $len; $i++) {
     $letterMap{$allLetters[$i]} = $i;
 }
-my $pswdCnt = @{$json_obj};
+my $pswdArrRef = $json_obj->{pswd};
+my $pswdCnt = @{$pswdArrRef};
 $outStr.=pack('C', $pswdCnt);
 for(my $i = 0; $i < $pswdCnt; $i++) {
-    my $pswd = @{$json_obj}[$i];
+    my $pswd = @{$pswdArrRef}[$i];
     my $pswdLen = length($pswd);
     $outStr.=pack('C', $pswdLen);
     for(my $i = 0; $i < $pswdLen; $i++) {
@@ -30,6 +31,7 @@ for(my $i = 0; $i < $pswdCnt; $i++) {
         $outStr.=pack('C', $letterMap{lc($pswdLetter)});
     }
 }
+$outStr.=pack('C', $json_obj->{luckyCnt});
 my $parser = Spreadsheet::ParseExcel->new();
 my $formatter = Spreadsheet::ParseExcel::FmtUnicode->new(Unicode_Map=>"CP936");
 my $workbook = $parser->parse('namelist.xls', $formatter);

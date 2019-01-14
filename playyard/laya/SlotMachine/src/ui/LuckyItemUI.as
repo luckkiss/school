@@ -9,7 +9,7 @@ package ui {
 		public var imgHead:Image;
 		public var textName:Text;
 
-		public static var uiView:Object =/*[STATIC SAFE]*/{"type":"Box","props":{"y":0,"x":0,"width":125,"height":180},"child":[{"type":"Image","props":{"var":"imgHead","skin":"p/default.jpg"}},{"type":"Text","props":{"y":136,"width":125,"var":"textName","text":"幸运儿","height":26,"fontSize":24,"color":"#ffffff","align":"center"}}]};
+		public static var uiView:Object =/*[STATIC SAFE]*/{"type":"Box","props":{"y":0,"x":0,"width":171,"height":180},"child":[{"type":"Image","props":{"skin":"ui/luckyTable.png","bottom":0}},{"type":"Image","props":{"y":4,"x":21,"var":"imgHead","skin":"p/default.png"}},{"type":"Image","props":{"y":0,"skin":"ui/luckyFrame.png"}},{"type":"Text","props":{"y":142,"x":0,"width":171,"var":"textName","text":"幸运儿","height":26,"fontSize":24,"color":"#ffffff","align":"center"}}]};
 		public function LuckyItemUI(){
 		createUI(uiView);
 		}

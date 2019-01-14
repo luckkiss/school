@@ -48,6 +48,8 @@
 			}
 			Root.data.pswds = pswds;
 			
+			Root.data.luckyCntTotal = byte.getByte();
+			
 			var userImgSkins: Array = [];
 			var userCnt: int = byte.getUint32();
 			for(var i: int = 0; i < userCnt; i++) {

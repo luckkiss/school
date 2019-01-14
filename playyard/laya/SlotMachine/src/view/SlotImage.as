@@ -55,13 +55,16 @@ package view
 			this.image2 = new Image();
 			this.image2.size(ctn.width, ctn.height);
 			ctn.addChild(this.image2);
-			this.image1.skin = "p/default.jpg";
-			this.image2.skin = "p/default.jpg";
+			this.image1.skin = "p/default.png";
+			this.image2.skin = "p/default.png";
+			
+			this.image1.size(ctn.width, ctn.height);
+			this.image2.size(ctn.width, ctn.height);
 		}
 		
 		public function reset(): void {
-			this.image1.skin = "p/default.jpg";
-			this.image2.skin = "p/default.jpg";
+			this.image1.skin = "p/default.png";
+			this.image2.skin = "p/default.png";
 			this.image1.y = 0;
 			this.image2.y = -this.imgHeight;
 		}
@@ -126,11 +129,11 @@ package view
 			}
 			
 			if(0 == targetType) {
-				Tween.to(img, {y: this.imgHeight}, this.tweenDrt, null, Handler.create(this, this.onTweenComplete, [img, index, 1]));
+				Tween.to(img, {y: this.imgHeight}, this.tweenDrt, null, Handler.create(this, this.onTweenComplete, [img, index, 1]), 0, true);
 			} else {
 				img.y = -this.imgHeight;
 				this.getP(img);
-				Tween.to(img, {y: 0}, this.tweenDrt, null, Handler.create(this, this.onTweenComplete, [img, index, 0]));
+				Tween.to(img, {y: 0}, this.tweenDrt, null, Handler.create(this, this.onTweenComplete, [img, index, 0]), 0, true);
 			}
 		}
 		
@@ -144,6 +147,13 @@ package view
 			img.name = p;
 			if(++this.poolIndex >= poolLen) {
 				this.poolIndex = 0;
+			}
+		}
+		
+		public function eraseName(name: String): void {
+			var idx: int = this.pool.indexOf(name);
+			if(idx >= 0) {
+				this.pool.splice(idx, 1);
 			}
 		}
 	}

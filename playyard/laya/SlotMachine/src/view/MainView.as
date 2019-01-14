@@ -1,7 +1,10 @@
 package view {
 	import laya.display.Animation;
+	import laya.display.Text;
 	import laya.events.Event;
+	import laya.ui.Box;
 	import laya.ui.Component;
+	import laya.ui.Image;
 	import laya.utils.Ease;
 	import laya.utils.Handler;
 	import laya.utils.Tween;
@@ -16,6 +19,7 @@ package view {
 		
 		private const aniNames: Vector.<String> = ['biao1', 'moby1', 'sj', 'yuntian'] as Vector.<String>;
 		private var anis: Vector.<Animation> = new Vector.<Animation>();
+		private var talks: Vector.<Image> = new Vector.<Image>();
 		private var lightAni1: Animation;
 		private var lightAni2: Animation;
 		
@@ -25,10 +29,13 @@ package view {
 				var ani: Animation = new Animation();
 				ani.interval = 120;
 				ani.loadAtlas('res/atlas/eff/' + aniName + '.atlas'); 
-				ani.play();
 				ani.visible = false;
-				this[aniName].addChild(ani);
+				this[aniName].addChildAt(ani, 0);
 				this.anis.push(ani);
+				
+				var imgTalk: Image = this[aniName].getChildByName('imgTalk');
+				imgTalk.visible = false;
+				this.talks.push(imgTalk);
 			}
 			
 			this.lightAni1 = new Animation();
@@ -42,9 +49,10 @@ package view {
 			this.lightAni2.play();
 			this.lightCtn2.addChild(this.lightAni2);
 			
+			var textBroadcasts: Vector.<Text> = [this.textBroadcast1, this.textBroadcast2] as Vector.<Text>;
 			this.slotMachinePosBottom = this.slotmachine.bottom;
 			this.machine = new SlotMachine();
-			this.machine.init(this.slotmachine);
+			this.machine.init(this.slotmachine as Box, textBroadcasts, this.labaCtn);
 			this.slotmachine.visible = false;
 			
 			this.pop.visible = false;
@@ -82,6 +90,8 @@ package view {
 				this.move_moby1.play(0, false);
 				this.move_yuntian.play(0, false);
 				this.move_sj.play(0, false);
+				
+				Laya.timer.loop(5000, this, this.onTick);
 			} 
 		}
 		
@@ -89,14 +99,19 @@ package view {
 			if(this.machine.isRolling) {
 				return;
 			}
-			Root.data.luckyList.length = 0;
-			this.machine.start(Handler.create(this, this.onEndRoll));
-			this.btnGo.scaleY = -1;
+			var leftLucky: int = Root.data.luckyCntTotal - Root.data.luckyCnt;
+			if(leftLucky > 0) {
+				Root.data.luckyList.length = 0;
+				this.machine.start(leftLucky, Handler.create(this, this.onEndRoll));
+				this.btnGo.scaleY = -1;
+			}
 		}
 		
 		private function onEndRoll(): void {
-			this.btnGo.scaleY = 1;
-			
+			Laya.timer.once(2000, this, this.onRollEndDelay);
+		}
+		
+		private function onRollEndDelay(): void {
 			this.listLucky.array = Root.data.luckyList as Array;
 			this.popBg.scaleX = 0.1;
 			this.popBg.scaleY = 0.1;
@@ -109,7 +124,27 @@ package view {
 		}
 		
 		private function onClickMaskLayer(e: Event): void {
+			Tween.to(this.popBg, {scaleX: 0.1, scaleY: 0.1}, 500, Ease.bounceIn, Handler.create(this, this.onPopTweenEnd));
+		}
+		
+		private function onPopTweenEnd(): void {
 			this.pop.visible = false;
+			this.btnGo.scaleY = 1;
+		}
+		
+		private function onTick(): void {
+			this.playRole(Math.floor(Math.random() * this.anis.length));
+		}
+		
+		private function playRole(index: int): void {
+			this.anis[index].play(0);
+			this.talks[index].visible = true;
+			Laya.timer.once(3000, this, this.onPlayRoleEnd, [index], false);
+		}
+		
+		private function onPlayRoleEnd(index: int): void {
+			this.anis[index].stop();
+			this.talks[index].visible = false;
 		}
 		
 		private function _onResize(e: Event = null):void
