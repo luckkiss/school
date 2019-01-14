@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":100,
-    "selecteID":121,
+    "selectedBox":102,
+    "selecteID":123,
     "props":{"width":1920,"top":0,"right":0,"name":"imgTalk","left":0,"height":1080,"bottom":0},
     "nodeParent":-1,
     "label":"View(imgTalk)",
@@ -511,7 +511,7 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"y":-70,"x":-150,"skin":"ui/moby.png","name":"imgTalk"},
+                    "props":{"y":-120,"x":-150,"skin":"ui/moby.png","name":"imgTalk"},
                     "nodeParent":102,
                     "label":"Image(imgTalk)",
                     "isDirectory":false,
