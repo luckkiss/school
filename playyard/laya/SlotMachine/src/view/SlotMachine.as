@@ -7,6 +7,7 @@ package view
 	public class SlotMachine
 	{
 		private const GroupSize: int = 6;
+		private const RollTimeGap: int = 3000;
 		
 		private var imgs: Vector.<SlotImage> = [] as Vector.<SlotImage>;
 		private var pool: Vector.<String>;
@@ -37,22 +38,22 @@ package view
 			for(var i: int = 0; i < this.GroupSize; i++) {
 				var img: SlotImage = this.imgs[i];
 				img.reset();
+				img.start(this.pool, Handler.create(this, this.onRolleEnd), this.RollTimeGap * i);
 			}
-			this.rollNext();
 		}
 		
-		private function rollNext(): void {
-			var img: SlotImage = this.imgs[this.rolledCnt++];
-			img.start(this.pool, Handler.create(this, this.onRolleEnd));
-		}
+//		private function rollNext(): void {
+//			var img: SlotImage = this.imgs[];
+//			img.start(this.pool, Handler.create(this, this.onRolleEnd));
+//		}
 		
 		private function onRolleEnd(name: String): void {
-			console.log('get: ' + name);
+			Root.data.luckyList.push(name);
+			Root.data.luckyListTotal.push(name);
 			var idx: int = this.pool.indexOf(name);
 			this.pool.splice(idx, 1);
-			if(this.rolledCnt < this.GroupSize) {
-				this.rollNext();
-			} else {
+			this.rolledCnt++;
+			if(this.rolledCnt >= this.GroupSize) {
 				this._isRolling = false;
 				this.endCallback.run();
 			}

@@ -19,7 +19,7 @@ package view
 		private var pool: Vector.<String>;
 		
 		private const TweenDrtBase: int = 500;
-		private const TweenDrtMin: int = 200;
+		private const TweenDrtMin: int = 100;
 		private const TweenDrtMax: int = 2000;
 		
 		private static const StateNone: int = 0;
@@ -28,10 +28,11 @@ package view
 		private static const StateSlowing: int = 3;
 		private static const StateResult: int = 4;
 		
-		private static const HoldingTime: int = 5000;
+		private static const HoldingTime: int = 4000;
 		private static const tweenDrtStep: int = 10;
-		private static const ResultTime: int = 3000;
+		private static const ResultTime: int = 2000;
 		
+		private var startRollAt: Number = 0;
 		private var tweenDrt: int = 500;
 		private var tweenDrtState: int = 0;
 		private var changeStateAt: Number = 0;
@@ -65,14 +66,21 @@ package view
 			this.image2.y = -this.imgHeight;
 		}
 		
-		public function start(pool: Vector.<String>, callback: Handler): void {
-			console.log(pool.join(','));
-			this.pool = ArrayTool.disarrange(pool);
+		public function start(pool: Vector.<String>, callback: Handler, delay: int): void {
+			this.pool = ArrayTool.disarrange(pool as Array) as Vector.<String>;
 			this.endCallback = callback;
+			if(delay > 0) {
+				Laya.timer.once(delay, this, this.doRoll);
+			} else {
+				this.doRoll();
+			}
 			
+		}
+		
+		private function doRoll(): void {
 			this.tweenDrt = this.TweenDrtBase;
 			this.tweenDrtState = SlotImage.StateSpeeding;
-			this.changeStateAt = Browser.now();
+			this.startRollAt = this.changeStateAt = Browser.now();
 			this.isRolling = true;
 			
 			this.getP(this.image1);
@@ -84,17 +92,19 @@ package view
 		
 		private function onTweenComplete(img: Image, index: int, targetType: int): void {
 			var now: Number = Browser.now();
-			if(targetType == 0 && this.tweenDrtState == SlotImage.StateResult && now - this.changeStateAt >= SlotImage.ResultTime && (Root.data.isGuest || Root.data.stList.indexOf(img.name) < 0)) {
+			if(targetType == 0 && this.tweenDrtState == SlotImage.StateResult && now - this.changeStateAt >= SlotImage.ResultTime && 
+				(Root.data.isGuest || Root.data.stList.indexOf(img.name) < 0) && Root.data.luckyListTotal.indexOf(img.name) < 0) {
 				this.isRolling = false;
 				Tween.clearAll(this.image1);
 				Tween.clearAll(this.image2);
+				console.log('get '+ img.name + ', cost ' + (now - this.startRollAt) + 'ms');
 				this.endCallback.runWith(img.name);
 				return;
 			}
 			
 			if(index == 2) {
 				if(this.tweenDrtState == SlotImage.StateSpeeding) {
-					this.tweenDrt -= (now - this.changeStateAt) / 120 * SlotImage.tweenDrtStep;
+					this.tweenDrt -= (now - this.changeStateAt) / 100 * SlotImage.tweenDrtStep;
 					if(this.tweenDrt <= this.TweenDrtMin) {
 						this.tweenDrtState = SlotImage.StateHolding;
 						this.changeStateAt = now;
@@ -124,11 +134,15 @@ package view
 			}
 		}
 		
-		private function getP(img: Image): String {
+		private function getP(img: Image): void {
+			var poolLen: int = this.pool.length;
+			if(this.poolIndex >= poolLen) {
+				this.poolIndex = 0;
+			}
 			var p: String = this.pool[this.poolIndex];
 			img.skin = 'p/' + p + '.jpg';
 			img.name = p;
-			if(++this.poolIndex >= this.pool.length) {
+			if(++this.poolIndex >= poolLen) {
 				this.poolIndex = 0;
 			}
 		}

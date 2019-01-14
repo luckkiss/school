@@ -4,4 +4,5 @@
    <item name="ui/btn_login.png" type="Button" compress="0" pack="0" quality="80" props="width=267@@!@@height=255@@!@@stateNum=1" picType="0" scale="0"/>
    <item name="ui/inputBg.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
    <item name="p" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="ui/popBg.png" type="Image" compress="0" pack="0" quality="80" props="width=1243@@!@@height=1080" picType="0" scale="0"/>
 </res>

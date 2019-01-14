@@ -2,7 +2,7 @@ package utils
 {
 	public class ArrayTool
 	{
-		public static function disarrange(arr: Array): void
+		public static function disarrange(arr: Array): Array
 		{
 			var tmpArr: Array = arr.concat();
 			var out: Array = [];

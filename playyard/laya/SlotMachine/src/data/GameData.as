@@ -7,6 +7,8 @@ package data
 		public var users: Vector.<String> = [] as Vector.<String>;
 		public var bossList: Vector.<String> = [] as Vector.<String>;
 		public var stList: Vector.<String> = [] as Vector.<String>;
+		public var luckyList: Vector.<String> = [] as Vector.<String>;
+		public var luckyListTotal: Vector.<String> = [] as Vector.<String>;
 		
 		public function GameData()
 		{
