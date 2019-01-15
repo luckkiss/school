@@ -17,7 +17,7 @@ package data
 		}
 		
 		public function toString(): String {
-			return 'isGuest = ' + this.isGuest + ', users = ' + this.users.join(',') + ', bossList = ' + bossList.join(',') + ', stList = ' + stList.join(',');
+			return this.isGuest + ', [' + this.users.join(',') + '], [' + bossList.join(',') + '], [' + stList.join(',') + ']';
 		}
 	}
 }

@@ -42,23 +42,44 @@ my $worksheet = $workbook->worksheet(0);
 my ($row_min, $row_max) = $worksheet->row_range();
 my ($col_min, $col_max) = $worksheet->col_range();
 print "row_max: $row_max\n";
+my $cell = $worksheet->get_cell(1, 3);
+my $bossCnt = $cell->value();
+if($bossCnt =~ /(\d+)/) {
+    $bossCnt = int($1);
+} else {
+    die ("Son of bitch!\n");
+}
+print "it's $bossCnt\n";
+$cell = $worksheet->get_cell(1 + $bossCnt, 3);
+my $normalCnt = $cell->value();
+if($normalCnt =~ /(\d+)/) {
+    $normalCnt = int($1);
+} else {
+    die ("Son of bitch!\n");
+}
+print "it's $normalCnt\n";
+$cell = $worksheet->get_cell(1 + $bossCnt + $normalCnt, 3);
+my $stCnt = $cell->value();
+if($stCnt =~ /(\d+)/) {
+    $stCnt = int($1);
+} else {
+    die ("Son of bitch!\n");
+}
+print "it's $stCnt\n";
 my @stList = ();
 my @bossList = ();
-$outStr.=pack('I', $row_max);
-for my $row (1..$row_max){
-    my $cell = $worksheet->get_cell($row, 0);
+my $totalUserCnt = $bossCnt + $normalCnt + $stCnt;
+$outStr.=pack('I', $totalUserCnt);
+for my $row (1..$totalUserCnt){
+    my $cell = $worksheet->get_cell($row, 1);
     next unless $cell;
     # print "Value=", $cell->value(), "\n";
     $outStr.=pack('a9', encode("utf8", decode("CP936", $cell->value())));
     
-    $cell = $worksheet->get_cell($row, 1);
-    if($cell) {
-        my $flag = $cell->value();
-        if(0 == $flag) {
-            push @stList, $row - 1;
-        } elsif(1 == $flag) {
-            push @bossList, $row - 1;
-        }
+    if($row > $bossCnt + $normalCnt) {
+        push @stList, $row - 1;
+    } elsif($row <= $bossCnt) {
+        push @bossList, $row - 1;
     }
 }
 my $stListCnt = @stList;
