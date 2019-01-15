@@ -65,7 +65,7 @@ package view
 			Root.data.luckyListTotal.push(name);
 			var idx: int = this.pool.indexOf(name);
 			this.pool.splice(idx, 1);
-			if(Root.data.bossList.indexOf(name) < 0) {
+			if(Root.data.isGuest || Root.data.bossList.indexOf(name) < 0) {
 				Root.data.luckyCnt++;
 			}
 			for(var i: int = 0; i < this.GroupSize; i++) {

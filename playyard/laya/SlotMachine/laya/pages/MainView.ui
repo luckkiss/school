@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":46,
-    "selecteID":124,
+    "selectedBox":52,
+    "selecteID":125,
     "props":{"width":1920,"top":0,"right":0,"name":"imgTalk","left":0,"height":1080,"bottom":0},
     "nodeParent":-1,
     "label":"View(imgTalk)",
@@ -58,13 +58,14 @@
             "props":{"var":"slotmachine","skin":"ui/slotmachine.png","centerX":0,"bottom":30},
             "nodeParent":1,
             "label":"Image(slotmachine)",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":52,
             "child":[
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"y":116,"x":30,"width":500,"var":"lightCtn1","height":260},
                     "nodeParent":52,
@@ -77,6 +78,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"y":350,"x":30,"width":500,"var":"lightCtn2","height":260},
                     "nodeParent":52,
@@ -89,6 +91,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"y":18,"x":18,"width":140,"var":"labaCtn","height":125},
                     "nodeParent":52,
@@ -102,6 +105,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":364,"x":521,"var":"btnGo","skin":"ui/handler.png","pivotY":142},
                     "nodeParent":52,
@@ -114,6 +118,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"y":185,"x":83,"width":128,"name":"p0","height":125},
                     "nodeParent":52,
@@ -125,6 +130,7 @@
                     "compId":54,
                     "child":[
                         {
+                            "x":45,
                             "type":"Box",
                             "props":{"top":0,"right":0,"renderType":"mask","left":0,"bottom":0},
                             "nodeParent":54,
@@ -151,6 +157,7 @@
                     "$HIDDEN":false
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"y":185,"x":214,"width":128,"name":"p1","height":125},
                     "nodeParent":52,
@@ -187,6 +194,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"y":185,"x":344,"width":128,"name":"p2","height":125},
                     "nodeParent":52,
@@ -223,6 +231,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"y":415,"x":83,"width":125,"name":"p3","height":125},
                     "nodeParent":52,
@@ -259,6 +268,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"y":415,"x":214,"width":128,"name":"p4","height":125},
                     "nodeParent":52,
@@ -295,6 +305,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"y":415,"x":344,"width":128,"name":"p5","height":125},
                     "nodeParent":52,
@@ -331,6 +342,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"y":40,"x":140,"width":400,"height":78},
                     "nodeParent":52,
@@ -391,6 +403,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":172,"x":83,"skin":"ui/slotMask.png"},
                     "nodeParent":52,
@@ -403,6 +416,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":403,"x":83,"skin":"ui/slotMask.png"},
                     "nodeParent":52,
@@ -413,8 +427,21 @@
                     "compId":118,
                     "child":[
                         ]
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "props":{"var":"textRound","text":"第 X 轮","fontSize":24,"color":"#ffffff","centerX":0,"bottom":156},
+                    "nodeParent":52,
+                    "label":"Label(textRound)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":125,
+                    "child":[
+                        ]
                 }],
-            "$HIDDEN":true
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -573,7 +600,7 @@
                     "child":[
                         ]
                 }],
-            "$HIDDEN":false
+            "$HIDDEN":true
         },
         {
             "x":15,

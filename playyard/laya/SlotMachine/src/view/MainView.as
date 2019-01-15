@@ -23,9 +23,12 @@ package view {
 		private var lightAni1: Animation;
 		private var lightAni2: Animation;
 		
+		private var crtRound: int = 0;
+		
 		public function MainView() {
 			
 			this.textVersion.text = '版本号：' + GameConfig.version;
+			this.textRound.text = '';
 			
 			for each(var aniName: String in this.aniNames) {
 				var ani: Animation = new Animation();
@@ -80,6 +83,9 @@ package view {
 			var pswdIdx: int = Root.data.pswds.indexOf(pswd);
 			if(pswdIdx >= 0) {
 				Root.data.isGuest = pswdIdx > 0;
+				if(Root.data.isGuest) {
+					Root.data.luckyCntTotal = Root.data.users.length;
+				}
 //				console.log(Root.data.toString());
 				this.loginCtn.visible = false;
 				this.slotmachine.bottom = -800;
@@ -103,6 +109,9 @@ package view {
 			}
 			var leftLucky: int = Root.data.luckyCntTotal - Root.data.luckyCnt;
 			if(leftLucky > 0) {
+				this.crtRound++;
+				this.textRound.text = '第 ' + this.crtRound + ' 轮';
+				
 				Root.data.luckyList.length = 0;
 				this.machine.start(leftLucky, Handler.create(this, this.onEndRoll));
 				this.btnGo.scaleY = -1;
