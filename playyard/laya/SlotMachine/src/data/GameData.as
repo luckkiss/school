@@ -5,7 +5,9 @@ package data
 		public var isGuest: Boolean = false;
 		public var pswds: Vector.<String>;
 		public var luckyCnt: int = 0;
-		public var luckyCntTotal: int = 0; 
+		public var bossLuckyCnt: int = 0;
+		public var luckyCntTotal: int = 0;
+		public var bossLuckyMaxCnt: int = 0;
 		public var users: Vector.<String> = [] as Vector.<String>;
 		public var bossList: Vector.<String> = [] as Vector.<String>;
 		public var stList: Vector.<String> = [] as Vector.<String>;
@@ -17,7 +19,7 @@ package data
 		}
 		
 		public function toString(): String {
-			return this.isGuest + ', ' + this.luckyCntTotal + ', (' + this.users.length + ')[' + this.users.join(',') + '], (' + bossList.length + ')[' + bossList.join(',') + '], (' + stList.length + ')[' + stList.join(',') + ']';
+			return this.isGuest + ', ' + this.bossLuckyMaxCnt + ', ' + this.luckyCntTotal + ', (' + this.users.length + ')[' + this.users.join(',') + '], (' + bossList.length + ')[' + bossList.join(',') + '], (' + stList.length + ')[' + stList.join(',') + ']';
 		}
 	}
 }

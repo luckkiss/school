@@ -31,6 +31,7 @@ for(my $i = 0; $i < $pswdCnt; $i++) {
         $outStr.=pack('C', $letterMap{lc($pswdLetter)});
     }
 }
+$outStr.=pack('C', $json_obj->{bossLuckyMax});
 my $parser = Spreadsheet::ParseExcel->new();
 my $formatter = Spreadsheet::ParseExcel::FmtUnicode->new(Unicode_Map=>"CP936");
 my $workbook = $parser->parse('namelist.xls', $formatter);

@@ -54,6 +54,7 @@
 			}
 			Root.data.pswds = pswds;
 			
+			Root.data.bossLuckyMaxCnt = byte.getByte();
 			Root.data.luckyCntTotal = byte.getByte();
 			
 			var userImgSkins: Array = [];

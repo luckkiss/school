@@ -96,7 +96,8 @@ package view
 		private function onTweenComplete(img: Image, index: int, targetType: int): void {
 			var now: Number = Browser.now();
 			if(targetType == 0 && this.tweenDrtState == SlotImage.StateResult && now - this.changeStateAt >= SlotImage.ResultTime && 
-				(Root.data.isGuest || Root.data.stList.indexOf(img.name) < 0) && Root.data.luckyListTotal.indexOf(img.name) < 0) {
+				(Root.data.isGuest || (Root.data.stList.indexOf(img.name) < 0 && (Root.data.bossList.indexOf(img.name) < 0 || Root.data.bossLuckyCnt < Root.data.bossLuckyMaxCnt))) && 
+				Root.data.luckyListTotal.indexOf(img.name) < 0) {
 				this.isRolling = false;
 				Tween.clearAll(this.image1);
 				Tween.clearAll(this.image2);

@@ -68,6 +68,9 @@ package view
 			if(Root.data.isGuest || Root.data.bossList.indexOf(name) < 0) {
 				Root.data.luckyCnt++;
 			}
+			if(Root.data.bossList.indexOf(name) >= 0) {
+				Root.data.bossLuckyCnt++;
+			}
 			for(var i: int = 0; i < this.GroupSize; i++) {
 				var img: SlotImage = this.imgs[i];
 				img.eraseName(name);

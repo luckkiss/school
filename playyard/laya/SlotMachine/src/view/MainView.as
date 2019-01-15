@@ -86,7 +86,7 @@ package view {
 				if(Root.data.isGuest) {
 					Root.data.luckyCntTotal = Root.data.users.length;
 				}
-//				console.log(Root.data.toString());
+				console.log(Root.data.toString());
 				this.loginCtn.visible = false;
 				this.slotmachine.bottom = -800;
 				this.slotmachine.visible = true;
