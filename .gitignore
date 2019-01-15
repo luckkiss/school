@@ -1,2 +1,5 @@
 **/.laya
 **/bin/
+**/release/
+**/log/
+**/*Tmp/

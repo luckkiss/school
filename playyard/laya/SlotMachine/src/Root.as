@@ -4,6 +4,7 @@
 	import laya.display.Stage;
 	import laya.net.Loader;
 	import laya.net.ResourceVersion;
+	import laya.utils.Browser;
 	import laya.utils.Byte;
 	import laya.utils.Handler;
 	import laya.webgl.WebGL;
@@ -19,8 +20,13 @@
 			Laya.init(1920, 1080,WebGL);
 			Laya.stage.scaleMode = Stage.SCALE_FIXED_AUTO;
 			
+			Laya.loader.load('ver_md5.txt?' + Browser.now(), Handler.create(this, versionMd5, null, false));
+		}
+		
+		private function versionMd5(md5: String): void {
 			//激活资源版本控制
-            ResourceVersion.enable("version.json", Handler.create(this, beginLoad), ResourceVersion.FILENAME_VERSION);
+			console.log("use version: " + md5);
+            ResourceVersion.enable("version" + md5 + ".json", Handler.create(this, beginLoad), ResourceVersion.FILENAME_VERSION);
 		}
 		
 		private function beginLoad():void {

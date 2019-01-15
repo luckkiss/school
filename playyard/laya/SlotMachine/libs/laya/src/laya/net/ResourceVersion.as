@@ -1,11 +1,13 @@
-package laya.net {
+package laya.net
+{
 	import laya.utils.Handler;
 	
 	/**
 	 * <p>资源版本的生成由layacmd或IDE完成，使用 <code>ResourceVersion</code> 简化使用过程。</p>
 	 * <p>调用 <code>enable</code> 启用资源版本管理。</p>
 	 */
-	public class ResourceVersion {
+	public class ResourceVersion
+	{
 		/**基于文件夹的资源管理方式（老版本IDE默认类型）*/
 		public static const FOLDER_VERSION:int = 1;
 		/**基于文件名映射管理方式（新版本IDE默认类型）*/
@@ -22,19 +24,46 @@ package laya.net {
 		 * @param   callback		清单（json）文件加载完成后执行。
 		 * @param   type			FOLDER_VERSION为基于文件夹管理方式（老版本IDE默认类型），FILENAME_VERSION为基于文件名映射管理（新版本IDE默认类型
 		 */
-		public static function enable(manifestFile:String, callback:Handler, type:int = 2):void {
+		public static function enable(manifestFile:String, callback:Handler, type:int = 2):void
+		{
 			ResourceVersion.type = type;
+			console.log('load manifest start.');
 			Laya.loader.load(manifestFile, Handler.create(null, onManifestLoaded, [callback]), null, Loader.JSON);
 			URL.customFormat = addVersionPrefix;
 		}
 		
-		private static function onManifestLoaded(callback:Handler, data:Object):void {
+		private static function onManifestLoaded(callback:Handler, data:Object):void
+		{
+			console.log('load manifest end.');
 			manifest = data;
+			
+			for (var key:String in manifest)
+			{
+				var md5:String = manifest[key];
+				var arr:Array = key.split('.');
+				var ext:String = '.' + arr[arr.length - 1];
+				var head:String = arr[0];
+				if (arr.length > 2)
+				{
+					for (var i:int = 1; i < arr.length - 1; i++)
+					{
+						head += '.' + arr[i];
+					}
+				}
+				manifest[key] = head + md5 + ext;
+			}
+			
 			callback.run();
 			
-			if (!data) {
+			if (!data)
+			{
 				console.warn("资源版本清单文件不存在，不使用资源版本管理。忽略ERR_FILE_NOT_FOUND错误。");
 			}
+		}
+		
+		public static function get manifestInit():Boolean
+		{
+			return manifest != null;
 		}
 		
 		/**
@@ -42,9 +71,12 @@ package laya.net {
 		 * @param	originURL	源路径。
 		 * @return 格式化后的新路径。
 		 */
-		public static function addVersionPrefix(originURL:String):String {
-			if (manifest && manifest[originURL]) {
-				if (type == FILENAME_VERSION) return manifest[originURL];
+		public static function addVersionPrefix(originURL:String):String
+		{
+			if (manifest && manifest[originURL])
+			{
+				if (type == FILENAME_VERSION)
+					return manifest[originURL];
 				return manifest[originURL] + "/" + originURL;
 			}
 			

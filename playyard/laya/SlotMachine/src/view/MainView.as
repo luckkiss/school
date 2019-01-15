@@ -25,6 +25,8 @@ package view {
 		
 		public function MainView() {
 			
+			this.textVersion.text = '版本号：' + GameConfig.version;
+			
 			for each(var aniName: String in this.aniNames) {
 				var ani: Animation = new Animation();
 				ani.interval = 120;
@@ -63,7 +65,7 @@ package view {
 			this.pop.addChildAt(this.maskLayer, 0);
 			
 			this.loginCtn.visible = true;
-			this.inputPswd.text = Root.data.pswds[0];
+			this.inputPswd.text = Root.data.pswds[1];
 			
 			this.btnLogin.on(Event.CLICK, this, this.onClickBtnLogin);
 			this.btnGo.on(Event.CLICK, this, this.onClickBtnGo);
