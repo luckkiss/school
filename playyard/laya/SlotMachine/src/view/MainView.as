@@ -65,7 +65,7 @@ package view {
 			this.pop.addChildAt(this.maskLayer, 0);
 			
 			this.loginCtn.visible = true;
-			this.inputPswd.text = Root.data.pswds[1];
+//			this.inputPswd.text = Root.data.pswds[1];
 			
 			this.btnLogin.on(Event.CLICK, this, this.onClickBtnLogin);
 			this.btnGo.on(Event.CLICK, this, this.onClickBtnGo);
