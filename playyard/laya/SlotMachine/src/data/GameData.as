@@ -17,7 +17,7 @@ package data
 		}
 		
 		public function toString(): String {
-			return this.isGuest + ', ' + this.luckyCntTotal + ', [' + this.users.join(',') + '], [' + bossList.join(',') + '], [' + stList.join(',') + ']';
+			return this.isGuest + ', ' + this.luckyCntTotal + ', (' + this.users.length + ')[' + this.users.join(',') + '], (' + bossList.length + ')[' + bossList.join(',') + '], (' + stList.length + ')[' + stList.join(',') + ']';
 		}
 	}
 }
