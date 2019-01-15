@@ -60,7 +60,7 @@ package view
 //		}
 		
 		private function onRolleEnd(name: String): void {
-			console.assert(Root.data.luckyListTotal.indexOf(name) < 0 && Root.data.stList.indexOf(name) < 0);
+			console.assert(Root.data.luckyListTotal.indexOf(name) < 0 && (Root.data.isGuest || Root.data.stList.indexOf(name) < 0));
 			Root.data.luckyList.push(name);
 			Root.data.luckyListTotal.push(name);
 			var idx: int = this.pool.indexOf(name);

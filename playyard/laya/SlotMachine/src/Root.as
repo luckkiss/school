@@ -76,6 +76,8 @@
 				Root.data.bossList.push(Root.data.users[idx]);
 			}
 			
+			console.assert(Root.data.luckyCntTotal == Root.data.users.length - stCnt - bossCnt);
+			
 			Laya.loader.load(userImgSkins);
 			
 			var mainView: MainView = new MainView();

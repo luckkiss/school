@@ -31,7 +31,6 @@ for(my $i = 0; $i < $pswdCnt; $i++) {
         $outStr.=pack('C', $letterMap{lc($pswdLetter)});
     }
 }
-$outStr.=pack('C', $json_obj->{luckyCnt});
 my $parser = Spreadsheet::ParseExcel->new();
 my $formatter = Spreadsheet::ParseExcel::FmtUnicode->new(Unicode_Map=>"CP936");
 my $workbook = $parser->parse('namelist.xls', $formatter);
@@ -57,6 +56,7 @@ if($normalCnt =~ /(\d+)/) {
 } else {
     die ("Son of bitch!\n");
 }
+$outStr.=pack('C', $normalCnt);
 print "it's $normalCnt\n";
 $cell = $worksheet->get_cell(1 + $bossCnt + $normalCnt, 3);
 my $stCnt = $cell->value();
