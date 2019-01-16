@@ -37,17 +37,27 @@ package view
 		private var tweenDrtState: int = 0;
 		private var changeStateAt: Number = 0;
 		
+		private var luckyName: String;
 		private var poolIndex: int = 0;
 		private var isRolling: Boolean = false;
 		
 		private var endCallback: Handler;
+		private var index: int = 0;
+		
+		private const designedRollTimes: Vector.<int> = [4, 74, 4, 4] as Vector.<int>;
+		private var rollTimes: Vector.<int> = [] as Vector.<int>;
+		
+		private var tweenTargetType: int = 0;
+		private var tween: Tween;
 		
 		public function SlotImage()
 		{
 			super();
 		}
 		
-		public function init(ctn: Box): void {
+		public function init(index: int, ctn: Box): void {
+			this.index = index;
+			
 			this.imgHeight = ctn.height;
 			this.image1 = new Image();
 			this.image1.size(ctn.width, ctn.height);
@@ -71,7 +81,18 @@ package view
 		
 		public function start(pool: Vector.<String>, callback: Handler, delay: int): void {
 			this.pool = ArrayTool.disarrange(pool as Array) as Vector.<String>;
+			this.luckyName = Root.data.luckyList[this.index];
+			var luckyIdx: int = this.pool.indexOf(this.luckyName);
+			var totalTimes: int = 0;
+			for each(var t: int in this.designedRollTimes) {
+				totalTimes += t;
+			}
+			this.poolIndex = (luckyIdx + this.pool.length - (totalTimes % this.pool.length)) % this.pool.length;
+			if(this.poolIndex < 0) {
+				this.poolIndex = luckyIdx - this.poolIndex;
+			}
 			this.endCallback = callback;
+			this.rollTimes.length = 0;
 			if(delay > 0) {
 				Laya.timer.once(delay, this, this.doRoll);
 			} else {
@@ -87,54 +108,66 @@ package view
 			this.isRolling = true;
 			
 			this.getP(this.image1);
-			Tween.to(this.image1, {y: this.imgHeight}, this.tweenDrt, null, Handler.create(this, this.onTweenComplete, [this.image1, 1, 1]));
+			this.tween = Tween.to(this.image1, {y: this.imgHeight}, this.tweenDrt, null, Handler.create(this, this.onTweenComplete, [this.image1, 1]), 0, true);
+			this.tween.update = Handler.create(this, this.onTweenUpdate, [1], false);
 			
 			this.getP(this.image2);
-			Tween.to(this.image2, {y: 0}, this.tweenDrt, null, Handler.create(this, this.onTweenComplete, [this.image2, 2, 0]));
 		}
 		
-		private function onTweenComplete(img: Image, index: int, targetType: int): void {
+		private function onTweenComplete(img: Image, targetType: int): void {
 			var now: Number = Browser.now();
-			if(targetType == 0 && this.tweenDrtState == SlotImage.StateResult && now - this.changeStateAt >= SlotImage.ResultTime && 
-				(Root.data.isGuest || (Root.data.stList.indexOf(img.name) < 0 && (Root.data.bossList.indexOf(img.name) < 0 || Root.data.bossLuckyCnt < Root.data.bossLuckyMaxCnt))) && 
-				Root.data.luckyListTotal.indexOf(img.name) < 0) {
-				this.isRolling = false;
-				Tween.clearAll(this.image1);
-				Tween.clearAll(this.image2);
-				console.log('get '+ img.name + ', cost ' + (now - this.startRollAt) + 'ms');
-				this.endCallback.runWith(img.name);
-				return;
+			
+			if(this.tweenDrtState == SlotImage.StateResult) {
+				if((0 == targetType && img.name == this.luckyName) || (1 == targetType && this.image2.name == this.luckyName)) {
+					this.isRolling = false;
+					Tween.clearAll(this.image1);
+					this.tween = null;
+					this.endCallback.runWith([this.luckyName, this.index]);
+					return;
+				}
 			}
 			
-			if(index == 2) {
-				if(this.tweenDrtState == SlotImage.StateSpeeding) {
-					this.tweenDrt -= (now - this.changeStateAt) / 100 * SlotImage.tweenDrtStep;
-					if(this.tweenDrt <= this.TweenDrtMin) {
-						this.tweenDrtState = SlotImage.StateHolding;
-						this.changeStateAt = now;
-					}
-				}
-				else if(this.tweenDrtState == SlotImage.StateHolding) {
-					if(now - this.changeStateAt >= SlotImage.HoldingTime) {
-						this.tweenDrtState = SlotImage.StateSlowing;
-						this.changeStateAt = now;
-					}
-				}
-				else if(this.tweenDrtState == SlotImage.StateSlowing) {
+			var oldTime: int = this.rollTimes[this.tweenDrtState - 1];
+			if(undefined == oldTime) {
+				oldTime = 0;
+			}
+			this.rollTimes[this.tweenDrtState - 1] = oldTime + 1;
+			var timesout: Boolean = this.rollTimes[this.tweenDrtState - 1] >= this.designedRollTimes[this.tweenDrtState - 1];
+			if(timesout && this.tweenDrtState < SlotImage.StateResult) {
+				this.tweenDrtState++;
+			}
+			
+			if(this.tweenDrtState == SlotImage.StateSpeeding) {
+				this.tweenDrt -= (now - this.changeStateAt) / 100 * SlotImage.tweenDrtStep;
+			}
+			else if(this.tweenDrtState == SlotImage.StateHolding) {
+				this.tweenDrt = this.TweenDrtMin;
+			}
+			else if(this.tweenDrtState == SlotImage.StateSlowing) {
+				if(this.tweenDrt < this.TweenDrtMax) {
 					this.tweenDrt += (now - this.changeStateAt) / 100 * SlotImage.tweenDrtStep;
-					if(this.tweenDrt >= this.TweenDrtMax) {
-						this.tweenDrtState = SlotImage.StateResult;
-						this.changeStateAt = now;
-					}
 				}
+			}
+			else if(this.tweenDrtState == SlotImage.StateResult) {
+				this.tweenDrt = this.TweenDrtMax;
 			}
 			
 			if(0 == targetType) {
-				Tween.to(img, {y: this.imgHeight}, this.tweenDrt, null, Handler.create(this, this.onTweenComplete, [img, index, 1]), 0, true);
+				this.getP(this.image2);
+				this.tween = Tween.to(img, {y: this.imgHeight}, this.tweenDrt, null, Handler.create(this, this.onTweenComplete, [img, 1]), 0, true);
 			} else {
 				img.y = -this.imgHeight;
 				this.getP(img);
-				Tween.to(img, {y: 0}, this.tweenDrt, null, Handler.create(this, this.onTweenComplete, [img, index, 0]), 0, true);
+				this.tween = Tween.to(img, {y: 0}, this.tweenDrt, null, Handler.create(this, this.onTweenComplete, [img, 0]), 0, true);
+			}
+			this.tween.update = Handler.create(this, this.onTweenUpdate, [1 - targetType], false);
+		}
+		
+		private function onTweenUpdate(targetType: int): void {
+			if(0 == targetType) {
+				this.image2.y = this.image1.y + this.imgHeight;
+			} else {
+				this.image2.y = this.image1.y - this.imgHeight;
 			}
 		}
 		
@@ -151,11 +184,13 @@ package view
 			}
 		}
 		
-		public function eraseName(name: String): void {
-			var idx: int = this.pool.indexOf(name);
-			if(idx >= 0) {
-				this.pool.splice(idx, 1);
+		private function getDistance2Lucky(name: String): int {
+			var lidx: int = this.pool.indexOf(Root.data.luckyList[this.index]);
+			var nidx: int = this.pool.indexOf(name);
+			if(lidx >= nidx) {
+				return lidx - nidx;
 			}
+			return this.pool.length - nidx + lidx;
 		}
 	}
 }

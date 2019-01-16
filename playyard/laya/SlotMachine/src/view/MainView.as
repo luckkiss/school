@@ -11,6 +11,8 @@ package view {
 	
 	import ui.MainViewUI;
 	
+	import utils.ArrayTool;
+	
 	public class MainView extends MainViewUI {
 		private var machine: SlotMachine;
 		private var slotMachinePosBottom: int;
@@ -86,7 +88,6 @@ package view {
 				if(Root.data.isGuest) {
 					Root.data.luckyCntTotal = Root.data.users.length;
 				}
-				console.log(Root.data.toString());
 				this.loginCtn.visible = false;
 				this.slotmachine.bottom = -800;
 				this.slotmachine.visible = true;
@@ -112,8 +113,9 @@ package view {
 				this.crtRound++;
 				this.textRound.text = '第 ' + this.crtRound + ' 轮';
 				
-				Root.data.luckyList.length = 0;
-				this.machine.start(leftLucky, Handler.create(this, this.onEndRoll));
+				var rollCnt: int = Math.min(leftLucky, SlotMachine.GroupSize);
+				Root.data.luckyList = ArrayTool.pickOnNotIn(Root.data.users, Root.data.luckyListTotal, rollCnt);
+				this.machine.start(rollCnt, Handler.create(this, this.onEndRoll));
 				this.btnGo.scaleY = -1;
 			}
 		}
@@ -124,6 +126,10 @@ package view {
 		
 		private function onRollEndDelay(): void {
 			this.listLucky.array = Root.data.luckyList as Array;
+			for each(var l: String in Root.data.luckyList) {
+				var idx: int = Root.data.users.indexOf(l);
+				Root.data.users.splice(idx, 1);
+			}
 			this.popBg.scaleX = 0.1;
 			this.popBg.scaleY = 0.1;
 			Tween.to(this.popBg, {scaleX: 1, scaleY: 1}, 1000, Ease.bounceOut);

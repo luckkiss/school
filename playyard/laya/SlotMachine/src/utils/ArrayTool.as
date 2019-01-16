@@ -14,5 +14,18 @@ package utils
 			}
 			return out;
 		}
+		
+		public static function pickOnNotIn(from: Array, notIn: Array, cnt: int): Array {
+			var tmpArr: Array = [];
+			for each(var elem: * in from) {
+				if(notIn.indexOf(elem) < 0 && (Root.data.isGuest || (Root.data.stList.indexOf(elem) < 0 && (Root.data.bossList.indexOf(elem) < 0 || Root.data.bossLuckyCnt < Root.data.bossLuckyMaxCnt)))) {
+					tmpArr.push(elem);
+				}
+			}
+			
+			tmpArr = disarrange(tmpArr);
+			tmpArr.length = cnt;
+			return tmpArr;
+		}
 	}
 }
