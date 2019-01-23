@@ -2,6 +2,7 @@
 	import data.GameData;
 	
 	import laya.display.Stage;
+	import laya.media.SoundManager;
 	import laya.net.Loader;
 	import laya.net.ResourceVersion;
 	import laya.utils.Browser;
@@ -19,6 +20,7 @@
 			//初始化引擎
 			Laya.init(1920, 1080,WebGL);
 			Laya.stage.scaleMode = Stage.SCALE_FIXED_AUTO;
+			SoundManager.autoStopMusic = false;
 			
 			Laya.loader.load('ver_md5.txt?' + Browser.now(), Handler.create(this, versionMd5, null, false));
 		}
@@ -57,12 +59,12 @@
 			Root.data.bossLuckyMaxCnt = byte.getByte();
 			Root.data.luckyCntTotal = byte.getByte();
 			
-			var userImgSkins: Array = [];
+			var preloadResArr: Array = [];
 			var userCnt: int = byte.getUint32();
 			for(var i: int = 0; i < userCnt; i++) {
 				var uname: String = byte.getUTFBytes(9)
 				Root.data.users.push(uname);
-				userImgSkins.push('p/' + uname + '.jpg');
+				preloadResArr.push('p/' + uname + '.jpg');
 			}
 			
 			var stCnt: int = byte.getByte();
@@ -79,10 +81,13 @@
 			
 			console.assert(Root.data.luckyCntTotal == Root.data.users.length - stCnt - bossCnt);
 			
-			Laya.loader.load(userImgSkins);
-			
 			var mainView: MainView = new MainView();
 			Laya.stage.addChild(mainView);
+			
+			for(var i: int = 0; i < MainView.BgmCnt; i++) {
+				preloadResArr.push('res/bgm' + (i + 1) + '.mp3');				
+			}
+			Laya.loader.load(preloadResArr);
 		}
 	}
 }

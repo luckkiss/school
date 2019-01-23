@@ -1,11 +1,11 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":52,
-    "selecteID":125,
-    "props":{"width":1920,"top":0,"right":0,"name":"imgTalk","left":0,"height":1080,"bottom":0},
+    "selectedBox":128,
+    "selecteID":131,
+    "props":{"width":1920,"top":0,"right":0,"left":0,"height":1080,"bottom":0},
     "nodeParent":-1,
-    "label":"View(imgTalk)",
+    "label":"View",
     "isOpen":true,
     "isDirectory":true,
     "isAniNode":true,
@@ -58,14 +58,13 @@
             "props":{"var":"slotmachine","skin":"ui/slotmachine.png","centerX":0,"bottom":30},
             "nodeParent":1,
             "label":"Image(slotmachine)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":52,
             "child":[
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":116,"x":30,"width":500,"var":"lightCtn1","height":260},
                     "nodeParent":52,
@@ -78,7 +77,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":350,"x":30,"width":500,"var":"lightCtn2","height":260},
                     "nodeParent":52,
@@ -91,7 +89,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":18,"x":18,"width":140,"var":"labaCtn","height":125},
                     "nodeParent":52,
@@ -105,7 +102,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":364,"x":521,"var":"btnGo","skin":"ui/handler.png","pivotY":142},
                     "nodeParent":52,
@@ -118,7 +114,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":185,"x":83,"width":128,"name":"p0","height":125},
                     "nodeParent":52,
@@ -130,7 +125,6 @@
                     "compId":54,
                     "child":[
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"top":0,"right":0,"renderType":"mask","left":0,"bottom":0},
                             "nodeParent":54,
@@ -157,7 +151,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":185,"x":214,"width":128,"name":"p1","height":125},
                     "nodeParent":52,
@@ -194,7 +187,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":185,"x":344,"width":128,"name":"p2","height":125},
                     "nodeParent":52,
@@ -231,7 +223,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":415,"x":83,"width":125,"name":"p3","height":125},
                     "nodeParent":52,
@@ -268,7 +259,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":415,"x":214,"width":128,"name":"p4","height":125},
                     "nodeParent":52,
@@ -305,7 +295,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":415,"x":344,"width":128,"name":"p5","height":125},
                     "nodeParent":52,
@@ -342,7 +331,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":40,"x":140,"width":400,"height":78},
                     "nodeParent":52,
@@ -403,7 +391,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":172,"x":83,"skin":"ui/slotMask.png"},
                     "nodeParent":52,
@@ -416,7 +403,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":403,"x":83,"skin":"ui/slotMask.png"},
                     "nodeParent":52,
@@ -429,7 +415,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"var":"textRound","text":"第 X 轮","fontSize":24,"color":"#ffffff","centerX":0,"bottom":156},
                     "nodeParent":52,
@@ -441,7 +426,7 @@
                     "child":[
                         ]
                 }],
-            "$HIDDEN":false
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -551,18 +536,30 @@
         },
         {
             "x":15,
+            "type":"Button",
+            "props":{"y":1000,"x":1760,"width":140,"var":"btnRead","stateNum":"1","skin":"ui/inputBg.png","right":20,"labelSize":26,"label":"读档","height":60,"bottom":20},
+            "nodeParent":1,
+            "label":"Button(btnRead)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":126,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
             "type":"Box",
             "props":{"y":0,"x":0,"var":"loginCtn","top":0,"right":0,"left":0,"bottom":0},
             "nodeParent":1,
             "label":"Box(loginCtn)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":46,
             "child":[
                 {
-                    "x":30,
                     "type":"TextInput",
                     "props":{"width":539,"var":"inputPswd","type":"password","skin":"ui/inputBg.png","restrict":"a-z","prompt":"请输入访问密码","padding":"0,40,0,40","height":90,"fontSize":30,"color":"#ffffff","centerY":-80,"centerX":0},
                     "nodeParent":46,
@@ -575,7 +572,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Button",
                     "props":{"var":"btnLogin","skin":"ui/btn_login.png","centerY":120,"centerX":0},
                     "nodeParent":46,
@@ -588,7 +584,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"var":"textVersion","text":"版本号：0.0.0","fontSize":20,"color":"#ffffff","centerX":0,"bottom":10,"align":"center"},
                     "nodeParent":46,
@@ -600,7 +595,7 @@
                     "child":[
                         ]
                 }],
-            "$HIDDEN":true
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -641,6 +636,87 @@
                     "$HIDDEN":false
                 }],
             "$HIDDEN":true
+        },
+        {
+            "x":15,
+            "type":"Box",
+            "props":{"y":10,"x":10,"var":"messageBox","top":0,"right":0,"left":0,"bottom":0},
+            "nodeParent":1,
+            "label":"Box(messageBox)",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":127,
+            "child":[
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":540,"x":960,"skin":"ui/popBg.png","pivotY":540,"pivotX":621.5,"centerY":0,"centerX":0},
+                    "nodeParent":127,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":128,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"List",
+                            "props":{"width":537,"spaceY":10,"spaceX":12,"repeatX":3,"height":370,"centerY":0,"centerX":0},
+                            "nodeParent":128,
+                            "label":"List",
+                            "isOpen":true,
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":129,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Label",
+                            "props":{"wordWrap":true,"var":"textMsg","top":400,"text":"是否读档？","right":400,"left":400,"fontSize":30,"color":"#ffffff","bottom":400,"align":"center"},
+                            "nodeParent":128,
+                            "label":"Label(textMsg)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":131,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Button",
+                            "props":{"width":140,"var":"btnOk","stateNum":"1","skin":"ui/btn_normal.png","labelSize":26,"label":"确定","height":60,"centerX":-100,"bottom":400},
+                            "nodeParent":128,
+                            "label":"Button(btnOk)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":132,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Button",
+                            "props":{"width":140,"var":"btnNo","stateNum":"1","skin":"ui/btn_normal.png","labelSize":26,"label":"取消","height":60,"centerX":100,"bottom":400},
+                            "nodeParent":128,
+                            "label":"Button(btnNo)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":133,
+                            "child":[
+                                ]
+                        }],
+                    "$HIDDEN":false
+                }],
+            "$HIDDEN":false
         }],
     "animations":[
         {

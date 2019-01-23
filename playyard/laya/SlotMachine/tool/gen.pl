@@ -42,57 +42,39 @@ my $worksheet = $workbook->worksheet(0);
 my ($row_min, $row_max) = $worksheet->row_range();
 my ($col_min, $col_max) = $worksheet->col_range();
 print "row_max: $row_max\n";
-my $cell = $worksheet->get_cell(1, 3);
-my $bossCnt = $cell->value();
-if($bossCnt =~ /(\d+)/) {
-    $bossCnt = int($1);
-} else {
-    die ("Son of bitch!\n");
-}
-print "it's $bossCnt\n";
-$cell = $worksheet->get_cell(1 + $bossCnt, 3);
-my $normalCnt = $cell->value();
-if($normalCnt =~ /(\d+)/) {
-    $normalCnt = int($1);
-} else {
-    die ("Son of bitch!\n");
-}
-$outStr.=pack('C', $normalCnt);
-print "it's $normalCnt\n";
-$cell = $worksheet->get_cell(1 + $bossCnt + $normalCnt, 3);
-my $stCnt = $cell->value();
-if($stCnt =~ /(\d+)/) {
-    $stCnt = int($1);
-} else {
-    die ("Son of bitch!\n");
-}
-print "it's $stCnt\n";
+my @allUsers = ();
 my @stList = ();
 my @bossList = ();
-my $totalUserCnt = $bossCnt + $normalCnt + $stCnt;
-$outStr.=pack('I', $totalUserCnt);
-for my $row (1..$totalUserCnt){
-    my $cell = $worksheet->get_cell($row, 1);
-    next unless $cell;
-    # print "Value=", $cell->value(), "\n";
-    $outStr.=pack('a9', encode("utf8", decode("CP936", $cell->value())));
-    
-    if($row > $bossCnt + $normalCnt) {
+for my $row (1..$row_max){
+    my $nameCell = $worksheet->get_cell($row, 1);
+    my $stateCell = $worksheet->get_cell($row, 3);
+    next unless $nameCell && $stateCell;
+    push @allUsers, encode("utf8", decode("CP936", $nameCell->value()));
+    my $state = $stateCell->value();
+    if(2 == $state) {
         push @stList, $row - 1;
-    } elsif($row <= $bossCnt) {
+    } elsif(1 == $state) {
         push @bossList, $row - 1;
     }
 }
+my $allUserCnt = @allUsers;
 my $stListCnt = @stList;
+my $bossListCnt = @bossList;
+my $normalCnt = $allUserCnt - $stListCnt - $bossListCnt;
+$outStr.=pack('C', $normalCnt);
+$outStr.=pack('I', $allUserCnt);
+for(@allUsers) {
+    $outStr.=pack('a9', $_);
+}
 $outStr.=pack('C', $stListCnt);
 for(@stList){
     $outStr.=pack('C', $_);
 }
-my $bossListCnt = @bossList;
 $outStr.=pack('C', $bossListCnt);
 for(@bossList){
     $outStr.=pack('C', $_);
 }
+print "allUserCnt: $allUserCnt, stListCnt: $stListCnt, bossListCnt: $bossListCnt\n";
 open ( OUTFILE, ">", "out.tp" ) or die ("Son of bitch!\n");
 binmode OUTFILE;
 print OUTFILE $outStr;
@@ -100,7 +82,4 @@ close OUTFILE;
 open ( CHKFILE, "<", "out.tp" ) or die ("Son of bitch!\n");
 my @outContents = <CHKFILE>;
 close CHKFILE;
-my $outContent = $outContents[0];
-my @outRst = unpack("CC${pswdLen}Ia${row_max}", $outContent);
-print Dumper(@outRst);
 copy("out.tp", "../bin/h5/res/out.tp")||warn "could not copy files :$!" ;

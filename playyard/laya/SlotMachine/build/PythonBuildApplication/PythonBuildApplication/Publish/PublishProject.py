@@ -58,9 +58,11 @@ class PublishProject(object):
     def getShowProjectVersionText(self):
         return '0.0.' + str(self.projectReleaseVersion)
     def writeBuildCodeVersion(self):
-        print("writeBuildCodeVersion:",self.getShowProjectVersionText())
+        ver = self.getShowProjectVersionText()
+        print("writeBuildCodeVersion:", ver)
         content = codecsReadTextUT8(self.buildConfigCode)
-        content = content.replace('public static const version:String = \'0.0.0\';','public static const version:String = \"' + self.getShowProjectVersionText() + '\";')
+        content = re.sub(r'\d+\.\d+\.\d+', ver, content)
+        print(content)
         codecsWriteTextUT8(self.buildConfigCode,content)
     def checkPublishFilesInvalidName(self):
         code = FileNameCheck.checkInvalidName(self.getLayaPublishFolder())

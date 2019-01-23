@@ -3,6 +3,7 @@ package data
 	public class GameData
 	{
 		public var isGuest: Boolean = false;
+		public var pswdUsed: String;
 		public var pswds: Vector.<String>;
 		public var luckyCnt: int = 0;
 		public var bossLuckyCnt: int = 0;
