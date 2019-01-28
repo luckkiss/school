@@ -45,6 +45,7 @@ print "row_max: $row_max\n";
 my @allUsers = ();
 my @stList = ();
 my @bossList = ();
+my @must = ();
 for my $row (1..$row_max){
     my $nameCell = $worksheet->get_cell($row, 1);
     my $stateCell = $worksheet->get_cell($row, 3);
@@ -55,11 +56,14 @@ for my $row (1..$row_max){
         push @stList, $row - 1;
     } elsif(1 == $state) {
         push @bossList, $row - 1;
+    } elsif(3 == $state) {
+        push @must, $row - 1;
     }
 }
 my $allUserCnt = @allUsers;
 my $stListCnt = @stList;
 my $bossListCnt = @bossList;
+my $mustCnt = @must;
 my $normalCnt = $allUserCnt - $stListCnt - $bossListCnt;
 $outStr.=pack('C', $normalCnt);
 $outStr.=pack('I', $allUserCnt);
@@ -72,6 +76,10 @@ for(@stList){
 }
 $outStr.=pack('C', $bossListCnt);
 for(@bossList){
+    $outStr.=pack('C', $_);
+}
+$outStr.=pack('C', $mustCnt);
+for(@must){
     $outStr.=pack('C', $_);
 }
 print "allUserCnt: $allUserCnt, stListCnt: $stListCnt, bossListCnt: $bossListCnt\n";

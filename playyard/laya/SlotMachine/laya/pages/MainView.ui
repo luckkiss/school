@@ -678,7 +678,7 @@
                         {
                             "x":45,
                             "type":"Label",
-                            "props":{"wordWrap":true,"var":"textMsg","top":400,"text":"是否读档？","right":400,"left":400,"fontSize":30,"color":"#ffffff","bottom":400,"align":"center"},
+                            "props":{"wordWrap":true,"var":"textMsg","valign":"middle","top":280,"text":"是否读档","right":300,"left":300,"fontSize":30,"color":"#ffffff","bottom":370,"align":"center"},
                             "nodeParent":128,
                             "label":"Label(textMsg)",
                             "isDirectory":false,
@@ -691,7 +691,7 @@
                         {
                             "x":45,
                             "type":"Button",
-                            "props":{"width":140,"var":"btnOk","stateNum":"1","skin":"ui/btn_normal.png","labelSize":26,"label":"确定","height":60,"centerX":-100,"bottom":400},
+                            "props":{"width":140,"var":"btnOk","stateNum":"1","skin":"ui/btn_normal.png","labelSize":26,"label":"确定","height":60,"centerX":-100,"bottom":300},
                             "nodeParent":128,
                             "label":"Button(btnOk)",
                             "isDirectory":false,
@@ -704,7 +704,7 @@
                         {
                             "x":45,
                             "type":"Button",
-                            "props":{"width":140,"var":"btnNo","stateNum":"1","skin":"ui/btn_normal.png","labelSize":26,"label":"取消","height":60,"centerX":100,"bottom":400},
+                            "props":{"width":140,"var":"btnNo","stateNum":"1","skin":"ui/btn_normal.png","labelSize":26,"label":"取消","height":60,"centerX":100,"bottom":300},
                             "nodeParent":128,
                             "label":"Button(btnNo)",
                             "isDirectory":false,

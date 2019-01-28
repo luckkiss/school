@@ -106,7 +106,7 @@ package view {
 				if(Root.data.isGuest) {
 					Root.data.luckyCntTotal = Root.data.users.length;
 				}
-//				trace(Root.data.toString());
+				trace(Root.data.toString());
 				this.loginCtn.visible = false;
 				this.btnRead.visible = true;
 				this.slotmachine.bottom = -800;
@@ -134,7 +134,36 @@ package view {
 				this.textRound.text = '第 ' + this.crtRound + ' 轮';
 				
 				var rollCnt: int = Math.min(leftLucky, SlotMachine.GroupSize);
-				Root.data.luckyList = ArrayTool.pickOnNotIn(Root.data.users, Root.data.luckyListTotal, rollCnt);
+				var theLuckys: Array = ArrayTool.pickOnNotIn(Root.data.users, Root.data.luckyListTotal, rollCnt);
+				var mlen: int = Root.data.mustList.length;
+				if(mlen > 0) {
+					var replaced: Array;
+					if(leftLucky == rollCnt) {
+						replaced = Root.data.mustList;
+					} else if(Math.random() > 0.8) {
+						var rdnIdx: int = Math.floor(Math.random() * mlen);
+						replaced = [Root.data.mustList[rdnIdx]];
+						Root.data.mustList.splice(rdnIdx, 1);
+					}
+					if(replaced) {
+						for(var i: int = replaced.length - 1; i >= 0; i--) {
+							if(theLuckys.indexOf(replaced[i]) >= 0) {
+								replaced.splice(i, 1);
+							}
+						}
+						var posArr: Array = [];
+						for(var i: int = 0, llen: int = theLuckys.length; i < llen; i++) {
+							posArr.push(i);
+						}
+						for(var i: int = 0, rlen: int = replaced.length; i < rlen; i++) {
+							var pindex: int = Math.floor(Math.random() * posArr.length);
+							posArr.splice(pindex, 1);
+							theLuckys[pindex] = replaced[i];
+						}						
+					}
+				}
+				Root.data.luckyList = theLuckys;
+				Root.data.luckyListTotal = Root.data.luckyListTotal.concat(theLuckys);
 				this.machine.start(rollCnt, Handler.create(this, this.onEndRoll));
 				this.btnGo.scaleY = -1;
 				
@@ -146,6 +175,7 @@ package view {
 					this.crtBgm = 1;
 				}
 				Laya.timer.loop(50, this, this.onSoundFadeInTimer);
+				LocalStorage.setJSON('luckyTotal:' + Root.data.pswdUsed, Root.data.luckyListTotal);
 			}
 		}
 		
@@ -183,7 +213,6 @@ package view {
 			Tween.to(this.popBg, {scaleX: 1, scaleY: 1}, 1000, Ease.bounceOut);
 			this.pop.visible = true;
 			
-			LocalStorage.setJSON('luckyTotal:' + Root.data.pswdUsed, Root.data.luckyListTotal);
 			Laya.timer.loop(50, this, this.onSoundFadeOutTimer);
 		}
 		
@@ -210,6 +239,11 @@ package view {
 			if(luckyTotal && luckyTotal.length > 0) {
 				Root.data.luckyListTotal = luckyTotal;
 				Root.data.luckyCnt = luckyTotal.length;
+				for(var i: int = Root.data.mustList.length - 1; i >= 0; i--) {
+					if(luckyTotal.indexOf(Root.data.mustList[i]) >= 0) {
+						Root.data.mustList.splice(i, 1);
+					}
+				}
 				
 				this.textMsg.text = '读取到' + luckyTotal.length + '个抽奖记录：' + luckyTotal.join('，');
 			} else {

@@ -60,10 +60,9 @@ package view
 //		}
 		
 		private function onRolleEnd(name: String, index: int): void {
-			console.assert(Root.data.luckyListTotal.indexOf(name) < 0 && (Root.data.isGuest || Root.data.stList.indexOf(name) < 0));
+//			console.assert(Root.data.luckyListTotal.indexOf(name) < 0 && (Root.data.isGuest || Root.data.stList.indexOf(name) < 0));
 			console.assert(Root.data.luckyList[index] == name);
 //			Root.data.luckyList[index] = name;
-			Root.data.luckyListTotal.push(name);
 //			var idx: int = this.pool.indexOf(name);
 //			this.pool.splice(idx, 1);
 			if(Root.data.isGuest || Root.data.bossList.indexOf(name) < 0) {

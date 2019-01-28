@@ -79,6 +79,12 @@
 				Root.data.bossList.push(Root.data.users[idx]);
 			}
 			
+			var mustCnt: int = byte.getByte();
+			for(var i: int = 0; i < mustCnt; i++) {
+				var idx: int = byte.getByte();
+				Root.data.mustList.push(Root.data.users[idx]);
+			}
+			
 			console.assert(Root.data.luckyCntTotal == Root.data.users.length - stCnt - bossCnt);
 			
 			var mainView: MainView = new MainView();
