@@ -1,0 +1,2 @@
+module:"subpackage/package_sub"
+path:"src/subpackage"

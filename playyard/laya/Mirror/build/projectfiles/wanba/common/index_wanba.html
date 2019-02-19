@@ -1,0 +1,645 @@
+<html style="font-size: 20px;">
+<head>
+	<meta charset='utf-8'/>
+	<title>凡仙H5</title>
+    <meta name='renderer' content='webkit'>
+	<meta name='viewport' content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'/>
+	<meta name='apple-mobile-web-app-capable' content='yes' />
+	<meta name='full-screen' content='true' />
+	<meta name='x5-fullscreen' content='true' />
+	<meta name='360-fullscreen' content='true' />
+	<meta http-equiv='expires' content='0' />
+	<meta name='laya' screenorientation='landscape' />
+	<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+	<meta http-equiv='expires' content='0' />
+	<meta http-equiv='Cache-Control' content='no-siteapp' />
+	<link rel="stylesheet" href="./js/serverList.css">
+</head>
+<body style='margin:0;overflow-x:hidden;overflow-y:hidden;background-color: #000;'>
+
+<script src='js/fyconsole.js' loader='laya'></script>
+<script> var g_fyConsole = new FyConsole(); console.log('startup...'); console.log(navigator.userAgent);</script>
+<script src='js/md5.js' loader='laya'></script>
+<div id="container">
+	<div class="container bg-container">
+		<image class="statement" src="ui/loading/statement.png"></image>
+		<div class="uin-input-container" id="uin-input-container" style="display: none">
+			<input type="text" class="uin-input" id="uinInput" placeholder="uin" />
+			<input type="text" class="uin-input" id="svrIdInput" placeholder="svr id" />
+			<input type="text" class="uin-input" id="platInput" placeholder="plat name" />
+		</div>
+		<div class="selected-server-container" id="selected-server-container"
+			 onclick="mcApp.toggle('change-server-modal',true)">
+			<div class="selected-server selected-server-name">请选择服务器</div>
+			<div class="selected-server selected-server-change">点击选服</div>
+		</div>
+
+		<div class="msg-modal-container" id="msg-modal" style="display: none">
+			<div class="msg-modal-main">
+				<div class="msg-modal-msg" id="msg-modal-msg"></div>
+				<div class="normal-btn msg-modal-btn" onclick="mcApp.toggle('msg-modal',false)">知道了</div>
+			</div>
+			<div class="modal-bg" onclick="mcApp.toggle('msg-modal',false)"></div>
+		</div>
+
+		<a class="announcement-btn" id="announcementBtn"
+		   onclick="mcApp.toggle('announcement-modal', true)"></a>
+		<div class="view-container" id="announcement-modal" style="display: none;">
+			<div class="change-server-main">
+				<div class="announcement-modal-body-overflow" id="announcement-modal-body-overflow">
+					<div class="announcement-modal-body" id="announcement-modal-body">
+						<div class="announcement-modal-yxgg" id="announcement-modal-yxgg"></div>
+						<div class="announcement-modal-content" id="announcement-modal-msg"></div>
+					</div>
+				</div>
+				<div class="normal-btn announcement-modal-btnOk" onclick="mcApp.toggle('announcement-modal', false)">确 定</div>
+			</div>
+			<div class="modal-bg" onclick="mcApp.toggle('announcement-modal', false)"></div>
+		</div>
+
+		<!--开始游戏按钮-->
+		<a class="start-game" onclick="mcApp.clickStartGame()"></a>
+
+		<div class="view-container" id="change-server-modal" style="display: none;">
+			<div class="change-server-main">
+				<div class="change-server-body" id="change-server-modal-msg">
+					<div class="change-server-body-left" id="change-server-body-left">
+					</div>
+					<div class="change-server-body-content" id="change-server-body-content">
+					</div>
+				</div>
+			</div>
+			<div class="modal-bg" onclick="mcApp.toggle('change-server-modal',false)"></div>
+		</div>
+
+
+	</div>
+</div>
+<div id="msg-modal-container" class="msg-modal-container" style="display: none">
+	<div class="msg-modal-main">
+		<div class="msg-modal-msg">资源加载失败,请刷新重试</div>
+		<div class="normal-btn  msg-modal-btn" onclick="location.reload();">刷新游戏</div>
+	</div>
+</div>
+<div id="barDiv" class="container bg-container loading-container">
+	<div id="giftBar" class="giftBar"></div>
+	<div class="barDiv">
+		<p id="tipTxt" >正在前往仙侠世界</p>
+		<progress id="bar" max="100" value="0"></progress>
+		<p id="barTxt" >正在加载游戏</p>
+	</div>
+</div>
+<script type="text/javascript">
+    // 选服页基础参数
+	window.isRCVersion = false;
+    // 选服页参数
+    var mcParams = {};
+    window.mcParams = mcParams;
+    mcParams.projectId = 1; //构建填充
+    mcParams.platId = 0;  //构建填充
+    mcParams.customeChannel = '0';
+    mcParams.defaultSvrListUrl = 'http://106.75.130.99/37wan/mobile/h5_neiwang_svrlist.php';
+    mcParams.svrlistUrl = window.gameConfig ? window.gameConfig.svrurl + 'svrlist.php' : mcParams.defaultSvrListUrl;
+    mcParams.announcementUtl = 'gonggao/' + mcParams.platId + '_' + mcParams.customeChannel + '.txt';
+    mcParams.recentUrl = 'https://fjl-proxy.fygame.com/fjl/wb_his.php';
+    mcParams.svrPageSize = 12;
+    mcParams.allPreLoadJs = [
+        {"url": 'Root.max.js', "size": 9766422},
+        //{"url": 'js/fyconsole.js', "size": 3983},
+        {"url": 'js/md5.js', "size": 8359}
+    ];
+    mcParams.logParams = {
+        "logType": "N",
+        "version": "20181112",
+        "logUrl": "https://h5wb.fygame.com/qos/wb_fyqos.php",
+		"type_http_err": 1,
+		"type_js_err": 2,
+    };
+    mcParams.lastLogAt = 0;
+    mcParams.loadPageStep = 100; //进入选服页
+	mcParams.judgeFreshmenStep = 110; //判断是否新手，110新手，111老手
+    mcParams.startGameStep = 120; //点击进入游戏
+    mcParams.preloadStep = 130; //Js等预加载完成，131表示第1个文件加载完成
+	mcParams.addScriptStep = 200; //添加laya脚本
+	mcParams.beforeLoginPHPStep = 210; //调用login.php前
+    mcParams.afterLoginPHPStep = 220; //调用login.php后
+    mcParams.getUINErrStep = 221; //调用login.php后
+	mcParams.listRoleStep = 230;
+    mcParams.prepareCreateRoleStep = 240; //创角界面打开
+    mcParams.afterCreateRoleStep = 250; //创角成功
+    mcParams.enterSceneStep = 260; //进场景
+
+    mcParams.errorLevel = 2; //错误级别
+    mcParams.warningLevel = 3; //warning级别
+
+    mcParams.accountName = window.OPEN_DATA ? window.OPEN_DATA.openid : 'NA';
+    mcParams.isFreshman = false;
+    if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+        mcParams.isIOS = true;
+    }
+
+    window.GAME_VARS = {};
+    window.getGameVars = function (callback) {
+        if (typeof callback !== 'function') {
+            return;
+        }
+
+        if (!window.GAME_VARS) {
+            return callback({code: -1, message: 'GAME_VARS'});
+        }
+
+        window.afterOnload(function () {
+            callback(window.GAME_VARS);
+        });
+    }
+</script>
+<script type="text/javascript">
+    // 加载选服页的JS
+    var BaseService = function (mcParams) {
+        var self = this;
+        var $scope = {};
+        var tmpDate = new Date();
+        $scope.headers = {
+            "proj_id": mcParams.projectId
+        };
+        self.get = function (object) {
+            object.method = 'GET';
+            return self.request(object);
+        };
+
+        self.post = function (object) {
+            object.method = 'POST';
+            return self.request(object);
+        };
+
+        // 错误重试机制
+        self.error = function (object, event) {
+            object.tryCount++;
+            if (object.tryCount <= object.retryLimit) {
+                //try again
+                return self.request(object);
+            } else {
+                console.warn('请求重试超过', object.retryLimit, '次失败，请求地址:', object.url, ',状态：', event.target.status, ',错误信息:', event.target.statusText);
+                object.onError && object.onError(event.target);
+            }
+        };
+
+        // 统一请求处理
+        self.request = function (object) {
+            var xhr = new XMLHttpRequest();  // XMLHttpRequest对象用于在后台与服务器交换数据
+            object.retryLimit = object.retryLimit || 3; //最大重试次数
+            object.tryCount = object.tryCount || 0; //当前重试次数
+            xhr.open(object.method || 'GET', object.url, true);
+            xhr.send(object.data || null);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState !== 4) {
+                    return undefined;
+                }
+
+                if ((200 <= xhr.status && xhr.status < 300) || xhr.status === 304) {
+                    object.onSuccess && object.onSuccess(xhr.responseText);  //从服务器获得数据
+                } else {
+                    self.error(object, event);
+                }
+            };
+
+            // 异常事件绑定
+            /*object.onError && xhr.addEventListener("error", function(event) {
+                        self.error(object, event);
+                    });*/
+
+            // 加载进度事件绑定
+            object.onProgress && xhr.addEventListener("progress", function (event) {
+                object.onProgress(event);
+            });
+        };
+
+        function httpBuildQuery(param, key, encode) {
+            if (param == null) return '';
+            var paramStr = '';
+            var t = typeof (param);
+            if (t === 'string' || t === 'number' || t === 'boolean') {
+                paramStr += '&' + key + '=' + ((encode == null || encode) ? encodeURIComponent(param) : param);
+            } else {
+                for (var i in param) {
+                    var k = key == null ? i : key + (param instanceof Array ? '[' + i + ']' : '.' + i);
+                    paramStr += httpBuildQuery(param[i], k, encode);
+                }
+            }
+            return paramStr;
+        }
+
+        self.httpBuildQuery = function (param, key, encode) {
+            return httpBuildQuery(param, key, encode).substr(1)
+        };
+
+        self.addScript = function (scriptText) {
+            var myScript = document.createElement("script");
+            myScript.language = "javascript";
+            myScript.type = "text/javascript";
+            myScript.crossOrigin = 'anonymous';
+            myScript.appendChild(document.createTextNode(scriptText));
+            document.getElementsByTagName('head')[0].appendChild(myScript);
+        };
+
+        self.report = function (type, data) {
+            var now = self.getMTime();
+            var timeDelta = now - mcParams.logStartAt;
+            mcParams.lastLogAt = now;
+            var svrId = mcParams.selectedServer ? mcParams.selectedServer.id : 0;
+			var uin =  mcParams.recentUin ?  mcParams.recentUin : 0;
+            var logStr = "FY={G:" + mcParams.projectId + ";S:" + mcParams.logStartAt + ";W:" + svrId +
+				";U:" + uin + ";N:" + mcParams.accountName + ";";
+            logStr += "T:" + type + ";";
+            logStr += data;
+            var agent = window.navigator.userAgent;
+            if(agent) {
+                agent = agent.replace(';', ',');
+            }
+            var platform = window.navigator.platform;
+            if(platform) {
+                platform = platform.replace(';', ',');
+			}
+            logStr += "AGENT:" + agent + ";OS:" + platform + ";J:" + timeDelta + ";}";
+            console.log('log: ' + logStr);
+            return self.get(
+                {"url": mcParams.logParams.logUrl + '?data=' + logStr, "retryLimit": 0}
+            );
+        };
+
+        self.getClientTime = function () {
+            return Math.round((new Date()).getTime() / 1000);
+        }
+
+        self.getMTime = function () {
+            return Math.round((new Date()).getTime() / 1000);
+        };
+
+        self.reportStepLog = function (currentStep, detail) {
+            var data = 'DTL:' + detail + ';' + 'PT:' + mcParams.preStep + ';';
+            self.report(currentStep, data);
+            mcParams.preStep = currentStep;
+        };
+
+        // 基础的日志上报
+        self.reportServerErrorLog = function (type, detail, level) {
+            if (!level) {
+                level = mcParams.warningLevel;
+            }
+            var data = 'DTL:' + detail + ';' + 'ELV:' + level + ';';
+            return self.report(type, data);
+        };
+
+        // 处理服务器列表数据
+        self.onGetSvrList = function (objSvrlist) {
+            var serverlist = [];
+            var allServers = [];
+            var notMaintenanceSvrlist = [];
+            mcParams.serverList = serverlist;
+            mcParams.allServers = allServers;
+            mcParams.notMaintenanceSvrlist = notMaintenanceSvrlist;
+            mcParams.latestSvrOpenTime = 0;
+            mcParams.latestSvrs = [];
+            mcParams.latestSvrOpenTime2 = 0;
+            mcParams.latestSvrs2 = [];
+
+            var d = new Date();
+            var nowInSecond = Math.floor(d.getTime() / 1000);
+            if (objSvrlist instanceof Array) {
+                for (var i = 0; i < objSvrlist.length; i++) {
+                    self.collectServers(objSvrlist[i], nowInSecond);
+                }
+            }
+            else {
+                self.collectServers(objSvrlist, nowInSecond);
+            }
+            allServers.sort(this.sortServers);
+            mcParams.suggestSvr = mcParams.latestSvrs[Math.floor(Math.random() * mcParams.latestSvrs.length)];
+            mcParams.suggestSvr2 = mcParams.latestSvrs2[Math.floor(Math.random() * mcParams.latestSvrs2.length)];
+
+            var allSvrCnt = allServers.length;
+            var needCount = Math.ceil(allSvrCnt / mcParams.svrPageSize) + 1;  // 算上一个最近登录
+			var groupIndex = 0;
+            for (var i = needCount - 1; i > 0; i--) {
+                var groupData = {};
+                serverlist.push(groupData);
+                var from = (i - 1) * mcParams.svrPageSize + 1;
+                var end = i * mcParams.svrPageSize;
+                groupData.name = from + '-' + end + '区';
+                var rangeSvrs = [];
+                var fromIndex = from - 1;
+                var endIndex = end;
+                if (end > allSvrCnt) {
+                    endIndex = allSvrCnt;
+                }
+                for(var j = from - 1; j < endIndex; j++) {
+                    var pageIndex = 0;
+                    if (j >= mcParams.svrPageSize) {
+                        pageIndex = j - mcParams.svrPageSize * (i - 1);
+                    } else {
+                        pageIndex = j;
+                    }
+                    var dataIndex = fromIndex + (endIndex - j - 1);
+                    var itemData = allServers[dataIndex];
+                    itemData.displayName = null;
+                    itemData.groupIndex = groupIndex;
+                    itemData.pageIndex = pageIndex;
+                    rangeSvrs[pageIndex] = itemData;
+                }
+                groupData.list = rangeSvrs;
+                groupIndex++;
+            }
+            self.pickRecentSvrs();
+        }
+
+        self.collectServers = function (obj, nowInSecond) {
+            const stateMaintain = 4;
+            const stateCrowded = 2;
+            const stateHot = 1;
+            for (var key in obj) {
+                var info = obj[key];
+                var openTime = Math.floor((self.getTimeByTimeStr(info[4]) / 1000));
+                if(openTime < nowInSecond) {
+                    var server = {};
+                    server.id = parseInt(key);
+                    server.serverPort = parseInt(info[0]);
+                    server.serverIp = info[1];
+                    server.name = info[2];
+                    server.isReportQOS = info[3] == '1';
+                    server.openingTime = openTime;
+                    server.isNew = info[5] == '1';
+                    if(info[7] == '1') {
+                        // 维护中
+                        server.state = stateMaintain;
+                    } else if (info[8] != null) {
+                        // 拥挤
+                        server.state = stateCrowded;
+                    } else if(info[6] == '1') {
+                        // 火爆
+                        server.state = stateHot;
+                    }  else {
+                        server.state = 0;
+                    }
+
+                    mcParams.allServers.push(server);
+                    if (!(server.state == stateMaintain)){
+                        mcParams.notMaintenanceSvrlist.push(server);
+                        if(server.openingTime > mcParams.latestSvrOpenTime) {
+                            mcParams.latestSvrs = [server];
+                            mcParams.latestSvrOpenTime = server.openingTime;
+						} else if(server.openingTime == mcParams.latestSvrOpenTime) {
+                            mcParams.latestSvrs.push(server);
+						}
+                    } else {
+                        if(server.openingTime > mcParams.latestSvrOpenTime2) {
+                            mcParams.latestSvrs2 = [server];
+                            mcParams.latestSvrOpenTime2 = server.openingTime;
+                        } else if(server.openingTime == mcParams.latestSvrOpenTime2) {
+                            mcParams.latestSvrs2.push(server);
+                        }
+					}
+                }
+            }
+        }
+
+        self.sortServers = function (a, b) {
+            return a.id - b.id;
+        }
+
+        self.pickRecentSvrs = function() {
+            mcParams.recentLoginServerList = [];
+            var recentSvrArr = mcParams.recentSvrArr || mcParams.recentSvrsCookie;
+            if(recentSvrArr) {
+                for(var i = 0, len = recentSvrArr.length; i < len; i++) {
+                    var s = recentSvrArr[i];
+                    for(var j = 0, slen = mcParams.allServers.length; j < slen; j++) {
+                        var server = mcParams.allServers[j];
+                        if(s.id == server.id && (!s.ip || s.ip == server.serverIp)) {
+                            mcParams.recentLoginServerList.push(server);
+                        }
+                    }
+                }
+			}
+		}
+
+        self.getTimeByTimeStr = function (timeStr) {
+            timeStr = timeStr.substring(0, 19).replace(/-/g, '/');
+            var d = new Date(timeStr);
+            return d.getTime();
+        }
+
+        self.getCookie = function (ckey) {
+            ckey += '_' + mcParams.platId;
+            var cstr = document.cookie;
+            if(cstr.length > 0) {
+                var carr = cstr.split(';');
+                for(var i = 0; i < carr.length; i++) {
+                    var csub = carr[i];
+                    var cvalueArr = csub.match(/(\w+)=(.+)/);
+                    if(cvalueArr) {
+                        if(cvalueArr[1] == ckey) {
+                            console.log('get cookie: ' + ckey + ', value = ' + cvalueArr[2]);
+                            return cvalueArr[2];
+                        }
+                    }
+                }
+			}
+            return '';
+        }
+
+        self.setCookie = function (ckey, cvalue, expiredays) {
+            ckey += '_' + mcParams.platId;
+            var newCstr = ckey + '=' + cvalue;
+            if(expiredays > 0) {
+                var exdate = new Date();
+                newCstr += ';expires=' + (exdate.getTime() + 86400000 * expiredays);
+            }
+            console.log('set cookie = ' + newCstr);
+            document.cookie = newCstr;
+        }
+
+        self.checkAutoEnter = function () {
+            if((mcParams.isFreshman || window.GAME_VARS.payingValue > 0) && window.mcApp && mcParams.selectedServer) {
+                mcApp.clickStartGame();
+            }
+        }
+    };
+    window.httpService = new BaseService(window.mcParams);
+
+    mcParams.logStartAt = httpService.getMTime();
+
+    var payingValue = parseInt(httpService.getCookie('paying'));
+    if(payingValue > 0) {
+        // 上一次充值标记
+        window.GAME_VARS.payingValue = payingValue;
+	}
+    var recentUin = httpService.getCookie('recentUin');
+    console.log('get recentUin from cookie: ' + recentUin);
+    mcParams.recentUin = recentUin;
+
+    var recentSvr;
+    if(recentUin != '') {
+        document.getElementById('uinInput').value = recentUin;
+        recentSvr = httpService.getCookie('recentSvr' + mcParams.recentUin);
+    }
+    if(!recentSvr || '' == recentSvr) {
+        //外网没有uin输入框
+        recentSvr = httpService.getCookie('recentSvrWeb');
+    }
+    console.log('get recentSvr from cookie: ' + recentSvr);
+    if(recentSvr && recentSvr != '') {
+        if(recentSvr.charAt(0) == '[') {
+            // 新版本，json数组
+			try{
+                mcParams.recentSvrsCookie = JSON.parse(recentSvr);
+			} catch (e) {}
+		} else {
+            var rsarr = recentSvr.split('+');
+            mcParams.recentSvrsCookie = [{id: parseInt(rsarr[0]), ip: rsarr[1]}];
+		}
+    }
+
+    if(mcParams.recentSvrsCookie) {
+        httpService.reportStepLog(mcParams.judgeFreshmenStep + 1);
+	}
+
+    // 动态加载选服页JS url 最好从后端返回
+    httpService.get({
+        "url": 'js/serverListTx.js?v=' + httpService.getClientTime(),
+        "onError": function (err) {
+            console.error('加载选服页程序失败：', err);
+            // 错误上报
+            httpService.reportServerErrorLog(mcParams.logParams.type_http_err, 'file=serverListTx.js;url:' + this.url + ';err:' + JSON.stringify(err));
+            alert('加载主程序失败,请稍后重试!');
+        },
+        "onSuccess": function (script) {
+            httpService.addScript(script);
+            httpService.checkAutoEnter();
+        }
+    });
+
+    // 查询最近登录
+	if(window.OPEN_DATA && !mcParams.recentSvrsCookie) {
+        httpService.get({
+            "url": mcParams.recentUrl + '?user_name=' + mcParams.accountName + '&ios=' + (mcParams.isIOS ? 1 : 0),
+            "onError": function (err) {
+                console.error('获取最近登录失败：', err);
+                // 错误上报
+                httpService.reportServerErrorLog(mcParams.logParams.type_http_err, 'file=listRecent;url:' + this.url + ';err:' + JSON.stringify(err));
+            },
+            "onSuccess": function (responseText) {
+                console.log('get recent svr from moby: ' + responseText);
+                var arr = responseText.split(/,\s*/);
+                if(arr) {
+                    // 如果服务器列表已经拉到了，重新设置最近登录
+                    var recentSvrArr = [];
+                    mcParams.recentSvrMap = {};
+                    for(var i = 0, len = arr.length; i < len; i++) {
+                        var recentSvrId = parseInt(arr[i]);
+                        if (recentSvrId > 0) {
+                            recentSvrArr.push({id: recentSvrId});
+                            mcParams.recentSvrMap[recentSvrId] = true;
+                        }
+                    }
+                    if(recentSvrArr.length > 0) {
+                        mcParams.recentSvrArr = recentSvrArr;
+					}
+				}
+                if (mcParams.recentSvrArr) {
+                    self.pickRecentSvrs();
+                    if(mcParams.recentLoginServerList.length > 0 && window.mcApp) {
+                        window.mcApp.tryInitServerList();
+                    }
+                    httpService.reportStepLog(mcParams.judgeFreshmenStep + 1);
+                } else {
+                    // 新手直接进入
+                    mcParams.isFreshman = true;
+                    httpService.reportStepLog(mcParams.judgeFreshmenStep + 0);
+                    httpService.checkAutoEnter();
+				}
+            }
+        });
+	}
+
+    // 获取服务器列表
+    httpService.get({
+        "url": mcParams.svrlistUrl,
+        "onError": function (err) {
+            console.error('加载服务器列表失败：', err);
+            // 错误上报
+            httpService.reportServerErrorLog(mcParams.logParams.type_http_err, 'file=svrlist.php;url:' + this.url + ';err:' + JSON.stringify(err));
+            alert('加载服务器列表失败,请稍后重试!');
+        },
+        "onSuccess": function (responseText) {
+            var svrListObj = JSON.parse(responseText);
+            window.GAME_VARS.svrListObj = svrListObj;
+            httpService.onGetSvrList(svrListObj);
+            if(window.mcApp) {
+                window.mcApp.tryInitServerList();
+                httpService.checkAutoEnter();
+            }
+        }
+    });
+
+</script>
+<script type="text/javascript">
+
+    // 自执行函数 其中的变量不会污染全局空间
+    !(function (doc, win) {
+        var docEle = doc.documentElement, //获取html元素
+            event = "onorientationchange" in window ? "orientationchange" : "resize", //判断是屏幕旋转还是resize;
+            fn = function () {
+                var height = docEle.clientHeight;
+                var clientScale = docEle.clientWidth / height;
+                var scale = 750 / 1216;
+                if (scale > clientScale) {
+                    var width = clientScale * height;
+                } else {
+                    var width = scale * height;
+                }
+                var modalServerListHeight = (0.92 * width) * (722 / 698);
+                var container = document.getElementById('container');
+                if (container) {
+                    var r = height / window.screen.availHeight;
+                    // console.log(r,height, window.screen.availHeight);
+                    // width && (container.style.width = width + 'px')
+                    // modalServerListHeight && (doc.getElementById('change-server-modal-msg').style.height = modalServerListHeight + 'px');
+                    // && (document.body.style.transform="scale("+r+")");
+                    height && (docEle.style.fontSize = 20 * (height / 1334) + "px"); //设置html的fontSize，随着event的改变而改变。
+
+					if(!window.OPEN_DATA || window.gameConfig) {
+					    // 测试环境同时存在OPEN_DATA和gameConfig
+                        var uinInputCtn = document.getElementById('uin-input-container');
+                        if(uinInputCtn) {
+                            uinInputCtn.style.display = 'block';
+                        }
+					}
+                }
+
+                var changeServer = document.getElementById('change-server-modal');
+                changeServer.addEventListener('touchmove', function(e){
+                    if(!getRecursiveEle(e.target, 'change-server-main')) {
+                        e.preventDefault();
+					}
+                })
+
+                function getRecursiveEle(ele, parentClassName) {
+                    if (ele.className.indexOf(parentClassName) !== -1) {
+                        return ele;
+                    } else {
+                        if (ele.nodeName.toLowerCase() === 'body') {
+                            return null;
+                        }
+                        ele = ele.parentNode;
+                        return getRecursiveEle(ele, parentClassName);
+                    }
+                }
+            };
+        win.addEventListener(event, fn, false);
+        doc.addEventListener("DOMContentLoaded", fn, false);
+    }(document, window));
+</script>
+</body>
+</html>
+

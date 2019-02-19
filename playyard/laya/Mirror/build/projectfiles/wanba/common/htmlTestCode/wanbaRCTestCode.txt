@@ -1,0 +1,16 @@
+<script>
+var gameConfig = {
+    gamename: '飞剑来RC',
+
+    platid: 1,
+    pf: 'wanba' ,
+
+    svrurl: 'https://h5.fygame.com/web/h5_',
+    svrips: [],
+    svripfmt: 'https://{0}/web/h5_',
+
+    resurl: 'https://xycdn.xiyouchat.com/twfy/h5web/rc/',
+
+    defines: 'DEVELOP;TESTUIN'
+};
+</script>

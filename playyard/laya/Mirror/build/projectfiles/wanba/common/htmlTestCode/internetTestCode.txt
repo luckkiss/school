@@ -1,0 +1,16 @@
+<script>
+var gameConfig = {
+    gamename: '凡仙h5外网',
+
+    platid: 0,
+    pf: 'QATest' ,
+
+    svrurl: 'https://h5.fygame.com/web/h5_',
+    svrips: [],
+    svripfmt: 'https://{0}/web/h5_',
+
+    resurl: '',
+
+    defines: 'DEVELOP;TESTUIN'
+};
+</script>
