@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 from Common.Const import Const
-from Publish.Weixin.WeixinPlatform import LocalTestWeixin,PublishWeixin
+from Publish.Weixin.WeixinPlatform import PublishWeixin
 from Publish.Weixin.WeixinXinghan import WeixinXinghan
 from Publish.Wanba.WanbaPlatform import LocalTestWanba,PublishWanba
 class Factory(object):

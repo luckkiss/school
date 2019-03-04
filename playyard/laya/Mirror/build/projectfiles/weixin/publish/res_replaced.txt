@@ -1,5 +1,0 @@
-ui\loading\statement.png->ui\loading\statement_wx.png
-res\login\008.jpg->res\login\bg7dao.jpg
-res\funcIcon\436.png->res\funcIcon_xh\436.png
-res\Laya\88888888.lh->res\Laya\32000098.lh
-res\Laya\88888888.lh->res\Laya\32000099.lh

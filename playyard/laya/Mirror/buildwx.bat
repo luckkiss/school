@@ -6,7 +6,7 @@ setlocal enabledelayedexpansion
 
 title Œ¢–≈ππΩ®≤‚ ‘@teppei
 
-python build\PythonBuildApplication\PythonBuildApplication\PythonBuildApplication.py weixin publish False
+python build\PythonBuildApplication\PythonBuildApplication\PythonBuildApplication.py weixin publish True
 
 : END
 endlocal enabledelayedexpansion

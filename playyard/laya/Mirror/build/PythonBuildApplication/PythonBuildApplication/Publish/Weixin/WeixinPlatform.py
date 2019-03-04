@@ -23,8 +23,6 @@ class PublishWeixin(WeixinPlatform):
     def __init__(self, pf,mode,*args, **kwargs):
         super(PublishWeixin,self).__init__(pf,mode,*args, **kwargs)
         self.commitCode = False
-        if len(args) > 1:
-            self.commitCode = args[1] == 'true'
         self.wxPublishProjectFolder = combineUrl(self.releaseFolder,'wxproject')
         self.wxReplaceList = self.getWxReplaceList()
     def getWxReplaceList(self):
@@ -40,7 +38,7 @@ class PublishWeixin(WeixinPlatform):
         deleteFile(self.wxPublishProjectFolder)
         self.copyWeixinProjectFiles()
         self.createCodeJS()
-        self.createWeixinFakeLoadingFiles()
+        # self.createWeixinFakeLoadingFiles()
         self.mangleImages()
         self.mangleJsons()
         self.mangleFilesName()

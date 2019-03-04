@@ -2,7 +2,7 @@
 	import laya.net.Loader;
 	import laya.net.ResourceVersion;
 	import laya.utils.Handler;
-	import view.TestView;
+	import view.LoginView;
 	import laya.wx.mini.MiniAdpter;
 	import laya.webgl.WebGL;
 	
@@ -26,8 +26,8 @@
 		
 		private function onLoaded():void {
 			//实例UI界面
-			var testView:TestView = new TestView();
-			Laya.stage.addChild(testView);
+			var loginView:LoginView = new LoginView();
+			Laya.stage.addChild(loginView);
 		}
 	}
 }

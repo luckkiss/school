@@ -2,11 +2,12 @@ package view {
 	import laya.events.Event;
 	import laya.ui.Box;
 	import laya.ui.Label;
-	import ui.test.TestPageUI;
 	
-	public class TestView extends TestPageUI {
+	import ui.LoginViewUI;
+	
+	public class LoginView extends LoginViewUI {
 		
-		public function TestView() {
+		public function LoginView() {
 			//btn是编辑器界面设定的，代码里面能直接使用，并且有代码提示
 			btn.on(Event.CLICK, this, onBtnClick);
 			btn2.on(Event.CLICK, this, onBtn2Click);

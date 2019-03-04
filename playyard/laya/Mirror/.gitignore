@@ -1,0 +1,8 @@
+**/.laya
+**/bin/
+**/release/
+**/log/
+**/*Tmp/
+**/patch/
+**/__pycache__/
+*.pyc

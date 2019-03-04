@@ -9,15 +9,17 @@ from Common.Const import Const
 from Common.FileNameCheck import FileNameCheck
 class PublishProject(object):
     def __init__(self,pf,mode, *args, **kwargs):
-        #self.debug = True调试设置成true,不压缩图片，不会更新项目，不生成增量包，不提交差异配置,微信不上传代码到管理端
-        self.debug = True
         #=========================================================
-        print("PublishProject.debug:" + str(self.debug))
         print(os.getcwd())
         self.platform = pf
         self.publishMode = mode
         self.projectPath = args[0]#path.replace('build\前置脚本\Script\Script','')
         print('projectPath:',self.projectPath)
+        #self.debug = True调试设置成true,不压缩图片，不会更新项目，不生成增量包，不提交差异配置,微信不上传代码到管理端
+        self.debug = False
+        if args[1] == 'True':
+            self.debug = True
+        print("PublishProject.debug:" + str(self.debug))
         self.buildPath = combineUrl(self.projectPath,'build')
         self.releaseFolder = combineUrl(self.projectPath,'release')
         self.layaWebFolder = combineUrl(self.releaseFolder,'layaweb')
