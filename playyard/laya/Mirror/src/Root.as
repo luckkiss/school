@@ -29,7 +29,8 @@
 		}
 		
 		/**json数据加载完毕*/
-		private function onCfgLoaded(): void {
+		private function onCfgLoaded(o: Object): void {
+			console.log(o);
 			// 读取guide.json
 			Global.guideData.onCfgReady();
 			Global.cfgMgr.isReady = true;

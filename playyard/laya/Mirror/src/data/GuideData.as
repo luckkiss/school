@@ -9,7 +9,7 @@ package data
 		}
 		
 		public function onCfgReady(): void {
-			this.rootNode = Laya.loader.getRes('guide.json') as GuideNode;
+			this.rootNode = Laya.loader.getRes('res/data/guide.json') as GuideNode;
 		}
 	}
 }

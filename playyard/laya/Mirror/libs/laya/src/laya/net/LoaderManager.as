@@ -262,6 +262,7 @@ package laya.net {
 				resInfo.event(Event.PROGRESS, num);
 			});
 			loader.on(Event.ERROR, null, function(msg:*):void {
+				console.error(resInfo.url, ' load error: ', msg);
 				onLoaded(null);
 			});
 			

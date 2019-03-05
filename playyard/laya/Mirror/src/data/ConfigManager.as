@@ -1,5 +1,6 @@
 package data
 {
+	import laya.net.Loader;
 	import laya.utils.Handler;
 
 	public class ConfigManager
@@ -12,7 +13,7 @@ package data
 		}
 		
 		public function loadConfigs(onLoaded: Handler): void {
-			Laya.loader.load('res/data/guide.json', onLoaded);
+			Laya.loader.load([{url: 'res/data/guide.json', type: Loader.JSON}], onLoaded);
 		}
 	}
 }
