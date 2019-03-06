@@ -4,6 +4,7 @@ package view
 	
 	import laya.display.Sprite;
 	import laya.display.Text;
+	import laya.events.Event;
 	
 	import ui.GuideViewUI;
 
@@ -41,6 +42,7 @@ package view
 			var centerY: Number = stageH / 2;
 			
 			this.drawCircle(centerX, centerY, rootNode, 0);
+			this.onClickNodeCircle(rootNode);
 		}
 		
 		private function drawCircle(x: Number, y: Number, node: GuideNode, deep: int): void {
@@ -53,6 +55,7 @@ package view
 			textDesc.size(this.CircleRadius * 2, this.CircleRadius * 2);
 			textDesc.pos(x - this.CircleRadius, y - this.CircleRadius);
 			nodeCircle.addChild(textDesc);
+			nodeCircle.on(Event.CLICK, this, this.onClickNodeCircle, [node]);
 			this.uiView.addChild(nodeCircle);
 			
 			if(node.children) {
@@ -66,6 +69,10 @@ package view
 					nodeCircle.graphics.drawLine(x, y, cx, cy, this.Color, this.LineWidth, deep + 1);
 				}
 			}
+		}
+		
+		private function onClickNodeCircle(node: GuideNode): void {
+			this.uiView.textDetail.text = node.detail;
 		}
 	}
 }
