@@ -1,5 +1,6 @@
 **/.laya
-**/bin/
+**/bin/h5/*
+!**/data/*
 **/release/
 **/log/
 **/*Tmp/
