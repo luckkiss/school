@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>vis.js newwork Demo</title>
+    <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="vis/vis.js"></script>
+    <link href="vis/vis.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        #mynetwork {
+            width: 100%;
+            height: 600px;
+            border: 1px solid lightgray;
+        }
+        
+        #hisLog {
+            width: 100%;
+            height: 200px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mynetwork"></div>
+    <button id='addTo' value="Begin AddTo">Begin AddTo</button>
+    <button id='stop_addTo' value="Stop AddTo">Stop AddTo</button>
+    <button id='add_edge'>Begin Add Edge</button>
+    <button id='stop_edge'>Stop Add Edge</button>
+    <div id="hisLog"></div>
+    <script src="./demo.js"></script>
+</body>
+<script>
+var nodes = new vis.DataSet();
+var edges = new vis.DataSet();
+var container = document.getElementById('mynetwork');
+var data = {
+    nodes: nodes,
+    edges: edges
+};
+var options = {};
+var network = new vis.Network(container, data, options);
+
+function addNode(id, label, title) {
+    nodes.add({
+        id: id,
+        label: id
+    })
+    this.addHisLog('node:' + id + ' add to container.');
+}
+
+function addEdge(fromId, toId, type) {
+    var edge = {
+        from: fromId,
+        to: toId,
+    }
+    if (type === 1) {
+        edge['label'] = 'releation'
+        edge.arrows = 'to'
+        edge.color = 'red'
+        edge.length = 400
+    } else {
+        edge['label'] = 'arrows:circle'
+        edge.arrows = {
+            to: {
+                type: 'circle'
+            }
+        }
+        edge.length = 200
+    }
+    edges.add(edge);
+    this.addHisLog('edge:' + fromId + ' ---> ' + toId + ' .type:' + type + ' add to container.');
+}
+
+function randomGetNodeId() {
+    var names = Object.getOwnPropertyNames(nodes._data);
+    var len = names.length;
+    var index = Math.floor(Math.random() * len);
+    return names[index];
+}
+
+function randomAddNode() {
+    var type = 0
+    if (Math.random() > 0.7)
+        type = 1
+    var id = Date.now();
+
+    var fId = this.randomGetNodeId()
+    this.addNode(id, id, null)
+    this.addEdge(fId, id, type)
+
+}
+
+function randomAddEdge() {
+    var fId = this.randomGetNodeId()
+    var tId = this.randomGetNodeId()
+    if (fId == tId)
+        return;
+    var type = 0
+    if (Math.random() > 0.7)
+        type = 1
+    this.addEdge(fId, tId, type)
+
+
+}
+
+function addHisLog(message) {
+    $('#hisLog').prepend('<div>' + message + '</div>')
+    $('#hisLog div').remove('div:gt(8)')
+}
+
+network.on("click", function(params) {
+    // randomAddNode()
+    // if (params.nodes.length == 0)
+    //     return;
+    // var names = Object.getOwnPropertyNames(nodes._data);
+    // var len = names.length;
+    // var index = Math.floor(Math.random() * len);
+    // var _edgeId = names[index]
+
+    // var id = Date.now();
+    // nodes.add({
+    //     id: id,
+    //     label: id
+    // })
+    // var edge = {
+    //     from: params.nodes[0],
+    //     to: id,
+    // }
+    // if (Math.random() > 0.5) {
+    //     edge['label'] = 'releation'
+    //     edge.arrows = 'to'
+    //     edge.color = 'red'
+    // } else {
+    //     edge['label'] = '父子'
+    //     edge.arrows = {
+    //         to: {
+    //             type: 'circle'
+    //         }
+    //     }
+    // }
+    // edges.add(edge);
+});
+
+
+$('#addTo').click(function() {
+    _setIntervalId = setInterval(randomAddNode, 400)
+})
+$('#stop_addTo').click(function() {
+    clearInterval(_setIntervalId)
+})
+$('#add_edge').click(function() {
+    _setIntervalId2 = setInterval(randomAddEdge, 400)
+})
+$('#stop_edge').click(function() {
+    clearInterval(_setIntervalId2)
+})
+</script>
+</html>
