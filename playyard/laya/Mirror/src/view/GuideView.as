@@ -21,6 +21,10 @@ package view
 		private const LineWidth: Number = 2;
 		
 		private var selectedNode: GuideNode;
+		private var nodeList: Vector.<GuideNode> = [] as Vector.<GuideNode>;
+		
+		private var lastKeyword: String;
+		private var lastFindIdx: int;
 		
 		public function GuideView()
 		{
@@ -34,6 +38,8 @@ package view
 		override protected function initElements(): void {
 			uiView = new GuideViewUI();
 			form = uiView;
+			
+			uiView.btnSearch.on(Event.CLICK, this, this.onClickBtnSearch);
 		}
 		
 		override protected function onOpen(): void {
@@ -64,6 +70,7 @@ package view
 			this.uiView.addChild(nodeCircle);
 			
 			node.ui = nodeCircle;
+			this.nodeList.push(node);
 			
 			if(node.children) {
 				var cnt: int = node.children.length;
@@ -111,6 +118,56 @@ package view
 					this.changeAlpha(node.children[i]);
 				}
 			}
+		}
+		
+		private function onClickBtnSearch(): void {
+			var keyword: String = this.uiView.inputSearch.text;
+			var startIndex = 0;
+			if(this.lastKeyword != keyword) {
+				this.lastKeyword = keyword;
+				startIndex = this.lastFindIdx + 1;
+			}
+			var findResult: GuideNode = this.find(startIndex, this.nodeList.length);
+			if(!findResult && startIndex > 0) {
+				findResult = this.find(0, startIndex);
+			}
+			
+			if(findResult) {
+				this.onClickNodeCircle(findResult);
+			}
+		}
+		
+		private function find(from: int, to: int): void {
+			for(var i: int = from; i < to; i++) {
+				var node: GuideNode = this.nodeList[i];
+				var found: Boolean = false;
+				if(node.desc.indexOf(this.lastKeyword) >= 0 || node.detail.indexOf(this.lastKeyword) >= 0) {
+					found = true;
+				}
+				if(!found && node.interfaces) {
+					for(var j: int = 0, icnt: int = node.interfaces.length; j < icnt; j++) {
+						var inode: InterfaceNode = node.interfaces[j];
+						if(inode.name.indexOf(this.lastKeyword) >= 0 || inode.info.indexOf(this.lastKeyword) >= 0) {
+							found = true;
+							break;
+						}
+					}
+				}
+				if(!found && node.cases) {
+					for(var j: int = 0, ccnt: int = node.cases.length; j < ccnt; j++) {
+						if(node.cases[j].indexOf(this.lastKeyword) >= 0) {
+							found = true;
+							break;
+						}
+					}
+				}
+				
+				if(found) {
+					this.lastFindIdx = i;
+					return node;
+				}
+			}
+			return null;
 		}
 	}
 }
