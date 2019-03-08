@@ -116,7 +116,7 @@ package laya.wx.mini {
 		 */		
 		public static  function getUrlEncode(url:String,type:String):String
 		{
-			if(url.indexOf(".fnt") != -1)
+			if(url.indexOf(".fnt") != -1 || url.indexOf(".json") != -1)
 				return "utf8";
 			else if(type == "arraybuffer")
 				return "";
