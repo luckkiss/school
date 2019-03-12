@@ -181,7 +181,20 @@
                         "detail": "场景模块，负责场景维护，包括场景切换和清理等。"
                     }, {
                         "desc": "SkillModule",
-                        "detail": "技能模块，负责技能相关逻辑。"
+                        "detail": "技能模块，负责技能相关逻辑。",
+                        "interfaces": [{
+                            "name": "_onListActivityResponse",
+                            "info": "登录后客户端会向服务器请求所有活动的状态，服务器回复消息ListActivity_Response。本方法用于处理此回复。"
+                        }, {
+                            "name": "_onDoActivityResponse",
+                            "info": "客户端执行某个活动的某项操作，服务器回复消息DoActivity_Response。比如领取某个活动的奖励。笨方法用于处理此回复。"
+                        }, {
+                            "name": "_onActivityStatusChangeNotify",
+                            "info": "当某个活动状态发生变更时，服务器向客户端推送通知ActivityStatusChange_Notify。比如某个活动开启或关闭了。"
+                        }, {
+                            "name": "_onActivityDataChangeNotify",
+                            "info": "当某个活动数据发生变更时，服务器向客户端推送通知ActivityDataChange_Notify。比如专属BOSS活动某个BOSS复活了。"
+                        }]
                     }]
                 }, {
                     "desc": "UnitManager",

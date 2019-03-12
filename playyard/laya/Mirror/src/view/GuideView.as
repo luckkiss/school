@@ -16,15 +16,15 @@ package view
 		private const RootColor: String = '#dd5452';
 		private const ChildColor: String = '#ddb2b2';
 		private const InterfaceColor: String = '#178edd';
-		private const CircleRadius: Number = 30;
-		private const LinkLength: Number = 100;
+		private const CircleRadius: Number = 40;
+		private const LinkLength: Number = 180;
 		private const LineWidth: Number = 2;
 		
 		private var selectedNode: GuideNode;
 		private var nodeList: Vector.<GuideNode> = [] as Vector.<GuideNode>;
 		
 		private var lastKeyword: String;
-		private var lastFindIdx: int;
+		private var lastFindIdx: int = -1;
 		
 		public function GuideView()
 		{
@@ -63,6 +63,7 @@ package view
 			var textDesc: Text = new Text();
 			textDesc.align = 'center';
 			textDesc.valign = 'middle';
+			textDesc.fontSize = 18;
 			textDesc.text = node.desc;
 			textDesc.wordWrap = true;
 			textDesc.size(this.CircleRadius * 2, this.CircleRadius * 2);
@@ -131,6 +132,7 @@ package view
 			var startIndex = 0;
 			if(this.lastKeyword != keyword) {
 				this.lastKeyword = keyword;
+			} else if(this.lastFindIdx >= 0) {
 				startIndex = this.lastFindIdx + 1;
 			}
 			var findResult: GuideNode = this.find(startIndex, this.nodeList.length);
