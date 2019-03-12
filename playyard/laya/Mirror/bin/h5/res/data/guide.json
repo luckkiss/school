@@ -1,1 +1,269 @@
-{"desc":"Root.as","detail":"游戏入口，相当于整个游戏的壳。负责根据当前平台，选择创建对应的主程序入口。比如，针对微信、QQ玩吧分别创建对应的主程序入口WxRoot、WbRoot。不同平台的入口，仅有些许差别，比如平台礼包、登录。","children":[{"desc":"RootBase","detail":"主程序入口基类。WxRoot、WbRoot均继承自RootBase。其主要负责初始化Laya，已经创建主程序（SubRoot）","children":[{"desc":"SubRoot.as","detail":"主程序。","children":[{"desc":"Global","detail":"全局总管理器，管理整个游戏所有模块或管理器，比如UI管理器、数据管理器等。","children":[{"desc":"UIManager","detail":"UI管理器，负责管理所有UI界面，包括分层、创建、打开、关闭、销毁、查询等。","children":[{"desc":"CommonForm","detail":"面板基类，主要实现了面板图集和字体的自动加载。所有面板都必须继承自CommonForm，并通过Global.uimgr.createForm进行创建。","interfaces":[{"name":"layer","info":"声明面板的层级。游戏中的面板是分层显示的。常见的层级有UILayer.Normal和UILayer.Second，分别对应一级面板和二级面板。"},{"name":"resPath","info":"声明关联的UI定义。当创建面板时，将根据这个声明去查找哪些图集需要预加载。"},{"name":"initElements","info":"创建并初始化UI，比如设置list、为按钮添加事件监听等。"},{"name":"onOpen","info":"界面打开后调用此函数，通常在此刷新界面显示。"},{"name":"onClose","info":"界面关闭前调用此函数，通常在此执行某些清理工作。这个接口不是必须重写的，因为定时器清除、移除模型等常见清理任务均已由CommonForm代劳。"},{"name":"_open","info":"打开面板。注意这个接口是protected，意味着外部无法直接调用。所有继承自CommonForm的子类均需提供一个open函数并接收各自所需的参数，并在函数体内调用_open"}],"cases":["ActTipView"]}],"children":[{"desc":"TabForm","detail":"页签面板基类。TabForm继承自CommonForm，是一个具有页签按钮组的CommonForm。TabForm仅仅是一个带Tab的壳面板，其各个子页签均是独立制作的，且仅仅在打开指定页签时才会进行加载并初始化。你只需将各个子页签面板的类定义传入TabForm的构造函数即可。","interfaces":[{"name":"getTabFormByID","info":"通过id取得对应的子面板。"},{"name":"getCurrentTab","info":"获取当前正在显示的子面板。"},{"name":"switchTabFormById","info":"切换到指定id的子面板。你还可以同时传递任意参数给该子面板。"},{"name":"setTabTipMarkById","info":"让指定id对应的页签按钮显示一个小红点，用来提示玩家。"}]}]},{"desc":"DataManager","detail":"数据管理器，负责管理所有数据，比如玩家数据、各模块数据等。","children":[{"desc":"NetModule","detail":"网络模块，负责与服务器进行通信。通过Global.ModuleMgr.NetModule进行访问。","interfaces":[{"name":"sendMsg","info":"向服务器发送协议。"}]}]},{"desc":"ModuleManager","detail":"模块管理器，负责管理所有模块。我们将游戏中的各个功能拆分出来，称为模块，比如背包、场景、副本、活动等模块。所有模块在一开始便已创建出来"},{"desc":"UnitManager","detail":"单位管理器，负责管理场景中的所有单位，包括玩家、NPC、怪物、特效等。","interfaces":[{"name":"hero","info":"获取主角控制器HeroController"}],"children":[{"desc":"HeroController","detail":"主角控制器，继承自RoleController（玩家控制器）。负责控制主角走路、施放技能等。"}]},{"desc":"ActBtnController","detail":"活动按钮控制器，负责管理右上角的活动按钮，包括显示和隐藏、按钮状态、排版等。","interfaces":[{"name":"update","info":"刷新活动按钮。由于触发刷新的因素很多，比如背包物品变更、主角等级变化、主角任务进度变化、日期变化等，而在同一个时刻内，某个操作可能同时触发多个因素，进而导致高频度调用update。因此update采用了懒惰更新策略。即调用update接口后，并不会立即刷新按钮的显示，而是打一个脏标记。同时，后台有1个定时器，定期检查是否需要重新刷新显示。","children":[{"desc":"BaseFuncIconCtrl","detail":"特定按钮控制器的基类，ActBtnController管理着多个BaseFuncIconCtrl。每个BaseFuncIconCtrl对应一个按钮。因此，增加按钮则需要增加一个继承自BaseFuncIconCtrl的特定按钮控制器","interfaces":[{"name":"onStatusChange","info":"策划可以通过功能表配置某个功能的开启条件，比如主角达到某个等级、接受或者完成某个任务，以及所处服务器开服第几天等。针对这些条件，ActBtnController已经做了统一处理。假如某个按钮还有一些额外的判断逻辑，比如动态地根据主角的状态决定按钮是否显示，则需要重写此接口，根据具体的逻辑处理按钮显示与否，或者处理是否在按钮上显示小红点提示的逻辑。"},{"name":"handleClick","info":"处理点击按钮之后的相应逻辑。"}],"cases":["DailyRechargeCtrl","FuLiDaTingCtrl"]}]}]},{"desc":"MapManager","detail":"地图管理器，负责地图上的寻路等。","interfaces":[{"name":"goToPos","info":"寻路到指定的场景中的某个位置"}]},{"desc":"ResourceManager","detail":"资源管理器，负责各类资源文件的加载，比如各类模型。","interfaces":[{"name":"getUnitUrlByID","info":"查询指定ID对应的模型文件的URL。"},{"name":"getDependResources","info":"解析UI文件的信息，得出面板依赖的图集信息。"}]},{"desc":"GuideMgr","detail":"新手引导管理器。策划在表格中配置了各个引导的触发条件，包括主角达到某个等级、接受或者完成某个任务等。所有特定引导必须先注册到GuideMgr上方可使用。GuideMgr保证引导过程和任务过程按序进行互不干扰。","children":[{"desc":"BaseGuilder","detail":"特定引导的基类。每个引导都可以拆分为若干步骤。","interfaces":[{"name":"_addStep","info":"添加指引步骤"},{"name":"force","info":"发生指引时，若玩家长时间没有按照指引进行操作，则系统会强制执行该操作。"}],"cases":["PetActivateGuider","EquipEnhanceGuider"]}],"interfaces":[{"name":"processGuideNext","info":"通知指引管理器指定指引步骤可完成，继续下一步指引。"}]}]}]}]}]}
+{
+    "desc": "Root.as",
+    "detail": "游戏入口，相当于整个游戏的壳。负责根据当前平台，选择创建对应的主程序入口。比如，针对微信、QQ玩吧分别创建对应的主程序入口WxRoot、WbRoot。不同平台的入口，仅有些许差别，比如平台礼包、登录。",
+    "children": [{
+        "desc": "RootBase",
+        "detail": "主程序入口基类。WxRoot、WbRoot均继承自RootBase。其主要负责初始化Laya，已经创建主程序（SubRoot）",
+        "children": [{
+            "desc": "SubRoot.as",
+            "detail": "主程序。",
+            "children": [{
+                "desc": "Global",
+                "detail": "全局总管理器，管理整个游戏所有模块或管理器，比如UI管理器、数据管理器等。",
+                "children": [{
+                    "desc": "UIManager",
+                    "detail": "UI管理器，负责管理所有UI界面，包括分层、创建、打开、关闭、销毁、查询等。",
+                    "children": [{
+                        "desc": "CommonForm",
+                        "detail": "面板基类，主要实现了面板图集和字体的自动加载。所有面板都必须继承自CommonForm，并通过Global.uimgr.createForm进行创建。",
+                        "interfaces": [{
+                            "name": "layer",
+                            "info": "声明面板的层级。游戏中的面板是分层显示的。常见的层级有UILayer.Normal和UILayer.Second，分别对应一级面板和二级面板。"
+                        }, {
+                            "name": "resPath",
+                            "info": "声明关联的UI定义。当创建面板时，将根据这个声明去查找哪些图集需要预加载。"
+                        }, {
+                            "name": "initElements",
+                            "info": "创建并初始化UI，比如设置list、为按钮添加事件监听等。"
+                        }, {
+                            "name": "onOpen",
+                            "info": "界面打开后调用此函数，通常在此刷新界面显示。"
+                        }, {
+                            "name": "onClose",
+                            "info": "界面关闭前调用此函数，通常在此执行某些清理工作。这个接口不是必须重写的，因为定时器清除、移除模型等常见清理任务均已由CommonForm代劳。"
+                        }, {
+                            "name": "_open",
+                            "info": "打开面板。注意这个接口是protected，意味着外部无法直接调用。所有继承自CommonForm的子类均需提供一个open函数并接收各自所需的参数，并在函数体内调用_open"
+                        }],
+                        "cases": ["ActTipView"]
+                    }],
+                    "children": [{
+                        "desc": "TabForm",
+                        "detail": "页签面板基类。TabForm继承自CommonForm，是一个具有页签按钮组的CommonForm。TabForm仅仅是一个带Tab的壳面板，其各个子页签均是独立制作的，且仅仅在打开指定页签时才会进行加载并初始化。你只需将各个子页签面板的类定义传入TabForm的构造函数即可。",
+                        "interfaces": [{
+                            "name": "getTabFormByID",
+                            "info": "通过id取得对应的子面板。"
+                        }, {
+                            "name": "getCurrentTab",
+                            "info": "获取当前正在显示的子面板。"
+                        }, {
+                            "name": "switchTabFormById",
+                            "info": "切换到指定id的子面板。你还可以同时传递任意参数给该子面板。"
+                        }, {
+                            "name": "setTabTipMarkById",
+                            "info": "让指定id对应的页签按钮显示一个小红点，用来提示玩家。"
+                        }]
+                    }]
+                }, {
+                    "desc": "DataManager",
+                    "detail": "数据管理器，负责管理所有数据，比如玩家数据、各模块数据等。",
+                    "children": [{
+                        "desc": "ThingData",
+                        "detail": "物品数据管理器。ThingData既管理包括物品表格、装备表格等配置数据，又管理主角背包、装备等各个容器的数据，并提供查询物品配置、主角背包数据等接口。",
+                        "interfaces": [{
+                            "name": "getThingConfig",
+                            "info": "获取指定ID的物品配置"
+                        }, {
+                            "name": "getThingNum",
+                            "info": "查询指定ID的物品在指定容器中的数量，默认容器为背包，默认不区分物品绑定与否。"
+                        }, {
+                            "name": "getBagItemById",
+                            "info": "在背包中查找指定ID的物品的数据。"
+                        }]
+                    }, {
+                        "desc": "HeroData",
+                        "detail": "主角数据管理器。继承链HeroData>RoleData>UnitData。包含主角属性、货币等数据。",
+                        "interfaces": [{
+                            "name": "gold",
+                            "info": "主角元宝数量。"
+                        }, {
+                            "name": "gold_bind",
+                            "info": "主角绑定元宝数量。"
+                        }]
+                    }, {
+                        "desc": "ActivityData",
+                        "detail": "活动数据管理器。这是一个很庞杂的数据集合，因为活动数量很多，为了避免ActivityData代码量看起来太吓人，故有些活动数据又独立写了一个数据集挂靠在ActivityData下，比如DailySignData(每日签到数据)。",
+                        "interfaces": [{
+                            "name": "getActivityStatus",
+                            "info": "查询指定活动ID的活动的状态。函数返回一个ActivityStatus数据结构，包含活动是否开启、结束时间、下一次开启时间等信息。由于很多操作必须在相应的活动开启期间才能进行，因此我们经常需要通过本接口查询某个活动是否开启。"
+                        }, {
+                            "name": "isActivityOpen",
+                            "info": "和getActivityStatus类似，查询指定活动是否开启。"
+                        }, {
+                            "name": "getActivityConfig",
+                            "info": "查询指定活动ID的配置。"
+                        }]
+                    }, {
+                        "desc": "runtime",
+                        "detail": "运行时状态管理器，这是一个杂乱的数据集合。通常每个具体的模块都有对应的数据集，比如BagModule(背包模块)对应ThingData(物品数据)，PinstanceModule(副本模块)对应PinstanceData(副本数据)。对于那些无法明确归类在某个模块的数据，我们记录在Runtime上。"
+                    }, {
+                        "desc": "PinstanceData",
+                        "detail": "副本数据。负责管理副本模块相关的数据，包括各个副本的进度、奖励领取状态等信息。",
+                        "interfaces": [{
+                            "name": "getConfigByID",
+                            "info": "查询指定副本ID的整体配置。"
+                        }, {
+                            "name": "getDiffBonusConfigs",
+                            "info": "查询指定副本难度的关卡配置。"
+                        }, {
+                            "name": "getPinstanceInfo",
+                            "info": "查询指定副本的进度数据，其返回一个数据结构ListPinHomeRsp，包含终身首通（曾经通关）、今日首通（今日通关）、历史最高关卡、今日最高关卡，以及终身奖励和今日奖励的领取状态等。"
+                        }]
+                    }, {
+                        "desc": "ZhufuData",
+                        "detail": "祝福系统数据。负责管理坐骑、翅膀、阵法等系统的数据。",
+                        "interfaces": [{
+                            "name": "getData",
+                            "info": "查询指定祝福系统的数据，其返回一个数据结构CSHeroSubSuper，包含该系统等级、祝福值、幻化形象等信息。"
+                        }, {
+                            "name": "getConfig",
+                            "info": "查询指定祝福系统的配置。"
+                        }]
+                    }, {
+                        "desc": "FuncLimitData",
+                        "detail": "功能限制数据管理器，负责管理各个功能是否受到限制。",
+                        "interfaces": [{
+                            "name": "isFuncEntranceVisible",
+                            "info": "查询指定功能入口是否可见。策划通过NPC功能表可以配置各个功能的开启条件，比如开启等级、主角必须完成某个任务等。"
+                        }]
+                    }, {
+                        "desc": "PetData",
+                        "detail": "散仙系统数据。散仙也称宠物、武缘、伙伴、美人、红颜等。",
+                        "interfaces": [{
+                            "name": "getPetConfigByPetID",
+                            "info": "查询指定散仙ID的配置。"
+                        }, {
+                            "name": "getPetInfo",
+                            "info": "查询指定散仙ID的数据，其返回一个数据结构NewBeautyInfo，包含散仙的阶级、状态等信息。"
+                        }]
+                    }, {
+                        "desc": "GuildData",
+                        "detail": "宗门系统数据。宗门也称帮派、公会、宗派等。",
+                        "interfaces": [{
+                            "name": "isManager",
+                            "info": "查询主角是否宗门管理员。"
+                        }, {
+                            "name": "guildMemberList",
+                            "info": "获取宗门成员列表的数据。"
+                        }]
+                    }]
+                }, {
+                    "desc": "ModuleManager",
+                    "detail": "模块管理器，负责管理所有模块。我们将游戏中的各个功能拆分出来，称为模块，比如背包、场景、副本、活动等模块。所有模块在一开始便已创建出来",
+                    "children": [{
+                        "desc": "NetModule",
+                        "detail": "网络模块，负责与服务器进行通信。通过Global.ModuleMgr.NetModule进行访问。协议是指客户端和服务器之间进行通信的数据。客户端向服务器发起请求，称为XX_Request，服务器收到后回复XX_Response。此外，还有一部分服务器主动推送的通知，称为XX_Notify，比如他人聊天。",
+                        "interfaces": [{
+                            "name": "sendMsg",
+                            "info": "向服务器发送协议。"
+                        }]
+                    }, {
+                        "desc": "LoginModule",
+                        "detail": "登录模块，负责登录相关流程的处理。",
+                        "interfaces": [{
+                            "name": "onLoginServerResponse",
+                            "info": "该方法处理登录请求的回复协议。LoginServer_Response是玩家发送登录请求后，服务器回复的第一条协议。协议体中携带各个重要系统的关键信息，游戏依靠这些信息构建整个世界的绝大部分数据。收到这条Response说明玩家已经登录成功，因此在本方法中还进行了拉取各个系统数据的操作。"
+                        }, {
+                            "name": "_onAfterLoginNotify",
+                            "info": "该方法处理登录请求的后续协议。由于整个游戏世界的数据很庞大，而协议包的体积是有上限的。因此单单一条LoginServer_Response并无法囊括所有数据，因此拆分了一部分数据组装成AfterLoginData_Notify随后下发。"
+                        }, {
+                            "name": "_onZeroRefreshNotify",
+                            "info": "该方法处理0点跨天的数据刷新通知。很多活动都不是每天都开启的，因此0点跨天的时候，服务器需要通知客户端所有活动的状态变化。再比如，很多玩法是按天刷新数据的。因此0点跨天的时候，服务器会向客户端下发通知ZeroRefreshData_Notify。"
+                        }]
+                    }, {
+                        "desc": "ActivityModule",
+                        "detail": "活动模块，负责各个活动的处理逻辑。"
+                    }, {
+                        "desc": "BagModule",
+                        "detail": "背包模块，负责背包、装备等各个容器相关逻辑。比如使用背包中的某个物品该触发什么操作，是直接向服务器发送消耗物品请求，还是跳转到某个关联面板，均在此编写相关逻辑。物品的配置结构名为ThingConfigM，其有一个字段m_ucFunctionType表示该物品的功能。在BagModule::_useItemThing中针对不同的物品功能进行了不同的逻辑判断。"
+                    }, {
+                        "desc": "SceneModule",
+                        "detail": "场景模块，负责场景维护，包括场景切换和清理等。"
+                    }, {
+                        "desc": "SkillModule",
+                        "detail": "技能模块，负责技能相关逻辑。",
+                        "interfaces": [{
+                            "name": "_onListActivityResponse",
+                            "info": "登录后客户端会向服务器请求所有活动的状态，服务器回复消息ListActivity_Response。本方法用于处理此回复。"
+                        }, {
+                            "name": "_onDoActivityResponse",
+                            "info": "客户端执行某个活动的某项操作，服务器回复消息DoActivity_Response。比如领取某个活动的奖励。笨方法用于处理此回复。"
+                        }, {
+                            "name": "_onActivityStatusChangeNotify",
+                            "info": "当某个活动状态发生变更时，服务器向客户端推送通知ActivityStatusChange_Notify。比如某个活动开启或关闭了。"
+                        }, {
+                            "name": "_onActivityDataChangeNotify",
+                            "info": "当某个活动数据发生变更时，服务器向客户端推送通知ActivityDataChange_Notify。比如专属BOSS活动某个BOSS复活了。"
+                        }]
+                    }]
+                }, {
+                    "desc": "UnitManager",
+                    "detail": "单位管理器，负责管理场景中的所有单位，包括玩家、NPC、怪物、特效等。",
+                    "interfaces": [{
+                        "name": "hero",
+                        "info": "获取主角控制器HeroController"
+                    }],
+                    "children": [{
+                        "desc": "HeroController",
+                        "detail": "主角控制器，继承自RoleController（玩家控制器）。负责控制主角走路、施放技能等。"
+                    }]
+                }, {
+                    "desc": "ActBtnController",
+                    "detail": "活动按钮控制器，负责管理右上角的活动按钮，包括显示和隐藏、按钮状态、排版等。",
+                    "interfaces": [{
+                        "name": "update",
+                        "info": "刷新活动按钮。由于触发刷新的因素很多，比如背包物品变更、主角等级变化、主角任务进度变化、日期变化等，而在同一个时刻内，某个操作可能同时触发多个因素，进而导致高频度调用update。因此update采用了懒惰更新策略。即调用update接口后，并不会立即刷新按钮的显示，而是打一个脏标记。同时，后台有1个定时器，定期检查是否需要重新刷新显示。",
+                        "children": [{
+                            "desc": "BaseFuncIconCtrl",
+                            "detail": "特定按钮控制器的基类，ActBtnController管理着多个BaseFuncIconCtrl。每个BaseFuncIconCtrl对应一个按钮。因此，增加按钮则需要增加一个继承自BaseFuncIconCtrl的特定按钮控制器",
+                            "interfaces": [{
+                                "name": "onStatusChange",
+                                "info": "策划可以通过功能表配置某个功能的开启条件，比如主角达到某个等级、接受或者完成某个任务，以及所处服务器开服第几天等。针对这些条件，ActBtnController已经做了统一处理。假如某个按钮还有一些额外的判断逻辑，比如动态地根据主角的状态决定按钮是否显示，则需要重写此接口，根据具体的逻辑处理按钮显示与否，或者处理是否在按钮上显示小红点提示的逻辑。"
+                            }, {
+                                "name": "handleClick",
+                                "info": "处理点击按钮之后的相应逻辑。"
+                            }],
+                            "cases": ["DailyRechargeCtrl", "FuLiDaTingCtrl"]
+                        }]
+                    }]
+                }, {
+                    "desc": "MapManager",
+                    "detail": "地图管理器，负责地图上的寻路等。",
+                    "interfaces": [{
+                        "name": "goToPos",
+                        "info": "寻路到指定的场景中的某个位置"
+                    }]
+                }, {
+                    "desc": "ResourceManager",
+                    "detail": "资源管理器，负责各类资源文件的加载，比如各类模型。",
+                    "interfaces": [{
+                        "name": "getUnitUrlByID",
+                        "info": "查询指定ID对应的模型文件的URL。"
+                    }, {
+                        "name": "getDependResources",
+                        "info": "解析UI文件的信息，得出面板依赖的图集信息。"
+                    }]
+                }, {
+                    "desc": "GuideMgr",
+                    "detail": "新手引导管理器。策划在表格中配置了各个引导的触发条件，包括主角达到某个等级、接受或者完成某个任务等。所有特定引导必须先注册到GuideMgr上方可使用。GuideMgr保证引导过程和任务过程按序进行互不干扰。",
+                    "children": [{
+                        "desc": "BaseGuilder",
+                        "detail": "特定引导的基类。每个引导都可以拆分为若干步骤。",
+                        "interfaces": [{
+                            "name": "_addStep",
+                            "info": "添加指引步骤"
+                        }, {
+                            "name": "force",
+                            "info": "发生指引时，若玩家长时间没有按照指引进行操作，则系统会强制执行该操作。"
+                        }],
+                        "cases": ["PetActivateGuider", "EquipEnhanceGuider"]
+                    }],
+                    "interfaces": [{
+                        "name": "processGuideNext",
+                        "info": "通知指引管理器指定指引步骤可完成，继续下一步指引。"
+                    }]
+                }]
+            }]
+        }]
+    }]
+}

@@ -16,15 +16,15 @@ package view
 		private const RootColor: String = '#dd5452';
 		private const ChildColor: String = '#ddb2b2';
 		private const InterfaceColor: String = '#178edd';
-		private const CircleRadius: Number = 30;
-		private const LinkLength: Number = 100;
+		private const CircleRadius: Number = 40;
+		private const LinkLength: Number = 180;
 		private const LineWidth: Number = 2;
 		
 		private var selectedNode: GuideNode;
 		private var nodeList: Vector.<GuideNode> = [] as Vector.<GuideNode>;
 		
 		private var lastKeyword: String;
-		private var lastFindIdx: int;
+		private var lastFindIdx: int = -1;
 		
 		public function GuideView()
 		{
@@ -40,6 +40,7 @@ package view
 			form = uiView;
 			
 			uiView.btnSearch.on(Event.CLICK, this, this.onClickBtnSearch);
+			uiView.inputSearch.on(Event.INPUT, this, this.onClickBtnSearch);
 		}
 		
 		override protected function onOpen(): void {
@@ -62,7 +63,9 @@ package view
 			var textDesc: Text = new Text();
 			textDesc.align = 'center';
 			textDesc.valign = 'middle';
+			textDesc.fontSize = 18;
 			textDesc.text = node.desc;
+			textDesc.wordWrap = true;
 			textDesc.size(this.CircleRadius * 2, this.CircleRadius * 2);
 			textDesc.pos(x - this.CircleRadius, y - this.CircleRadius);
 			nodeCircle.addChild(textDesc);
@@ -121,10 +124,15 @@ package view
 		}
 		
 		private function onClickBtnSearch(): void {
-			var keyword: String = this.uiView.inputSearch.text;
+			var keyword: String = this.uiView.inputSearch.text.toLowerCase();
+			if('' == keyword) {
+				return;
+			}
+			
 			var startIndex = 0;
 			if(this.lastKeyword != keyword) {
 				this.lastKeyword = keyword;
+			} else if(this.lastFindIdx >= 0) {
 				startIndex = this.lastFindIdx + 1;
 			}
 			var findResult: GuideNode = this.find(startIndex, this.nodeList.length);
@@ -141,13 +149,13 @@ package view
 			for(var i: int = from; i < to; i++) {
 				var node: GuideNode = this.nodeList[i];
 				var found: Boolean = false;
-				if(node.desc.indexOf(this.lastKeyword) >= 0 || node.detail.indexOf(this.lastKeyword) >= 0) {
+				if(node.desc.toLowerCase().indexOf(this.lastKeyword) >= 0 || node.detail.toLowerCase().indexOf(this.lastKeyword) >= 0) {
 					found = true;
 				}
 				if(!found && node.interfaces) {
 					for(var j: int = 0, icnt: int = node.interfaces.length; j < icnt; j++) {
 						var inode: InterfaceNode = node.interfaces[j];
-						if(inode.name.indexOf(this.lastKeyword) >= 0 || inode.info.indexOf(this.lastKeyword) >= 0) {
+						if(inode.name.toLowerCase().indexOf(this.lastKeyword) >= 0 || inode.info.toLowerCase().indexOf(this.lastKeyword) >= 0) {
 							found = true;
 							break;
 						}
@@ -155,7 +163,7 @@ package view
 				}
 				if(!found && node.cases) {
 					for(var j: int = 0, ccnt: int = node.cases.length; j < ccnt; j++) {
-						if(node.cases[j].indexOf(this.lastKeyword) >= 0) {
+						if(node.cases[j].toLowerCase().indexOf(this.lastKeyword) >= 0) {
 							found = true;
 							break;
 						}
