@@ -1,7 +1,9 @@
-**/.laya
+**/.laya/
+**/chrome/*
 **/bin/h5/*
 !**/data/*
 **/release/
 **/log/
 **/*Tmp/
 **/patch/
+**/fygame/
