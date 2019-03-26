@@ -1,4 +1,4 @@
-package common 
+package script.common 
 {
 	import laya.d3.core.Camera;
 	import laya.d3.core.HeightMap;

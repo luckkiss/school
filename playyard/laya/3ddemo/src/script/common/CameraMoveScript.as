@@ -1,4 +1,4 @@
-package common {
+package script.common {
 	import laya.d3.component.Script3D;
 	import laya.d3.core.BaseCamera;
 	import laya.d3.core.Camera;

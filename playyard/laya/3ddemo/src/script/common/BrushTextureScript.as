@@ -1,4 +1,4 @@
-package common {
+package script.common {
 	import laya.d3.component.Script3D;
 	import zTest.PickTexture;
 	
