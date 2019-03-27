@@ -1,5 +1,6 @@
 **/.laya
-**/bin/h5/*
+**/bin/*
+**/fygame/*
 !**/data/*
 **/release/
 **/log/
