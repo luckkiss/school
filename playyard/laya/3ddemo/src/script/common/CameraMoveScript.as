@@ -47,8 +47,8 @@ package script.common {
 		 * @inheritDoc
 		 */
 		override public function onAwake():void {
-			Laya.stage.on(Event.RIGHT_MOUSE_DOWN, this, mouseDown);
-			Laya.stage.on(Event.RIGHT_MOUSE_UP, this, mouseUp);
+			Laya.stage.on(Event.MOUSE_DOWN, this, mouseDown);
+			Laya.stage.on(Event.MOUSE_UP, this, mouseUp);
 			//Laya.stage.on(Event.RIGHT_MOUSE_OUT, this, mouseOut);
 			camera = owner as Camera;
 		}
@@ -83,8 +83,8 @@ package script.common {
 		 * @inheritDoc
 		 */
 		override public function onDestroy():void {
-			Laya.stage.off(Event.RIGHT_MOUSE_DOWN, this, mouseDown);
-			Laya.stage.off(Event.RIGHT_MOUSE_UP, this, mouseUp);
+			Laya.stage.off(Event.MOUSE_DOWN, this, mouseDown);
+			Laya.stage.off(Event.MOUSE_UP, this, mouseUp);
 			//Laya.stage.off(Event.RIGHT_MOUSE_OUT, this, mouseOut);
 		}
 		
