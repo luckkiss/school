@@ -39,7 +39,7 @@ package script.view
 				MapScene.instance.destroy();
 			} else {
 				Scene.close('test/TestScene.scene');
-				MapScene.instance.loadScene('res/threeDimen/scene/TerrainScene/XunLongShi.ls', "res/threeDimen/skyBox/skyBox2/skyBox2.lmat");
+				MapScene.instance.loadScene('res/threeDimen/scene/TerrainScene/XunLongShi.ls', "res/threeDimen/skyBox/skyBox2/skyBox2.lmat", 'res/threeDimen/scene/TerrainScene/Assets/HeightMap.png', "res/threeDimen/scene/TerrainScene/Assets/AStarMap.png");
 			}
 			this.listFunc.visible = false;
 		}
