@@ -8,6 +8,7 @@ package script.scene
 	import laya.d3.core.Camera;
 	import laya.d3.core.MeshSprite3D;
 	import laya.d3.core.MeshTerrainSprite3D;
+	import laya.d3.core.Sprite3D;
 	import laya.d3.core.light.DirectionLight;
 	import laya.d3.core.material.BaseMaterial;
 	import laya.d3.core.scene.Scene3D;
@@ -21,6 +22,7 @@ package script.scene
 	import laya.d3.resource.models.Mesh;
 	import laya.d3.resource.models.SkyBox;
 	import laya.d3.resource.models.SkyRenderer;
+	import laya.display.Node;
 	import laya.display.Scene;
 	import laya.events.Event;
 	import laya.events.MouseManager;
@@ -31,6 +33,7 @@ package script.scene
 	
 	import script.common.CameraMoveScript;
 	import script.unit.UnitController;
+	import script.unit.UnitFollower;
 
 	public class MapScene
 	{
@@ -95,7 +98,8 @@ package script.scene
 			//清除摄像机的标记
 			camera.clearFlag = BaseCamera.CLEARFLAG_SKY;
 			//加入摄像机移动控制脚本
-			camera.addComponent(CameraMoveScript);
+//			camera.addComponent(CameraMoveScript);
+			
 			//添加光照
 			var directionLight:DirectionLight = scene.addChild(new DirectionLight()) as DirectionLight;
 			directionLight.color = new Vector3(1, 1, 1);
@@ -122,7 +126,7 @@ package script.scene
 			scene.fogRange = 40;
 			
 			unitCtrl = new UnitController();
-			unitCtrl.loadModel();
+			unitCtrl.loadModel(Handler.create(this, this.onHeroLoaded));
 			
 			//获取可行走区域模型
 			var meshSprite3D:MeshSprite3D = scene.getChildByName('Scenes').getChildByName('HeightMap') as MeshSprite3D;
@@ -148,6 +152,11 @@ package script.scene
 			Laya.stage.on(Event.CLICK, this, this.onClickStage);
 		}
 		
+		private function onHeroLoaded(): void {
+			var follower: UnitFollower = camera.addComponent(UnitFollower);
+			follower.target = unitCtrl.model;
+		}
+		
 		private function onClickStage(): void {
 			point.x = MouseManager.instance.mouseX;
 			point.y = MouseManager.instance.mouseY;
@@ -155,11 +164,11 @@ package script.scene
 			
 			scene.physicsSimulation.rayCast(ray, hitResult);
 			if(hitResult.succeeded) {
-				console.log('raycast at: ' + hitResult.point.x + ', ' +hitResult.point.y + ', ' + hitResult.point.z );
 				unitCtrl.model.transform.localPosition = hitResult.point;
-			} else {
-				console.error('ray cast failed');
-			}
+//				var cameraPos: Vector3 = new Vector3(hitResult.point.x, hitResult.point.y + 8, hitResult.point.z - 12);
+//				camera.transform.localPosition = cameraPos;
+				console.log('raycast at: ' + hitResult.point.toString());
+			} 
 		}
 		
 		public function destroy(): void {

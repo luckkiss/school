@@ -400,6 +400,10 @@ package laya.d3.math {
 			y = 0;
 			z = 0;
 		}
+		
+		public function toString(): String {
+			return '(' + x + ',' + y + ',' + z + ')';
+		}
 	
 	}
 }

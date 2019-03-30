@@ -14,12 +14,16 @@ package script.unit
 		{
 		}
 		
-		public function loadModel(): void {
+		public function loadModel(onLoaded: Handler = null): void {
 			//加载精灵
 			Sprite3D.load("res/threeDimen/skinModel/LayaMonkey/LayaMonkey.lh", Handler.create(null, function(sp){
 				model = MapScene.instance.scene.addChild(sp);
 				model.transform.localScale = new Vector3(1, 1, 1);
 				model.transform.localPosition = new Vector3(-11, 8, 0);
+				
+				if(onLoaded) {
+					onLoaded.run();
+				}
 			}));
 		}
 	}
