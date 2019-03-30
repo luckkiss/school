@@ -133,7 +133,7 @@ package script.scene
 			//获取可行走区域模型
 			var meshSprite3D:MeshSprite3D = scene.getChildByName('Scenes').getChildByName('HeightMap') as MeshSprite3D;
 			//使可行走区域模型隐藏
-			meshSprite3D.active = false;
+//			meshSprite3D.active = false;
 			var meshCollider: PhysicsCollider = meshSprite3D.addComponent(PhysicsCollider);
 			var meshShape: MeshColliderShape = new MeshColliderShape();
 			meshShape.mesh = meshSprite3D.meshFilter.sharedMesh as Mesh;
@@ -152,6 +152,12 @@ package script.scene
 			pathFingding.grid = Grid.createGridFromAStarMap(aStarMap);
 			
 			Laya.stage.on(Event.CLICK, this, this.onClickStage);
+			
+//			Sprite3D.load("res/Laya/204081.lh", Handler.create(null, function(sp){
+//				var model: Sprite3D = MapScene.instance.scene.addChild(sp);
+//				model.transform.localScale = new Vector3(0.5, 0.5, 0.5);
+//				model.transform.localPosition = new Vector3(-12, 10, 0);
+//			}));
 		}
 		
 		private function onHeroLoaded(): void {
