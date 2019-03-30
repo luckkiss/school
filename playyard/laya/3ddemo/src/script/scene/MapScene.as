@@ -47,6 +47,8 @@ package script.scene
 		private var point: Vector2 = new Vector2();
 		private var hitResult: HitResult = new HitResult();
 		private var camera:Camera;
+		public var pathFingding:PathFind;
+		public var terrainSprite: MeshTerrainSprite3D;
 		
 		private var url: String;
 		private var skyBoxUrl: String;
@@ -131,7 +133,7 @@ package script.scene
 			//获取可行走区域模型
 			var meshSprite3D:MeshSprite3D = scene.getChildByName('Scenes').getChildByName('HeightMap') as MeshSprite3D;
 			//使可行走区域模型隐藏
-//			meshSprite3D.active = false;
+			meshSprite3D.active = false;
 			var meshCollider: PhysicsCollider = meshSprite3D.addComponent(PhysicsCollider);
 			var meshShape: MeshColliderShape = new MeshColliderShape();
 			meshShape.mesh = meshSprite3D.meshFilter.sharedMesh as Mesh;
@@ -139,12 +141,12 @@ package script.scene
 			
 			var heightMap:Texture2D = Loader.getRes(heightMapUrl) as Texture2D;
 			//初始化MeshTerrainSprite3D
-			var terrainSprite = MeshTerrainSprite3D.createFromMeshAndHeightMap(meshSprite3D.meshFilter.sharedMesh as Mesh, heightMap, 6.574996471405029, 10.000000953674316);
+			terrainSprite = MeshTerrainSprite3D.createFromMeshAndHeightMap(meshSprite3D.meshFilter.sharedMesh as Mesh, heightMap, 6.574996471405029, 10.000000953674316);
 			//更新terrainSprite世界矩阵(为可行走区域世界矩阵)
 			terrainSprite.transform.worldMatrix = meshSprite3D.transform.worldMatrix;
 			
 			//给terrainSprite添加PathFind组件
-			var pathFingding:PathFind = terrainSprite.addComponent(PathFind) as PathFind;
+			pathFingding = terrainSprite.addComponent(PathFind) as PathFind;
 			pathFingding.setting = {allowDiagonal: true, dontCrossCorners: false, heuristic: Heuristic.manhattan, weight: 1};
 			var aStarMap:Texture2D = Loader.getRes(astarMapUrl) as Texture2D;
 			pathFingding.grid = Grid.createGridFromAStarMap(aStarMap);
@@ -164,10 +166,11 @@ package script.scene
 			
 			scene.physicsSimulation.rayCast(ray, hitResult);
 			if(hitResult.succeeded) {
-				unitCtrl.model.transform.localPosition = hitResult.point;
+//				unitCtrl.model.transform.position = hitResult.point;
+				unitCtrl.moveTo(hitResult.point);
 //				var cameraPos: Vector3 = new Vector3(hitResult.point.x, hitResult.point.y + 8, hitResult.point.z - 12);
 //				camera.transform.localPosition = cameraPos;
-				console.log('raycast at: ' + hitResult.point.toString());
+//				console.log('raycast at: ' + hitResult.point.toString());
 			} 
 		}
 		

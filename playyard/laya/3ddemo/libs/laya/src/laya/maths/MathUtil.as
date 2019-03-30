@@ -148,6 +148,18 @@ package laya.maths {
 				return _sortFun(a[key], b[key]);
 			}
 		}
+		
+		/**
+		 * CLAMP!!
+		 */
+		public static function clamp(value:Number, min:Number, max:Number):Number
+		{
+			if (value < min)
+				value = min
+			else if (value > max)
+				value = max
+			return value
+		}
 	}
 
 }
