@@ -1,3 +1,6 @@
 <page>
    <item name="test/TestScene.scene" props="" ifExport="分离模式" aName=""/>
+   <item name="test/CaoView.scene" props="" ifExport="默认" aName="CaoView"/>
+   <item name="Functem.ui" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/ControlPanel.scene" props="" ifExport="分离模式" aName=""/>
 </page>

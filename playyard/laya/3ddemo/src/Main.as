@@ -9,6 +9,8 @@
 	
 	import script.scene.MapScene;
 	
+	import ui.FunctemUI;
+	
 	public class Main {
 		public function Main() {
 			//根据IDE设置初始化引擎		
@@ -39,9 +41,14 @@
 		}
 		
 		private function onConfigLoaded():void {
+			MapScene.instance = new MapScene();
+			
 			//加载场景
-//			GameConfig.startScene && Scene.open(GameConfig.startScene);
-			new MapScene();
+			GameConfig.startScene && Scene.open(GameConfig.startScene);
+//			new MapScene();
+//			Laya.stage.addChild(new FunctemUI());
+//			Scene.open('view/ControlPanel.scene');
+			
 		}
 	}
 }

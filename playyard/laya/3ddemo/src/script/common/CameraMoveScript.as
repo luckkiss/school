@@ -47,8 +47,8 @@ package script.common {
 		 * @inheritDoc
 		 */
 		override public function onAwake():void {
-			Laya.stage.on(Event.RIGHT_MOUSE_DOWN, this, mouseDown);
-			Laya.stage.on(Event.RIGHT_MOUSE_UP, this, mouseUp);
+			Laya.stage.on(Event.MOUSE_DOWN, this, mouseDown);
+			Laya.stage.on(Event.MOUSE_UP, this, mouseUp);
 			//Laya.stage.on(Event.RIGHT_MOUSE_OUT, this, mouseOut);
 			camera = owner as Camera;
 		}
@@ -83,8 +83,8 @@ package script.common {
 		 * @inheritDoc
 		 */
 		override public function onDestroy():void {
-			Laya.stage.off(Event.RIGHT_MOUSE_DOWN, this, mouseDown);
-			Laya.stage.off(Event.RIGHT_MOUSE_UP, this, mouseUp);
+			Laya.stage.off(Event.MOUSE_DOWN, this, mouseDown);
+			Laya.stage.off(Event.MOUSE_UP, this, mouseUp);
 			//Laya.stage.off(Event.RIGHT_MOUSE_OUT, this, mouseOut);
 		}
 		
@@ -112,6 +112,7 @@ package script.common {
 			_tempVector3.x = _tempVector3.y = 0;
 			_tempVector3.z = distance;
 			camera.transform.translate(_tempVector3);
+			console.log(camera.transform.localPosition.toString());
 		}
 		
 		/**
@@ -122,6 +123,7 @@ package script.common {
 			_tempVector3.y = _tempVector3.z = 0;
 			_tempVector3.x = distance;
 			camera.transform.translate(_tempVector3);
+			console.log(camera.transform.localPosition.toString());
 		}
 		
 		/**
@@ -132,6 +134,7 @@ package script.common {
 			_tempVector3.x = _tempVector3.z = 0;
 			_tempVector3.y = distance;
 			camera.transform.translate(_tempVector3, false);
+			console.log(camera.transform.localPosition.toString());
 		}
 	
 	}

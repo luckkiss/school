@@ -1,7 +1,9 @@
 package laya.d3.math {
 	import laya.d3.core.IClone;
 	import laya.d3.math.Native.ConchVector3;
+	import laya.maths.MathUtil;
 	import laya.renders.Render;
+
 	/**
 	 * <code>Vector3</code> 类用于创建三维向量。
 	 */
@@ -399,6 +401,26 @@ package laya.d3.math {
 			x = 0;
 			y = 0;
 			z = 0;
+		}
+		
+		/** 角度*/
+		public static function angle(from:Vector3, to:Vector3):Number
+		{
+			var fn:Vector3 = new Vector3();
+			Vector3.normalize(from, fn);
+			
+			var tn:Vector3 = new Vector3();
+			Vector3.normalize(to, tn);
+			var dotValue:Number = dot(fn, tn);
+			var result:Number = Math.acos(MathUtil.clamp(dotValue, -1, 1)) * (360 / (Math.PI * 2));
+			return result;
+		}
+		
+		// Returns the length of this vector (RO).
+		public function get magnitude():Number {  return Math.sqrt(x * x + y * y + z * z);  }
+		
+		public function toString(): String {
+			return '(' + x + ',' + y + ',' + z + ')';
 		}
 	
 	}

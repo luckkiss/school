@@ -2,14 +2,15 @@
 package ui.test {
 	import laya.ui.*;
 	import laya.display.*;
+	import script.view.ControlPanel;
 
-	public class TestPhysicsUI extends Scene {
-		public var scoreLbl:Label;
-		public var tipLbll:Label;
+	public class ControlPanelUI extends Scene {
+		public var listFunc:List;
+		public var btnToggle:Button;
 
 		override protected function createChildren():void {
 			super.createChildren();
-			loadScene("test/TestPhysics");
+			loadScene("test/ControlPanel");
 
 		}
 

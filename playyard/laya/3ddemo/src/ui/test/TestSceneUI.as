@@ -2,6 +2,10 @@
 package ui.test {
 	import laya.ui.*;
 	import laya.display.*;
+	import script.GameUI;
+	import laya.physics.BoxCollider;
+	import laya.physics.RigidBody;
+	import script.GameControl;
 
 	public class TestSceneUI extends Scene {
 		public var scoreLbl:Label;
