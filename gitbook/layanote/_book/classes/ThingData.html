@@ -583,6 +583,97 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="thingdata">ThingData</h1>
+<blockquote>
+<p>&#x7269;&#x54C1;&#x6570;&#x636E;&#x7BA1;&#x7406;&#x5668;&#x3002;<code>ThingData</code>&#x65E2;&#x7BA1;&#x7406;&#x5305;&#x62EC;&#x7269;&#x54C1;&#x8868;&#x683C;&#x3001;&#x88C5;&#x5907;&#x8868;&#x683C;&#x7B49;&#x914D;&#x7F6E;&#x6570;&#x636E;&#xFF0C;&#x53C8;&#x7BA1;&#x7406;&#x4E3B;&#x89D2;&#x80CC;&#x5305;&#x3001;&#x88C5;&#x5907;&#x7B49;&#x5404;&#x4E2A;&#x5BB9;&#x5668;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x63D0;&#x4F9B;&#x67E5;&#x8BE2;&#x7269;&#x54C1;&#x914D;&#x7F6E;&#x3001;&#x4E3B;&#x89D2;&#x80CC;&#x5305;&#x6570;&#x636E;&#x7B49;&#x63A5;&#x53E3;&#x3002;</p>
+</blockquote>
+<hr>
+<h2 id="getthingconfigthingid">getThingConfig(thingID)</h2>
+<p>&#x83B7;&#x53D6;&#x6307;&#x5B9A;ID&#x7684;&#x7269;&#x54C1;&#x914D;&#x7F6E;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x53C2;&#x6570;&#x540D;&#x79F0;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">thingID</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x6307;&#x5B9A;&#x7269;&#x54C1;&#x7684;id&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="&#x8FD4;&#x56DE;&#x503C;">&#x8FD4;&#x56DE;&#x503C;</h4>
+<p><em>ThingConfigM</em> - &#x7269;&#x54C1;&#x914D;&#x7F6E;&#x3002;</p>
+<hr>
+<h2 id="getthingnumthingid-containerid-bindinsensitive">getThingNum(thingID, containerID, bindInsensitive)</h2>
+<p>&#x67E5;&#x8BE2;&#x6307;&#x5B9A;ID&#x7684;&#x7269;&#x54C1;&#x5728;&#x6307;&#x5B9A;&#x5BB9;&#x5668;&#x4E2D;&#x7684;&#x6570;&#x91CF;&#xFF0C;&#x9ED8;&#x8BA4;&#x5BB9;&#x5668;&#x4E3A;&#x80CC;&#x5305;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E0D;&#x533A;&#x5206;&#x7269;&#x54C1;&#x7ED1;&#x5B9A;&#x4E0E;&#x5426;&#x3002;&#x5F53;<em>bindInsensitive</em>&#x4E3A;<em>true</em>&#x65F6;&#xFF0C;&#x8868;&#x793A;&#x4E0D;&#x533A;&#x5206;&#x7269;&#x54C1;&#x7ED1;&#x5B9A;&#x4E0E;&#x5426;&#xFF0C;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x91CF;&#x4E3A;&#x7ED1;&#x5B9A;&#x7269;&#x54C1;&#x548C;&#x975E;&#x7ED1;&#x5B9A;&#x7269;&#x54C1;&#x7684;&#x603B;&#x6570;&#x4E4B;&#x548C;&#x3002;&#x5F53;<em>bindInsensitive</em>&#x4E3A;<em>false</em>&#x65F6;&#xFF0C;&#x5219;&#x4E25;&#x683C;&#x67E5;&#x627E;&#x548C;<em>thingID</em>&#x7684;id&#x76F8;&#x540C;&#x7684;&#x7269;&#x54C1;&#x7684;&#x6570;&#x91CF;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x53C2;&#x6570;&#x540D;&#x79F0;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">thingID</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x6307;&#x5B9A;&#x7269;&#x54C1;&#x7684;id&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">containerID</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x6307;&#x5B9A;&#x5BB9;&#x5668;&#x7684;id&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">bindInsensitive</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">&#x662F;&#x5426;&#x5BF9;&#x7ED1;&#x5B9A;&#x4E0E;&#x5426;&#x4E0D;&#x654F;&#x611F;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="&#x8FD4;&#x56DE;&#x503C;">&#x8FD4;&#x56DE;&#x503C;</h4>
+<p><em>int</em> - &#x7269;&#x54C1;&#x6570;&#x91CF;&#x3002;</p>
+<hr>
+<h2 id="getbagitembyiditemid-bindinsensitive-num">getBagItemById(itemId, bindInsensitive, num)</h2>
+<p>&#x5728;&#x80CC;&#x5305;&#x4E2D;&#x67E5;&#x627E;&#x6307;&#x5B9A;ID&#x7684;&#x7269;&#x54C1;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x53C2;&#x6570;&#x540D;&#x79F0;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">itemId</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x6307;&#x5B9A;&#x7269;&#x54C1;&#x7684;id&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">bindInsensitive</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">&#x662F;&#x5426;&#x5BF9;&#x7ED1;&#x5B9A;&#x4E0E;&#x5426;&#x4E0D;&#x654F;&#x611F;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">num</td>
+<td style="text-align:left">&#x67E5;&#x627E;&#x6570;&#x91CF;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;<em>0</em>&#xFF0C;&#x8868;&#x793A;&#x67E5;&#x627E;&#x6240;&#x6709;&#x7B26;&#x5408;&#x6761;&#x4EF6;&#x7684;&#x7269;&#x54C1;&#x3002;&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#x53EA;&#x9700;&#x67E5;&#x627E;1&#x4E2A;&#x7B26;&#x5408;&#x6761;&#x4EF6;&#x7684;&#x7269;&#x54C1;&#x5373;&#x53EF;&#xFF0C;&#x6B64;&#x65F6;&#x4F20;&#x9012;<em>1</em>&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x67E5;&#x627E;&#x6D88;&#x8017;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="&#x8FD4;&#x56DE;&#x503C;">&#x8FD4;&#x56DE;&#x503C;</h4>
+<p><em>Vector.<thingitemdata></thingitemdata></em> - &#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x5305;&#x542B;&#x7B26;&#x5408;&#x6761;&#x4EF6;&#x7684;&#x7269;&#x54C1;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<hr>
+<h2 id="&#x76F8;&#x5173;">&#x76F8;&#x5173;</h2>
+<ul>
+<li><a href="../../../../classes/BagModule.html" title="BagModule">BagModule</a></li>
+<li><a href="../../../../classes/DataManager.html" title="DataManager">DataManager</a></li>
+</ul>
 
                                 
                                 </section>
@@ -626,7 +717,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ThingData","level":"1.2.26","depth":2,"next":{"title":"UIManager","level":"1.2.27","depth":2,"path":"classes/UIManager.md","ref":"classes/UIManager.md","articles":[]},"previous":{"title":"TabForm","level":"1.2.25","depth":2,"path":"classes/TabForm.md","ref":"classes/TabForm.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"classes/ThingData.md","mtime":"2019-04-04T09:17:58.486Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-04T12:49:56.322Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ThingData","level":"1.2.26","depth":2,"next":{"title":"UIManager","level":"1.2.27","depth":2,"path":"classes/UIManager.md","ref":"classes/UIManager.md","articles":[]},"previous":{"title":"TabForm","level":"1.2.25","depth":2,"path":"classes/TabForm.md","ref":"classes/TabForm.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"classes/ThingData.md","mtime":"2019-04-08T08:10:54.676Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-08T08:29:02.886Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

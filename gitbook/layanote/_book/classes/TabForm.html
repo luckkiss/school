@@ -583,6 +583,93 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="tabform">TabForm</h1>
+<blockquote>
+<p>&#x9875;&#x7B7E;&#x9762;&#x677F;&#x57FA;&#x7C7B;&#x3002;<code>TabForm</code>&#x7EE7;&#x627F;&#x81EA;<code>CommonForm</code>&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x5177;&#x6709;&#x9875;&#x7B7E;&#x6309;&#x94AE;&#x7EC4;&#x7684;<code>CommonForm</code>&#x3002;<code>TabForm</code>&#x4EC5;&#x4EC5;&#x662F;&#x4E00;&#x4E2A;&#x5E26;Tab&#x7684;&#x58F3;&#x9762;&#x677F;&#xFF0C;&#x5176;&#x5404;&#x4E2A;&#x5B50;&#x9875;&#x7B7E;&#x5747;&#x662F;&#x72EC;&#x7ACB;&#x5236;&#x4F5C;&#x7684;&#xFF0C;&#x4E14;&#x4EC5;&#x4EC5;&#x5728;&#x6253;&#x5F00;&#x6307;&#x5B9A;&#x9875;&#x7B7E;&#x65F6;&#x624D;&#x4F1A;&#x8FDB;&#x884C;&#x52A0;&#x8F7D;&#x5E76;&#x521D;&#x59CB;&#x5316;&#x3002;&#x4F60;&#x53EA;&#x9700;&#x5C06;&#x5404;&#x4E2A;&#x5B50;&#x9875;&#x7B7E;&#x9762;&#x677F;&#x7684;&#x7C7B;&#x5B9A;&#x4E49;&#x4F20;&#x5165;<code>TabForm</code>&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5373;&#x53EF;&#x3002;</p>
+</blockquote>
+<hr>
+<h2 id="gettabformbyidid">getTabFormByID(id)</h2>
+<p>&#x901A;&#x8FC7;id&#x53D6;&#x5F97;&#x5BF9;&#x5E94;&#x7684;&#x5B50;&#x9762;&#x677F;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x53C2;&#x6570;&#x540D;&#x79F0;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x9762;&#x677F;id&#xFF0C;&#x901A;&#x5E38;&#x4F7F;&#x7528;&#x5B9A;&#x4E49;&#x5728;<em>KW</em>&#x4E2D;&#x7684;&#x529F;&#x80FD;&#x5173;&#x952E;&#x5B57;&#x4F5C;&#x4E3A;&#x9762;&#x677F;&#x7684;id&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="&#x8FD4;&#x56DE;&#x503C;">&#x8FD4;&#x56DE;&#x503C;</h4>
+<p><em>TabSubForm</em> - &#x5BF9;&#x5E94;&#x7684;&#x5B50;&#x9762;&#x677F;&#x3002;</p>
+<hr>
+<h2 id="getcurrenttab">getCurrentTab()</h2>
+<p>&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x6B63;&#x5728;&#x663E;&#x793A;&#x7684;&#x5B50;&#x9762;&#x677F;&#x3002;</p>
+<h4 id="&#x8FD4;&#x56DE;&#x503C;">&#x8FD4;&#x56DE;&#x503C;</h4>
+<p><em>TabSubForm</em> - &#x5F53;&#x524D;&#x6B63;&#x5728;&#x663E;&#x793A;&#x7684;&#x5B50;&#x9762;&#x677F;&#x3002;</p>
+<hr>
+<h2 id="switchtabformbyidid-args">switchTabFormById(id, ...args)</h2>
+<p>&#x5207;&#x6362;&#x5230;&#x6307;&#x5B9A;id&#x7684;&#x5B50;&#x9762;&#x677F;&#x3002;&#x4F60;&#x8FD8;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x4F20;&#x9012;&#x4EFB;&#x610F;&#x53C2;&#x6570;&#x7ED9;&#x8BE5;&#x5B50;&#x9762;&#x677F;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x53C2;&#x6570;&#x540D;&#x79F0;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x9762;&#x677F;id&#xFF0C;&#x901A;&#x5E38;&#x4F7F;&#x7528;&#x5B9A;&#x4E49;&#x5728;<em>KW</em>&#x4E2D;&#x7684;&#x529F;&#x80FD;&#x5173;&#x952E;&#x5B57;&#x4F5C;&#x4E3A;&#x9762;&#x677F;&#x7684;id&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">args</td>
+<td style="text-align:left">&#x4EFB;&#x610F;&#x6570;&#x91CF;&#x7684;&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x53C2;&#x6570;</td>
+<td style="text-align:left">&#x4F20;&#x9012;&#x7ED9;&#x5B50;&#x9762;&#x677F;&#x7684;<em>open</em>&#x65B9;&#x6CD5;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="&#x8FD4;&#x56DE;&#x503C;">&#x8FD4;&#x56DE;&#x503C;</h4>
+<p><em>TabSubForm</em> - &#x5BF9;&#x5E94;&#x7684;&#x5B50;&#x9762;&#x677F;&#x3002;</p>
+<hr>
+<h2 id="settabtipmarkbyidid-isshowtipmark">setTabTipMarkById(id, isShowTipMark)</h2>
+<p>&#x8BA9;&#x6307;&#x5B9A;id&#x5BF9;&#x5E94;&#x7684;&#x9875;&#x7B7E;&#x6309;&#x94AE;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x5C0F;&#x7EA2;&#x70B9;&#xFF0C;&#x7528;&#x6765;&#x63D0;&#x793A;&#x73A9;&#x5BB6;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x53C2;&#x6570;&#x540D;&#x79F0;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x9762;&#x677F;id&#xFF0C;&#x901A;&#x5E38;&#x4F7F;&#x7528;&#x5B9A;&#x4E49;&#x5728;<em>KW</em>&#x4E2D;&#x7684;&#x529F;&#x80FD;&#x5173;&#x952E;&#x5B57;&#x4F5C;&#x4E3A;&#x9762;&#x677F;&#x7684;id&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">isShowTipMark</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">&#x662F;&#x5426;&#x663E;&#x793A;&#x5C0F;&#x7EA2;&#x70B9;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="&#x8FD4;&#x56DE;&#x503C;">&#x8FD4;&#x56DE;&#x503C;</h4>
+<p>&#x65E0;</p>
+<hr>
+<h2 id="&#x76F8;&#x5173;">&#x76F8;&#x5173;</h2>
+<ul>
+<li><a href="../../../../classes/CommonForm.html" title="CommonForm">CommonForm</a></li>
+<li><a href="../../../../classes/TabSubForm.html" title="TabSubForm">TabSubForm</a></li>
+</ul>
 
                                 
                                 </section>
@@ -626,7 +713,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"TabForm","level":"1.2.25","depth":2,"next":{"title":"ThingData","level":"1.2.26","depth":2,"path":"classes/ThingData.md","ref":"classes/ThingData.md","articles":[]},"previous":{"title":"SkillModule","level":"1.2.24","depth":2,"path":"classes/SkillModule.md","ref":"classes/SkillModule.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"classes/TabForm.md","mtime":"2019-04-04T09:17:58.482Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-04T12:49:56.322Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"TabForm","level":"1.2.25","depth":2,"next":{"title":"ThingData","level":"1.2.26","depth":2,"path":"classes/ThingData.md","ref":"classes/ThingData.md","articles":[]},"previous":{"title":"SkillModule","level":"1.2.24","depth":2,"path":"classes/SkillModule.md","ref":"classes/SkillModule.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"classes/TabForm.md","mtime":"2019-04-08T07:41:49.124Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-08T08:29:02.886Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
