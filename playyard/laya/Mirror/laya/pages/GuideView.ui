@@ -15,7 +15,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"wordWrap":true,"var":"textDetail","text":"label","right":32,"overflow":"scroll","left":32,"height":200,"fontSize":24,"color":"#ffffff","bottom":10,"align":"center"},
+            "props":{"wordWrap":true,"width":686,"var":"textDetail","text":"label","right":32,"overflow":"scroll","left":32,"height":282,"fontSize":24,"color":"#ffffff","bottom":10,"align":"center"},
             "nodeParent":1,
             "label":"Label(textDetail)",
             "isDirectory":false,
