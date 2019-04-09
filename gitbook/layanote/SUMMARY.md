@@ -21,6 +21,7 @@
     * [NetModule](classes/NetModule.md)
     * [PetData](classes/PetData.md)
     * [PinstanceData](classes/PinstanceData.md)
+    * [ProtocolUtil](classes/ProtocolUtil.md)
     * [ResourceManager](classes/ResourceManager.md)
     * [Root](classes/Root.md)
     * [Runtime](classes/Runtime.md)
@@ -32,6 +33,7 @@
     * [UnitManager](classes/UnitManager.md)
     * [ZhufuData](classes/ZhufuData.md)
 * [常用算法](algorithms/README.md)
+    * [自动进阶](algorithms/AutoUpgrade.md)
 * [常见错误](errors/README.md)
 * [练习](works/README.md)
 
