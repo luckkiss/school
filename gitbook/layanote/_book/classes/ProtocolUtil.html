@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>GuideMgr · GitBook</title>
+        <title>ProtocolUtil · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="GuildData.html" />
+    <link rel="next" href="ResourceManager.html" />
     
     
-    <link rel="prev" href="Global.html" />
+    <link rel="prev" href="PinstanceData.html" />
     
 
     </head>
@@ -278,7 +278,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.11" data-path="GuideMgr.html">
+        <li class="chapter " data-level="1.2.11" data-path="GuideMgr.html">
             
                 <a href="GuideMgr.html">
             
@@ -395,7 +395,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.20" data-path="ProtocolUtil.html">
+        <li class="chapter active" data-level="1.2.20" data-path="ProtocolUtil.html">
             
                 <a href="ProtocolUtil.html">
             
@@ -631,7 +631,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >GuideMgr</a>
+        <a href=".." >ProtocolUtil</a>
     </h1>
 </div>
 
@@ -646,40 +646,14 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="guidemgr">GuideMgr</h1>
+                                <h1 id="protocolutil">ProtocolUtil</h1>
 <blockquote>
-<p>&#x65B0;&#x624B;&#x5F15;&#x5BFC;&#x7BA1;&#x7406;&#x5668;&#x3002;&#x7B56;&#x5212;&#x5728;&#x8868;&#x683C;&#x4E2D;&#x914D;&#x7F6E;&#x4E86;&#x5404;&#x4E2A;&#x5F15;&#x5BFC;&#x7684;&#x89E6;&#x53D1;&#x6761;&#x4EF6;&#xFF0C;&#x5305;&#x62EC;&#x4E3B;&#x89D2;&#x8FBE;&#x5230;&#x67D0;&#x4E2A;&#x7B49;&#x7EA7;&#x3001;&#x63A5;&#x53D7;&#x6216;&#x8005;&#x5B8C;&#x6210;&#x67D0;&#x4E2A;&#x4EFB;&#x52A1;&#x7B49;&#x3002;&#x6240;&#x6709;&#x7279;&#x5B9A;&#x5F15;&#x5BFC;&#x5FC5;&#x987B;&#x5148;&#x6CE8;&#x518C;&#x5230;<code>GuideMgr</code>&#x4E0A;&#x65B9;&#x53EF;&#x4F7F;&#x7528;&#x3002;<code>GuideMgr</code>&#x4FDD;&#x8BC1;&#x5F15;&#x5BFC;&#x8FC7;&#x7A0B;&#x548C;&#x4EFB;&#x52A1;&#x8FC7;&#x7A0B;&#x6309;&#x5E8F;&#x8FDB;&#x884C;&#x4E92;&#x4E0D;&#x5E72;&#x6270;&#x3002;</p>
+<p>&#x534F;&#x8BAE;&#x7EC4;&#x88C5;&#x5DE5;&#x5177;&#x7C7B;&#x3002;&#x5411;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x534F;&#x8BAE;&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x7EC4;&#x88C5;&#x534F;&#x8BAE;&#x6570;&#x636E;&#x3002;&#x6309;&#x7167;&#x7EA6;&#x5B9A;&#xFF0C;&#x6240;&#x6709;&#x534F;&#x8BAE;&#x7EC4;&#x88C5;&#x7684;&#x4EE3;&#x7801;&#x5747;&#x5199;&#x5728;<code>ProtocolUtil</code>&#x4E2D;&#x3002;</p>
 </blockquote>
-<hr>
-<h2 id="processguidenextgroup-step">processGuideNext(group, step)</h2>
-<p>&#x901A;&#x77E5;&#x6307;&#x5F15;&#x7BA1;&#x7406;&#x5668;&#x6307;&#x5B9A;&#x6307;&#x5F15;&#x6B65;&#x9AA4;&#x53EF;&#x5B8C;&#x6210;&#xFF0C;&#x7EE7;&#x7EED;&#x4E0B;&#x4E00;&#x6B65;&#x6307;&#x5F15;&#x3002;</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">&#x53C2;&#x6570;&#x540D;&#x79F0;</th>
-<th style="text-align:left">&#x7C7B;&#x578B;</th>
-<th style="text-align:left">&#x63CF;&#x8FF0;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">group</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">&#x6307;&#x5F15;id&#xFF0C;&#x5B9A;&#x4E49;&#x5728;<em>EnumGuide</em>&#x4E2D;&#x3002;</td>
-</tr>
-<tr>
-<td style="text-align:left">step</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">&#x6307;&#x5F15;&#x6B65;&#x9AA4;id&#xFF0C;&#x5B9A;&#x4E49;&#x5728;<em>EnumGuide</em>&#x4E2D;&#x3002;</td>
-</tr>
-</tbody>
-</table>
-<h4 id="&#x8FD4;&#x56DE;&#x503C;">&#x8FD4;&#x56DE;&#x503C;</h4>
-<p>&#x65E0;</p>
 <hr>
 <h2 id="&#x76F8;&#x5173;">&#x76F8;&#x5173;</h2>
 <ul>
-<li><a href="../../../../classes/BaseGuider.html" title="BaseGuider">BaseGuider</a></li>
+<li><a href="../../../../classes/NetModule.html" title="NetModule">NetModule</a></li>
 </ul>
 
                                 
@@ -708,12 +682,12 @@
 
             
                 
-                <a href="Global.html" class="navigation navigation-prev " aria-label="Previous page: Global">
+                <a href="PinstanceData.html" class="navigation navigation-prev " aria-label="Previous page: PinstanceData">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="GuildData.html" class="navigation navigation-next " aria-label="Next page: GuildData">
+                <a href="ResourceManager.html" class="navigation navigation-next " aria-label="Next page: ResourceManager">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -724,7 +698,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"GuideMgr","level":"1.2.11","depth":2,"next":{"title":"GuildData","level":"1.2.12","depth":2,"path":"classes/GuildData.md","ref":"classes/GuildData.md","articles":[]},"previous":{"title":"Global","level":"1.2.10","depth":2,"path":"classes/Global.md","ref":"classes/Global.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"classes/GuideMgr.md","mtime":"2019-04-04T12:47:52.065Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-12T10:29:21.020Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ProtocolUtil","level":"1.2.20","depth":2,"next":{"title":"ResourceManager","level":"1.2.21","depth":2,"path":"classes/ResourceManager.md","ref":"classes/ResourceManager.md","articles":[]},"previous":{"title":"PinstanceData","level":"1.2.19","depth":2,"path":"classes/PinstanceData.md","ref":"classes/PinstanceData.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"classes/ProtocolUtil.md","mtime":"2019-04-08T10:29:32.998Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-12T10:29:21.020Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -1,6 +1,8 @@
 # Summary
 
-* [前言](README.md)
+* [基础知识](README.md)
+    * [常用术语](basic/CommonTerms.md)
+    * [知识链接](basic/Links.md)
 * [重要的类](classes/README.md)
     * [ActBtnController](classes/ActBtnController.md)
     * [ActivityData](classes/ActivityData.md)
