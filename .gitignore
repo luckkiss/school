@@ -5,8 +5,12 @@
 **/release/
 **/log/
 **/*Tmp/
+**/Temp/
+**/.vscode/
 **/patch/
 /my/
 **/Cdd/
 **/unity/*
+**/Library/*
+!**/unity/sceneDemo
 !**/savecode/
