@@ -438,6 +438,9 @@ var ___Laya=(function(){
 var GameData=(function(){
 	function GameData(){
 		this.players=['赶猪的星星','浪里个浪'];
+		this.leftCards=[];
+		this.rightCards=[];
+		this.results=[];
 	}
 
 	__class(GameData,'data.GameData');
@@ -37859,12 +37862,37 @@ var PlayerUI=(function(_super){
 })(View)
 
 
+//class ui.ResultItemUI extends laya.ui.View
+var ResultItemUI=(function(_super){
+	function ResultItemUI(){
+		this.textInfo=null;
+		ResultItemUI.__super.call(this);
+	}
+
+	__class(ResultItemUI,'ui.ResultItemUI',_super);
+	var __proto=ResultItemUI.prototype;
+	__proto.createChildren=function(){
+		laya.ui.Component.prototype.createChildren.call(this);
+		this.createView(ResultItemUI.uiView);
+	}
+
+	ResultItemUI.uiView={"type":"View","props":{"width":320,"height":32},"child":[{"type":"Label","props":{"var":"textInfo","top":0,"right":0,"left":0,"color":"#ffffff","bottom":0}}]};
+	return ResultItemUI;
+})(View)
+
+
 //class ui.test.MainViewUI extends laya.ui.View
 var MainViewUI=(function(_super){
 	function MainViewUI(){
 		this.btnGo=null;
 		this.textCountDown=null;
 		this.textRound=null;
+		this.leftPlayerCtn=null;
+		this.rightPlayerCtn=null;
+		this.imgLeftCard=null;
+		this.imgRightCard=null;
+		this.roundResult=null;
+		this.textResult=null;
 		MainViewUI.__super.call(this);
 	}
 
@@ -37875,8 +37903,28 @@ var MainViewUI=(function(_super){
 		this.createView(MainViewUI.uiView);
 	}
 
-	MainViewUI.uiView={"type":"View","props":{"width":1024,"height":768},"child":[{"type":"Button","props":{"var":"btnGo","skin":"ui/btn/btn_gold.png","label":"开始","centerX":0,"bottom":24,"stateNum":1,"labelPadding":"0,0,4,0","labelSize":24}},{"type":"Label","props":{"var":"textCountDown","text":"5","fontSize":42,"color":"#ffffff","centerY":0,"centerX":0}},{"type":"Label","props":{"y":20,"x":10,"var":"textRound","text":"第n场","fontSize":42,"color":"#ffffff","centerX":0}}]};
+	MainViewUI.uiView={"type":"View","props":{"width":1024,"height":768},"child":[{"type":"Button","props":{"var":"btnGo","skin":"ui/btn/btn_gold.png","label":"开始","centerX":0,"bottom":24,"stateNum":1,"labelPadding":"0,0,4,0","labelSize":24}},{"type":"Label","props":{"var":"textCountDown","text":"5","fontSize":42,"color":"#ffffff","centerY":0,"centerX":0}},{"type":"Label","props":{"y":20,"x":10,"var":"textRound","text":"第n场","fontSize":42,"color":"#ffffff","centerX":0}},{"type":"Box","props":{"width":80,"var":"leftPlayerCtn","left":0,"height":120,"centerY":0}},{"type":"Box","props":{"width":80,"var":"rightPlayerCtn","right":0,"height":120,"centerY":0}},{"type":"Image","props":{"width":120,"var":"imgLeftCard","left":100,"height":120,"centerY":0}},{"type":"Image","props":{"width":120,"var":"imgRightCard","right":100,"height":120,"centerY":0}},{"type":"Image","props":{"width":360,"var":"roundResult","skin":"ui/dialog/brown.png","height":180,"centerY":-120,"centerX":0},"child":[{"type":"Label","props":{"var":"textResult","fontSize":42,"color":"#ffffff","centerY":0,"centerX":0}}]}]};
 	return MainViewUI;
+})(View)
+
+
+//class ui.test.ResultViewUI extends laya.ui.View
+var ResultViewUI=(function(_super){
+	function ResultViewUI(){
+		this.list=null;
+		this.btnContinue=null;
+		ResultViewUI.__super.call(this);
+	}
+
+	__class(ResultViewUI,'ui.test.ResultViewUI',_super);
+	var __proto=ResultViewUI.prototype;
+	__proto.createChildren=function(){
+		laya.ui.Component.prototype.createChildren.call(this);
+		this.createView(ResultViewUI.uiView);
+	}
+
+	ResultViewUI.uiView={"type":"View","props":{"width":694,"height":560},"child":[{"type":"Image","props":{"width":694,"skin":"ui/dialog/bg_dlgII.png","height":560,"sizeGrid":"60,24,24,24"},"child":[{"type":"Label","props":{"y":4,"text":"结算","fontSize":24,"color":"#ffffff","centerX":0}},{"type":"List","props":{"width":320,"var":"list","height":400,"centerY":-20,"centerX":0}},{"type":"Button","props":{"var":"btnContinue","skin":"ui/btn/btn_gold.png","label":"继续","centerX":0,"bottom":20,"stateNum":1,"labelPadding":"0,0,4,0","labelSize":24}}]}]};
+	return ResultViewUI;
 })(View)
 
 
@@ -38427,12 +38475,18 @@ var MainView=(function(_super){
 	function MainView(){
 		this.CountDownSeconds=5;
 		this.leftSeconds=0;
+		this.MaxRoundCnt=5;
 		/**第几场*/
 		this.roundCnt=0;
+		this.CardMaxNum=13;
+		this.CardBackSkin='ui/cards/0.png';
 		this.leftPlayer=null;
 		this.rightPlayer=null;
+		this.resultView=null;
+		this.isDisplayingScore=false;
 		MainView.__super.call(this);
-		this.textCountDown.visible=false;
+		this.CardShapes=['fk','mh','ht','ht'];
+		this.initView();
 		this.leftPlayer=new PlayerView();
 		this.leftPlayer.pos(0,580);
 		this.addChild(this.leftPlayer);
@@ -38443,12 +38497,72 @@ var MainView=(function(_super){
 		var players=Root.gameData.players;
 		this.leftPlayer.setName(players[0]);
 		this.rightPlayer.setName(players[1]);
+		this.imgLeftCard.on("click",this,this.onClickCard);
+		this.imgRightCard.on("click",this,this.onClickCard);
 		this.btnGo.on("click",this,this.onClickBtnGo);
 	}
 
 	__class(MainView,'view.MainView',_super);
 	var __proto=MainView.prototype;
+	__proto.initView=function(){
+		this.textCountDown.visible=false;
+		this.textRound.visible=false;
+		this.roundResult.visible=false;
+		this.btnGo.visible=true;
+	}
+
+	__proto.onClickCard=function(e){
+		if(this.isDisplayingScore){
+			return;
+		}
+		this.isDisplayingScore=true;
+		var leftCards=Root.gameData.leftCards;
+		var leftCard=leftCards[leftCards.length-1];
+		this.imgLeftCard.skin=this.getCardSkin(leftCard);
+		var rightCards=Root.gameData.rightCards;
+		var rightCard=rightCards[rightCards.length-1];
+		this.imgRightCard.skin=this.getCardSkin(rightCards);
+		var compareResult=(leftCard % this.CardMaxNum)-(rightCard % this.CardMaxNum);
+		Root.gameData.results.push(compareResult);
+		if(0==compareResult){
+			this.textResult.text='平局';
+			}else if(1==compareResult){
+			this.textResult.text='胜利';
+			}else {
+			this.textResult.text='失败';
+		}
+		this.roundResult.visible=true;
+		this.roundResult.alpha=0;
+		Tween.to(this.roundResult,{"alpha":1},1000,null,Handler.create(this,this.onTweenInComplete));
+	}
+
+	__proto.onTweenInComplete=function(){
+		Tween.to(this.roundResult,{"alpha":0},1000,null,Handler.create(this,this.onTweenOutComplete));
+	}
+
+	__proto.onTweenOutComplete=function(){
+		this.roundResult.visible=false;
+		if(this.roundCnt >=this.MaxRoundCnt){
+			this.displayResult();
+			}else {
+			this.dealCards();
+		}
+	}
+
+	__proto.displayResult=function(){
+		if(!this.resultView){
+			this.resultView=new ResultView();
+			this.addChild(this.resultView);
+		}
+		this.resultView.showResult(Root.gameData.results,Handler.create(this,this.onResultClosed));
+	}
+
+	__proto.onResultClosed=function(){
+		this.initView();
+	}
+
 	__proto.onClickBtnGo=function(e){
+		this.btnGo.visible=false;
 		this.startCountDown();
 	}
 
@@ -38466,17 +38580,72 @@ var MainView=(function(_super){
 			this.textCountDown.visible=false;
 			Laya.timer.clear(this,this.onTimer);
 			this.roundCnt=0;
+			this.textRound.visible=true;
 			this.dealCards();
 		}
 	}
 
 	__proto.dealCards=function(){
+		this.isDisplayingScore=false;
 		this.roundCnt++;
-		this.textRound.text=this.roundCnt+'';
+		this.textRound.text='第'+this.roundCnt+'场';
+		this.roundResult.visible=false;
+		var leftCard=Math.floor(Math.random()*this.CardShapes.length *this.CardMaxNum);
+		Root.gameData.leftCards.push(leftCard);
+		this.imgLeftCard.skin=this.CardBackSkin;
+		var rightCard=Math.floor(Math.random()*this.CardShapes.length *this.CardMaxNum);
+		Root.gameData.rightCards.push(rightCard);
+		this.imgRightCard.skin=this.CardBackSkin;
+	}
+
+	__proto.getCardSkin=function(card){
+		var shape=this.CardShapes[Math.floor(card / this.CardMaxNum)];
+		var num=card % this.CardMaxNum;
+		return shape+num;
 	}
 
 	return MainView;
 })(MainViewUI)
+
+
+//class view.ResultView extends ui.test.ResultViewUI
+var ResultView=(function(_super){
+	function ResultView(){
+		this.callback=null;
+		ResultView.__super.call(this);
+		this.list.itemRender=ResultItemUI;
+		this.list.renderHandler=Handler.create(this,this.onRenderList);
+		this.btnContinue.on("click",this,this.onClickBtnContinue);
+	}
+
+	__class(ResultView,'view.ResultView',_super);
+	var __proto=ResultView.prototype;
+	__proto.showResult=function(resultData,callback){
+		this.visible=true;
+		this.list.array=resultData;
+		this.callback=callback;
+	}
+
+	__proto.onRenderList=function(cell,index){
+		var result=this.list.getItem(index);
+		var resultStr='平手';
+		if(result > 0){
+			resultStr='胜利';
+			}else if(result < 0){
+			resultStr='失败';
+		}
+		cell.textInfo.text='第'+(index+1)+'场    '+resultStr;
+	}
+
+	__proto.onClickBtnContinue=function(){
+		this.visible=false;
+		if(this.callback){
+			this.callback.run();
+		}
+	}
+
+	return ResultView;
+})(ResultViewUI)
 
 
 	Laya.__init([LoaderManager,EventDispatcher,DrawText,Browser,Render,WebGLContext2D,View,ShaderCompile,Timer,GraphicAnimation,LocalStorage,AtlasGrid]);

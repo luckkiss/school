@@ -12,8 +12,8 @@ Project configuration:f:\school\playyard\laya\PokerDemo/.actionScriptProperties.
 1,0.00,f:/school/playyard/laya/PokerDemo/src,0,Collect
 1,0.00,f:/school/playyard/laya/PokerDemo/libs/laya/src,0,Collect
 1,2.00,,0,read class message
-1,89.84,,0,Disable Flash3D f:/school/playyard/laya/PokerDemo/src/Root.as
-12,89.84,f:/school/playyard/laya/PokerDemo/bin/h5/Root.max.js,1174211,
-11,89.84,f:/school/playyard/laya/PokerDemo/bin/h5/Root.max.html,887,
+1,89.73,,0,Disable Flash3D f:/school/playyard/laya/PokerDemo/src/Root.as
+12,89.73,f:/school/playyard/laya/PokerDemo/bin/h5/Root.max.js,1180330,
+11,89.73,f:/school/playyard/laya/PokerDemo/bin/h5/Root.max.html,887,
 ******************************************************************************
-14,89.84,,0,
+14,89.73,,0,
