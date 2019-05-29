@@ -1,28 +1,36 @@
 using UnityEngine;
 public class RatPlayer : MonoBehaviour {
     Tween modelTween;
+   
 
-    ModelPlayer player;
+    Animator player;
+   
 
     bool isRunning;
+    float finishTime = 0;
     void Start() {
         modelTween = this.GetComponent<Tween>();
-		player = this.GetComponent<ModelPlayer>();
+		player = this.GetComponent<Animator>();
+       
     }
 
     void Update() {
         if(isRunning) {
            return; 
         }
-        if(Random.Range(0, 10) > 6) {
+        
+        if(finishTime ==0 || Time.realtimeSinceStartup - this.finishTime > 5) {
             modelTween.onFinished = onMoveFinished;
-            modelTween.moveTo(new Vector3(Random.Range(0f, 20f), Random.Range(0f, 20f), 0));
-            player.startMove();
+            modelTween.moveTo(new Vector3(Random.Range(0f, 8f),0f, Random.Range(0f, 8f)));
+            player.Play("Walk");
+            isRunning = true;
         }
+        
     }
 
 	void onMoveFinished() {
-		player.endMove();
+        this.finishTime = Time.realtimeSinceStartup;
+		player.Play("sound");
         isRunning = false;
 	}
 }
