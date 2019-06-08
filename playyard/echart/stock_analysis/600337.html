@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Financial Statement Analysis</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts/echarts.min.js"></script>
+</head>
+<body>
+	<nav>
+	<a href="javascript:void(0);" onclick="drawChart('loans_line');">负债折线图</a> |
+	<a href="javascript:void(0);" onclick="drawChart('loans_stack_bar');">负债叠柱图</a> |
+	<a href="javascript:void(0);" onclick="drawChart('HTML');">图3</a> |
+	<a href="javascript:void(0);" onclick="drawChart('HTML');">图4</a>
+	</nav>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 50vw;height:50vh;"></div>
+    <script type="text/javascript">
+	    function drawChart(chartType) {
+		    console.log(chartType);
+		    myChart.setOption(options[chartType]);
+		}
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+		var options = {};
+        options['loans_line'] = {
+			title: {
+				text: '负债折线图'
+			},
+			tooltip: {
+				trigger: 'axis'
+			},
+			legend: {
+				data:['短期负债','长期负债','货币资金','总负债/货币资金']
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			toolbox: {
+				feature: {
+					saveAsImage: {}
+				}
+			},
+			xAxis: {
+				type: 'category',
+				boundaryGap: false,
+				data: ['2014-12-31', '2015-12-31', '2016-12-31', '2017-12-31', '2018-12-31']
+			},
+			yAxis: {
+				type: 'value',
+				name: '金额'
+			},
+			series: [
+				{
+					name:'短期负债',
+					type:'line',
+					data:[157800000, 376400000, 514400000, 110800000, 1344000000]
+				},
+				{
+					name:'长期负债',
+					type:'line',
+					data:[200000000, 172900000, 148600000, 630600000, 831500000]
+				},
+				{
+					name:'货币资金',
+					type:'line',
+					data:[196900000, 451500000, 392500000, 1794000000, 2058000000]
+				}
+			]
+		};
+		
+		options['loans_stack_bar'] = {
+			title: {
+				text: '负债叠柱图'
+			},
+			tooltip : {
+				trigger: 'axis',
+				axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+					type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+				}
+			},
+			legend: {
+				data:['短期负债','长期负债','货币资金']
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis : [
+				{
+					type : 'category',
+					data : ['2014-12-31', '2015-12-31', '2016-12-31', '2017-12-31', '2018-12-31']
+				}
+			],
+			yAxis : [
+				{
+					type : 'value'
+				}
+			],
+			series : [
+				{
+					name:'短期负债',
+					type:'bar',
+					stack: '负债',
+					data:[157800000, 376400000, 514400000, 110800000, 1344000000]
+				},
+				{
+					name:'长期负债',
+					type:'bar',
+					stack: '负债',
+					data:[200000000, 172900000, 148600000, 630600000, 831500000]
+				}, 
+				{
+					name:'货币资金',
+					type:'bar',
+					data:[196900000, 451500000, 392500000, 1794000000, 2058000000]
+				}
+			]
+		};
+
+        // 使用刚指定的配置项和数据显示图表。
+        drawChart('loans_line');
+    </script>
+</body>
+</html>
