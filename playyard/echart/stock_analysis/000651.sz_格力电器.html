@@ -54,7 +54,7 @@
 			xAxis: {
 				type: 'category',
 				boundaryGap: false,
-				data: [<periods>]
+				data: ['2014-12-31', '2015-12-31', '2016-12-31', '2017-12-31', '2018-12-31']
 			},
 			yAxis: {
 				type: 'value',
@@ -69,17 +69,17 @@
 				{
 					name:'短期负债',
 					type:'line',
-					data:[<shortTermLoans>]
+					data:[3579000000, 6277000000, 10700000000, 18650000000, 22070000000]
 				},
 				{
 					name:'长期负债',
 					type:'line',
-					data:[<longTermLoans>]
+					data:[2259000000, 0, 0, 0, 0]
 				},
 				{
 					name:'货币资金',
 					type:'line',
-					data:[<monetaryCapitals>]
+					data:[54550000000, 88820000000, 95750000000, 99610000000, 113100000000]
 				}
 			]
 		};
@@ -113,7 +113,7 @@
 			xAxis : [
 				{
 					type : 'category',
-					data : [<periods>]
+					data : ['2014-12-31', '2015-12-31', '2016-12-31', '2017-12-31', '2018-12-31']
 				}
 			],
 			yAxis : {
@@ -129,18 +129,18 @@
 					name:'短期负债',
 					type:'bar',
 					stack: '负债',
-					data:[<shortTermLoans>]
+					data:[3579000000, 6277000000, 10700000000, 18650000000, 22070000000]
 				},
 				{
 					name:'长期负债',
 					type:'bar',
 					stack: '负债',
-					data:[<longTermLoans>]
+					data:[2259000000, 0, 0, 0, 0]
 				}, 
 				{
 					name:'货币资金',
 					type:'bar',
-					data:[<monetaryCapitals>]
+					data:[54550000000, 88820000000, 95750000000, 99610000000, 113100000000]
 				}
 			]
 		};
@@ -176,7 +176,7 @@
 			xAxis: {
 				type: 'category',
 				boundaryGap: false,
-				data: [<periodsYOY>]
+				data: ['2015-12-31', '2016-12-31', '2017-12-31', '2018-12-31']
 			},
 			yAxis: {
 				type: 'value',
@@ -189,27 +189,27 @@
 				{
 					name:'营业收入同比',
 					type:'line',
-					data:[<incomeYOYs>]
+					data:[-28.14, 9.44, 36.24, 33.33]
 				},
 				{
 					name:'净利润同比',
 					type:'line',
-					data:[<netProfitYOYs>]
+					data:[-11.51, 23.38, 44.89, 16.96]
 				},
 				{
 					name:'毛利率同比',
 					type:'line',
-					data:[<grossProfitMarginYOYs>]
+					data:[-7.42, -1.68, -0.50, -8.11]
 				},
 				{
 					name:'净利率同比',
 					type:'line',
-					data:[<netProfitMarginYOYs>]
+					data:[23.25, 12.73, 6.12, -12.11]
 				},
 				{
 					name:'存货同比',
 					type:'line',
-					data:[<inventoryYOYS>]
+					data:[10.18, -4.74, 83.60, 20.76]
 				}
 			]
 		};

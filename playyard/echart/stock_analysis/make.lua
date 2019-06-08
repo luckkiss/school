@@ -1,15 +1,7 @@
-stockCode = "600337";
+require('lfs')
+require('strutil')
 
-function split(str, reps)
-    local resultStrList = {}
-	string.gsub(str, '[^'..reps..']+', function(w)
-	    table.insert(resultStrList, w)
-		-- print(w)
-	end)
-	return resultStrList
-end
-
-function getNumValue(strValue)
+local function getNumValue(strValue)
     if(strValue == '--')
 	then
 	    return 0
@@ -37,7 +29,7 @@ function getNumValue(strValue)
 	return value * unitMap[unit]
 end
 
-function getStrValue(numValue)
+local function getStrValue(numValue)
     if(numValue >= 100000000)
 	then
 	    return string.format('%.3f亿', numValue / 100000000)
@@ -46,12 +38,12 @@ function getStrValue(numValue)
 	end
 end
 
-function getPencentStr(value)
+local function getPencentStr(value)
     return string.format('%.2f', value * 100) .. '%'
 end
 
-function parseSheet(fileName, dataMap, mapTitle)
-	for line in io.lines('data/' .. stockCode .. '/' .. fileName)
+local function parseSheet(fileName, dataMap, mapTitle)
+	for line in io.lines(fileName)
 	do
 		line = string.gsub(line, '^[%s]*', '')
 		local lineArr = split(line, '\t')
@@ -67,104 +59,116 @@ function parseSheet(fileName, dataMap, mapTitle)
 	end
 end
 
--- 资产负债表
-balancesheet = {}
-parseSheet('balancesheet.txt', balancesheet, '资产负债表')
+local function makeHtml(stockCode)
+    fileRoot = 'data/' .. stockCode .. '/'
+	-- 资产负债表
+	balancesheet = {}
+	parseSheet(fileRoot .. 'balancesheet.txt', balancesheet, '资产负债表')
 
--- 利润表
-profitstatement = {}
-parseSheet('profitstatement.txt', profitstatement, '利润表')
+	-- 利润表
+	profitstatement = {}
+	parseSheet(fileRoot .. 'profitstatement.txt', profitstatement, '利润表')
 
--- 读入页面模板
-tmplFile = io.open('tmpl.html', 'r')
-htmlContent = tmplFile:read('*a')
-tmplFile:close()
+	-- 读入页面模板
+	tmplFile = io.open('tmpl.html', 'r')
+	htmlContent = tmplFile:read('*a')
+	tmplFile:close()
 
--- 写入数据
-local periodCnt = #profitstatement['利润表']
-profitstatement['毛利润'] = {}
-profitstatement['毛利率'] = {}
-profitstatement['净利率'] = {}
-for i = 1, periodCnt
-do
-    profitstatement['毛利润'][i] = profitstatement['营业总收入'][i] - profitstatement['营业成本'][i]
-	profitstatement['毛利率'][i] = profitstatement['毛利润'][i] / profitstatement['营业总收入'][i]
-	profitstatement['净利率'][i] = profitstatement['净利润'][i] / profitstatement['营业总收入'][i]	
-end
-
-profitstatement['营业总收入同比'] = {}
-profitstatement['归母净利润同比'] = {}
-profitstatement['毛利率同比'] = {}
-profitstatement['净利率同比'] = {}
-
-balancesheet['存货同比'] = {}
-for i = 1, periodCnt - 1
-do
-    profitstatement['营业总收入同比'][i] = profitstatement['营业总收入'][i] / profitstatement['营业总收入'][i + 1] - 1
-	profitstatement['归母净利润同比'][i] = profitstatement['其中:归属于母公司股东的净利润'][i] / profitstatement['其中:归属于母公司股东的净利润'][i + 1] - 1
-	profitstatement['毛利率同比'][i] = profitstatement['毛利率'][i] / profitstatement['毛利率'][i + 1] - 1
-	profitstatement['净利率同比'][i] = profitstatement['净利率'][i] / profitstatement['净利率'][i + 1] - 1
-	
-	balancesheet['存货同比'][i] = balancesheet['存货'][i] / balancesheet['存货'][i + 1] - 1
-end
-
-local periods = ''
-local shortTermLoans = ''
-local longTermLoans = ''
-local monetaryCapitals = ''
-for i = 1, periodCnt
-do
-    if not(periods == '')
-	then
-	    periods = ', ' .. periods
-		shortTermLoans = ', ' .. shortTermLoans
-		longTermLoans = ', ' .. longTermLoans
-		monetaryCapitals = ', ' .. monetaryCapitals
+	-- 写入数据
+	local periodCnt = #profitstatement['利润表']
+	profitstatement['毛利润'] = {}
+	profitstatement['毛利率'] = {}
+	profitstatement['净利率'] = {}
+	for i = 1, periodCnt
+	do
+		profitstatement['毛利润'][i] = profitstatement['营业总收入'][i] - profitstatement['营业成本'][i]
+		profitstatement['毛利率'][i] = profitstatement['毛利润'][i] / profitstatement['营业总收入'][i]
+		profitstatement['净利率'][i] = profitstatement['净利润'][i] / profitstatement['营业总收入'][i]	
 	end
-    periods = '\'' .. balancesheet['资产负债表'][i] .. '\'' .. periods
-	shortTermLoans = balancesheet['短期借款'][i] .. shortTermLoans
-	longTermLoans = balancesheet['长期借款'][i] .. longTermLoans
-	monetaryCapitals = balancesheet['货币资金'][i] .. monetaryCapitals
-end
 
-local periodsYOY = ''
-local incomeYOYs = ''
-local netProfitYOYs = ''
-local grossProfitMarginYOYs = ''
-local netProfitMarginYOYs = ''
-local inventoryYOYS = ''
-for i = 1, periodCnt - 1
-do
-    if not(periodsYOY == '')
-	then
-	    periodsYOY = ', ' .. periodsYOY
-		incomeYOYs = ', ' .. incomeYOYs
-		netProfitYOYs = ', ' .. netProfitYOYs
-		grossProfitMarginYOYs = ', ' .. grossProfitMarginYOYs
-		netProfitMarginYOYs = ', ' .. netProfitMarginYOYs
-		inventoryYOYS = ', ' .. inventoryYOYS
+	profitstatement['营业总收入同比'] = {}
+	profitstatement['归母净利润同比'] = {}
+	profitstatement['毛利率同比'] = {}
+	profitstatement['净利率同比'] = {}
+
+	balancesheet['存货同比'] = {}
+	for i = 1, periodCnt - 1
+	do
+		profitstatement['营业总收入同比'][i] = profitstatement['营业总收入'][i] / profitstatement['营业总收入'][i + 1] - 1
+		profitstatement['归母净利润同比'][i] = profitstatement['其中:归属于母公司股东的净利润'][i] / profitstatement['其中:归属于母公司股东的净利润'][i + 1] - 1
+		profitstatement['毛利率同比'][i] = profitstatement['毛利率'][i] / profitstatement['毛利率'][i + 1] - 1
+		profitstatement['净利率同比'][i] = profitstatement['净利率'][i] / profitstatement['净利率'][i + 1] - 1
+		
+		balancesheet['存货同比'][i] = balancesheet['存货'][i] / balancesheet['存货'][i + 1] - 1
 	end
-    periodsYOY = '\'' .. balancesheet['资产负债表'][i] .. '\'' .. periodsYOY
-	incomeYOYs = string.format('%.2f', profitstatement['营业总收入同比'][i] * 100) .. incomeYOYs
-	netProfitYOYs = string.format('%.2f', profitstatement['归母净利润同比'][i] * 100) .. netProfitYOYs
-	grossProfitMarginYOYs = string.format('%.2f', profitstatement['毛利率同比'][i] * 100) .. grossProfitMarginYOYs
-	netProfitMarginYOYs = string.format('%.2f', profitstatement['净利率同比'][i] * 100) .. netProfitMarginYOYs
-	inventoryYOYS = string.format('%.2f', balancesheet['存货同比'][i] * 100) .. inventoryYOYS
+
+	local periods = ''
+	local shortTermLoans = ''
+	local longTermLoans = ''
+	local monetaryCapitals = ''
+	for i = 1, periodCnt
+	do
+		if not(periods == '')
+		then
+			periods = ', ' .. periods
+			shortTermLoans = ', ' .. shortTermLoans
+			longTermLoans = ', ' .. longTermLoans
+			monetaryCapitals = ', ' .. monetaryCapitals
+		end
+		periods = '\'' .. balancesheet['资产负债表'][i] .. '\'' .. periods
+		shortTermLoans = balancesheet['短期借款'][i] .. shortTermLoans
+		longTermLoans = balancesheet['长期借款'][i] .. longTermLoans
+		monetaryCapitals = balancesheet['货币资金'][i] .. monetaryCapitals
+	end
+
+	local periodsYOY = ''
+	local incomeYOYs = ''
+	local netProfitYOYs = ''
+	local grossProfitMarginYOYs = ''
+	local netProfitMarginYOYs = ''
+	local inventoryYOYS = ''
+	for i = 1, periodCnt - 1
+	do
+		if not(periodsYOY == '')
+		then
+			periodsYOY = ', ' .. periodsYOY
+			incomeYOYs = ', ' .. incomeYOYs
+			netProfitYOYs = ', ' .. netProfitYOYs
+			grossProfitMarginYOYs = ', ' .. grossProfitMarginYOYs
+			netProfitMarginYOYs = ', ' .. netProfitMarginYOYs
+			inventoryYOYS = ', ' .. inventoryYOYS
+		end
+		periodsYOY = '\'' .. balancesheet['资产负债表'][i] .. '\'' .. periodsYOY
+		incomeYOYs = string.format('%.2f', profitstatement['营业总收入同比'][i] * 100) .. incomeYOYs
+		netProfitYOYs = string.format('%.2f', profitstatement['归母净利润同比'][i] * 100) .. netProfitYOYs
+		grossProfitMarginYOYs = string.format('%.2f', profitstatement['毛利率同比'][i] * 100) .. grossProfitMarginYOYs
+		netProfitMarginYOYs = string.format('%.2f', profitstatement['净利率同比'][i] * 100) .. netProfitMarginYOYs
+		inventoryYOYS = string.format('%.2f', balancesheet['存货同比'][i] * 100) .. inventoryYOYS
+	end
+
+	htmlContent = string.gsub(htmlContent, '<periods>', periods)
+	htmlContent = string.gsub(htmlContent, '<shortTermLoans>', shortTermLoans)
+	htmlContent = string.gsub(htmlContent, '<longTermLoans>', longTermLoans)
+	htmlContent = string.gsub(htmlContent, '<monetaryCapitals>', monetaryCapitals)
+	htmlContent = string.gsub(htmlContent, '<periodsYOY>', periodsYOY)
+	htmlContent = string.gsub(htmlContent, '<incomeYOYs>', incomeYOYs)
+	htmlContent = string.gsub(htmlContent, '<netProfitYOYs>', netProfitYOYs)
+	htmlContent = string.gsub(htmlContent, '<grossProfitMarginYOYs>', grossProfitMarginYOYs)
+	htmlContent = string.gsub(htmlContent, '<netProfitMarginYOYs>', netProfitMarginYOYs)
+	htmlContent = string.gsub(htmlContent, '<inventoryYOYS>', inventoryYOYS)
+
+	-- 生成页面
+	htmlFile = io.open(stockCode .. '.html', 'w')
+	io.output(htmlFile)
+	io.write(htmlContent)
+	io.close(htmlFile)
 end
 
-htmlContent = string.gsub(htmlContent, '<periods>', periods)
-htmlContent = string.gsub(htmlContent, '<shortTermLoans>', shortTermLoans)
-htmlContent = string.gsub(htmlContent, '<longTermLoans>', longTermLoans)
-htmlContent = string.gsub(htmlContent, '<monetaryCapitals>', monetaryCapitals)
-htmlContent = string.gsub(htmlContent, '<periodsYOY>', periodsYOY)
-htmlContent = string.gsub(htmlContent, '<incomeYOYs>', incomeYOYs)
-htmlContent = string.gsub(htmlContent, '<netProfitYOYs>', netProfitYOYs)
-htmlContent = string.gsub(htmlContent, '<grossProfitMarginYOYs>', grossProfitMarginYOYs)
-htmlContent = string.gsub(htmlContent, '<netProfitMarginYOYs>', netProfitMarginYOYs)
-htmlContent = string.gsub(htmlContent, '<inventoryYOYS>', inventoryYOYS)
-
--- 生成页面
-htmlFile = io.open(stockCode .. '.html', 'w')
-io.output(htmlFile)
-io.write(htmlContent)
-io.close(htmlFile)
+function makeAll()
+    for entry in lfs.dir('data')
+	do
+	    if entry ~= '.' and entry ~= '..' then
+		    makeHtml(entry)
+		end
+	end
+end
