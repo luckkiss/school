@@ -7,18 +7,18 @@
     <script src="echarts/echarts.min.js"></script>
 </head>
 <body>
-	<select>
-		<option value="000651.sz">格力电器</option>
-		<option value="002415.sz">海康威视</option>
-		<option value="300059.sz">东方财富</option>
-		<option value="600337.sh">美克家居</option>
-		<option value="600338.sh">西藏珠峰</option>
+	<select id="stockSelector" onchange="onStockChange(this.options[this.options.selectedIndex].value)">
+		<option value="000651.SZ">格力电器</option>
+		<option value="002415.SZ">海康威视</option>
+		<option value="300059.SZ">东方财富</option>
+		<option value="600337.SH">美克家居</option>
+		<option value="600338.SH">西藏珠峰</option>
 	</select>
 	<nav>
-	<a href="javascript:void(0);" onclick="drawChart('loans_line');">负债折线图</a> |
-	<a href="javascript:void(0);" onclick="drawChart('loans_stack_bar');">负债叠柱图</a> |
-	<a href="javascript:void(0);" onclick="drawChart('yoy_line');">同比折线图</a> |
-	<a href="javascript:void(0);" onclick="drawChart('HTML');">图4</a>
+	<a href="javascript:void(0);" onclick="changeChartType('loans_line');">负债折线图</a> |
+	<a href="javascript:void(0);" onclick="changeChartType('loans_stack_bar');">负债叠柱图</a> |
+	<a href="javascript:void(0);" onclick="changeChartType('yoy_line');">同比折线图</a> |
+	<a href="javascript:void(0);" onclick="changeChartType('HTML');">图4</a>
 	</nav>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="width: 50vw;height:50vh;"></div>
@@ -26,206 +26,241 @@
 	    var dataMap = {};
 		<initData>
 		
-	    function drawChart(chartType) {
-		    console.log(chartType);
-		    myChart.setOption(options[chartType]);
+		var optionMap = {
+		    "loans_line": function(data) {
+				var longTermLoadType = '长期借款';
+				if(!data.balancesheet['长期借款'] && data.balancesheet['应付债券']) {
+					longTermLoadType = '应付债券';
+				}			
+				return {
+					title: {
+						text: '负债折线图'
+					},
+					tooltip: {
+						trigger: 'axis', 
+						formatter: function (params, ticket, callback) {
+							var tooltipHtml = params[0].name + '<br>';
+							for(var i = 0, plen = params.length; i < plen; i++) {
+								tooltipHtml += params[i].marker + params[i].seriesName + ': ' + (params[i].value / 100000000).toFixed(2) + '亿<br>'
+							}
+							return tooltipHtml;
+						}
+					},
+					legend: {
+						data:['短期借款',longTermLoadType,'货币资金']
+					},
+					grid: {
+						left: '3%',
+						right: '4%',
+						bottom: '3%',
+						containLabel: true
+					},
+					toolbox: {
+						feature: {
+							saveAsImage: {}
+						}
+					},
+					xAxis: {
+						type: 'category',
+						boundaryGap: false,
+						data: data.balancesheet['资产负债表'].concat().reverse()
+					},
+					yAxis: {
+						type: 'value',
+						name: '金额', 
+						axisLabel: {
+							formatter: function (value, index) {
+								return (value / 100000000) + '亿';
+							}
+						}
+					},
+					series: [
+						{
+							name:'短期借款',
+							type:'line',
+							data:data.balancesheet['短期借款'].concat().reverse()
+						},
+						{
+							name:longTermLoadType,
+							type:'line',
+							data:data.balancesheet[longTermLoadType].concat().reverse()
+						},
+						{
+							name:'货币资金',
+							type:'line',
+							data:data.balancesheet['货币资金'].concat().reverse()
+						}
+					]
+				};
+			}, 
+			"loans_stack_bar": function(data) {
+				var longTermLoadType = '长期借款';
+				if(!data.balancesheet['长期借款'] && data.balancesheet['应付债券']) {
+					longTermLoadType = '应付债券';
+				}
+			    return {
+					title: {
+						text: '负债叠柱图'
+					},
+					tooltip : {
+						trigger: 'axis',
+						axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+							type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+						}, 
+						formatter: function (params, ticket, callback) {
+							var tooltipHtml = params[0].name + '<br>';
+							for(var i = 0, plen = params.length; i < plen; i++) {
+								tooltipHtml += params[i].marker + params[i].seriesName + ': ' + (params[i].value / 100000000).toFixed(2) + '亿<br>'
+							}
+							return tooltipHtml;
+						}
+					},
+					legend: {
+						data:['短期借款',longTermLoadType,'货币资金']
+					},
+					grid: {
+						left: '3%',
+						right: '4%',
+						bottom: '3%',
+						containLabel: true
+					},
+					xAxis : [
+						{
+							type : 'category',
+							data : data.balancesheet['资产负债表'].concat().reverse()
+						}
+					],
+					yAxis : {
+						type : 'value', 
+						axisLabel: {
+							formatter: function (value, index) {
+								return (value / 100000000) + '亿';
+							}
+						}
+					},
+					series : [
+						{
+							name:'短期借款',
+							type:'bar',
+							stack: '负债',
+							data:data.balancesheet['短期借款'].concat().reverse()
+						},
+						{
+							name:longTermLoadType,
+							type:'bar',
+							stack: '负债',
+							data:data.balancesheet[longTermLoadType].concat().reverse()
+						}, 
+						{
+							name:'货币资金',
+							type:'bar',
+							data:data.balancesheet['货币资金'].concat().reverse()
+						}
+					]
+				};
+			}, 
+			"yoy_line": function(data) {
+			    function getYOYs(key) {
+					var YOYs = data.profitstatement[key].concat().reverse();
+					for(var i = 0, len = YOYs.length; i < len; i++) {
+						YOYs[i] = (YOYs[i] * 100).toFixed(2);
+					}
+					return YOYs;
+				}
+			    var periodsYOY = data.balancesheet['资产负债表'].concat().reverse();
+				periodsYOY.shift();
+				return {
+				    title: {
+						text: '同比折线图'
+					},
+					tooltip: {
+						trigger: 'axis', 
+						formatter: function (params, ticket, callback) {
+							var tooltipHtml = params[0].name + '<br>';
+							for(var i = 0, plen = params.length; i < plen; i++) {
+								tooltipHtml += params[i].marker + params[i].seriesName + ': ' + params[i].value + '%<br>'
+							}
+							return tooltipHtml;
+						}
+					},
+					legend: {
+						data:['营业总收入同比','归母净利润同比','毛利率同比','净利率同比','存货同比']
+					},
+					grid: {
+						left: '3%',
+						right: '4%',
+						bottom: '3%',
+						containLabel: true
+					},
+					toolbox: {
+						feature: {
+							saveAsImage: {}
+						}
+					},
+					xAxis: {
+						type: 'category',
+						boundaryGap: false,
+						data: periodsYOY
+					},
+					yAxis: {
+						type: 'value',
+						name: '百分比', 
+						axisLabel: {
+							formatter: '{value} %'
+						}
+					},
+					series: [
+						{
+							name:'营业总收入同比',
+							type:'line',
+							data:getYOYs('营业总收入同比')
+						},
+						{
+							name:'归母净利润同比',
+							type:'line',
+							data:getYOYs('归母净利润同比')
+						},
+						{
+							name:'毛利率同比',
+							type:'line',
+							data:getYOYs('毛利率同比')
+						},
+						{
+							name:'净利率同比',
+							type:'line',
+							data:getYOYs('净利率同比')
+						},
+						{
+							name:'存货同比',
+							type:'line',
+							data:getYOYs('存货同比')
+						}
+					]
+				};
+			}
+		};
+		
+		function onStockChange(value) {
+		    stockCode = value;
+			drawChart();
+		}
+		
+	    function changeChartType(type) {
+		    chartType = type;
+			drawChart();
+		}
+		
+		function drawChart() {
+		    myChart.setOption(optionMap[chartType](dataMap[stockCode]));
 		}
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
-		var options = {};
-        options['loans_line'] = {
-			title: {
-				text: '负债折线图'
-			},
-			tooltip: {
-				trigger: 'axis', 
-				formatter: function (params, ticket, callback) {
-				    var tooltipHtml = params[0].name + '<br>';
-					for(var i = 0, plen = params.length; i < plen; i++) {
-					    tooltipHtml += params[i].marker + params[i].seriesName + ': ' + (params[i].value / 100000000).toFixed(2) + '亿<br>'
-					}
-					return tooltipHtml;
-				}
-			},
-			legend: {
-				data:['短期借款','<longTermLoadType>','货币资金']
-			},
-			grid: {
-				left: '3%',
-				right: '4%',
-				bottom: '3%',
-				containLabel: true
-			},
-			toolbox: {
-				feature: {
-					saveAsImage: {}
-				}
-			},
-			xAxis: {
-				type: 'category',
-				boundaryGap: false,
-				data: [<periods>]
-			},
-			yAxis: {
-				type: 'value',
-				name: '金额', 
-				axisLabel: {
-				    formatter: function (value, index) {
-					    return (value / 100000000) + '亿';
-					}
-				}
-			},
-			series: [
-				{
-					name:'短期借款',
-					type:'line',
-					data:[<shortTermLoans>]
-				},
-				{
-					name:'<longTermLoadType>',
-					type:'line',
-					data:[<longTermLoans>]
-				},
-				{
-					name:'货币资金',
-					type:'line',
-					data:[<monetaryCapitals>]
-				}
-			]
-		};
-		
-		options['loans_stack_bar'] = {
-			title: {
-				text: '负债叠柱图'
-			},
-			tooltip : {
-				trigger: 'axis',
-				axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-					type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-				}, 
-				formatter: function (params, ticket, callback) {
-				    var tooltipHtml = params[0].name + '<br>';
-					for(var i = 0, plen = params.length; i < plen; i++) {
-					    tooltipHtml += params[i].marker + params[i].seriesName + ': ' + (params[i].value / 100000000).toFixed(2) + '亿<br>'
-					}
-					return tooltipHtml;
-				}
-			},
-			legend: {
-				data:['短期借款','<longTermLoadType>','货币资金']
-			},
-			grid: {
-				left: '3%',
-				right: '4%',
-				bottom: '3%',
-				containLabel: true
-			},
-			xAxis : [
-				{
-					type : 'category',
-					data : [<periods>]
-				}
-			],
-			yAxis : {
-				type : 'value', 
-				axisLabel: {
-					formatter: function (value, index) {
-						return (value / 100000000) + '亿';
-					}
-				}
-			},
-			series : [
-				{
-					name:'短期借款',
-					type:'bar',
-					stack: '负债',
-					data:[<shortTermLoans>]
-				},
-				{
-					name:'<longTermLoadType>',
-					type:'bar',
-					stack: '负债',
-					data:[<longTermLoans>]
-				}, 
-				{
-					name:'货币资金',
-					type:'bar',
-					data:[<monetaryCapitals>]
-				}
-			]
-		};
-		
-		options['yoy_line'] = {
-			title: {
-				text: '同比折线图'
-			},
-			tooltip: {
-				trigger: 'axis', 
-				formatter: function (params, ticket, callback) {
-				    var tooltipHtml = params[0].name + '<br>';
-					for(var i = 0, plen = params.length; i < plen; i++) {
-					    tooltipHtml += params[i].marker + params[i].seriesName + ': ' + params[i].value + '%<br>'
-					}
-					return tooltipHtml;
-				}
-			},
-			legend: {
-				data:['营业收入同比','净利润同比','毛利率同比','净利率同比','存货同比']
-			},
-			grid: {
-				left: '3%',
-				right: '4%',
-				bottom: '3%',
-				containLabel: true
-			},
-			toolbox: {
-				feature: {
-					saveAsImage: {}
-				}
-			},
-			xAxis: {
-				type: 'category',
-				boundaryGap: false,
-				data: [<periodsYOY>]
-			},
-			yAxis: {
-				type: 'value',
-				name: '百分比', 
-				axisLabel: {
-					formatter: '{value} %'
-				}
-			},
-			series: [
-				{
-					name:'营业收入同比',
-					type:'line',
-					data:[<incomeYOYs>]
-				},
-				{
-					name:'净利润同比',
-					type:'line',
-					data:[<netProfitYOYs>]
-				},
-				{
-					name:'毛利率同比',
-					type:'line',
-					data:[<grossProfitMarginYOYs>]
-				},
-				{
-					name:'净利率同比',
-					type:'line',
-					data:[<netProfitMarginYOYs>]
-				},
-				{
-					name:'存货同比',
-					type:'line',
-					data:[<inventoryYOYS>]
-				}
-			]
-		};
 
         // 使用刚指定的配置项和数据显示图表。
-        drawChart('loans_line');
+		var stockSelector = document.getElementById('stockSelector');
+		var stockCode = stockSelector.options[stockSelector.options.selectedIndex].value;
+		var chartType = 'loans_line';
+        drawChart();
     </script>
 </body>
 </html>
