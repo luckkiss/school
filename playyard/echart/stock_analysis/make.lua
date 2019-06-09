@@ -89,12 +89,24 @@ local function toJson(dataMap)
 end
 
 function makeAll()
-    local initData = ''
+    -- 读入股票资料
+	local stockMap = {}
+	for line in io.lines('stock_basic.csv')
+	do
+	    local lineArr = split(line, ',')
+		table.remove(lineArr, 1)
+		local stockCode = table.remove(lineArr, 1)
+		stockMap[stockCode] = lineArr
+	end
 	
+	local selectorData = ''
+    local initData = ''
     for entry in lfs.dir('data')
 	do
 	    if entry ~= '.' and entry ~= '..' then
 		    stockCode = entry
+			selectorData = selectorData .. '<option value="' .. stockCode .. '">' .. stockMap[stockCode][2] .. '</option>\n'
+			
 		    fileRoot = 'data/' .. stockCode .. '/'
 			-- 资产负债表
 			balancesheet = {}
@@ -141,6 +153,7 @@ function makeAll()
 	htmlContent = tmplFile:read('*a')
 	tmplFile:close()
 	
+	htmlContent = string.gsub(htmlContent, '<selectorData>', selectorData)
 	htmlContent = string.gsub(htmlContent, '<initData>', initData)
 
 	-- 生成页面

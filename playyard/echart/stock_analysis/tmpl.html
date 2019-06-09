@@ -8,11 +8,7 @@
 </head>
 <body>
 	<select id="stockSelector" onchange="onStockChange(this.options[this.options.selectedIndex].value)">
-		<option value="000651.SZ">格力电器</option>
-		<option value="002415.SZ">海康威视</option>
-		<option value="300059.SZ">东方财富</option>
-		<option value="600337.SH">美克家居</option>
-		<option value="600338.SH">西藏珠峰</option>
+		<selectorData>
 	</select>
 	<nav>
 	<a href="javascript:void(0);" onclick="changeChartType('loans_line');">负债折线图</a> |
@@ -25,6 +21,17 @@
     <script type="text/javascript">
 	    var dataMap = {};
 		<initData>
+		
+		function ensureData(dataMap, type, cnt) {
+		    if(dataMap[type]) {
+			    return dataMap[type].concat().reverse();
+			}
+			var arr = [];
+			for(var i = 0; i < cnt; i++) {
+			    arr[i] = 0;
+			}
+			return arr;
+		}
 		
 		var optionMap = {
 		    "loans_line": function(data) {
@@ -78,12 +85,12 @@
 						{
 							name:'短期借款',
 							type:'line',
-							data:data.balancesheet['短期借款'].concat().reverse()
+							data:ensureData(data.balancesheet, '短期借款', data.balancesheet['资产负债表'].length)
 						},
 						{
 							name:longTermLoadType,
 							type:'line',
-							data:data.balancesheet[longTermLoadType].concat().reverse()
+							data:ensureData(data.balancesheet, longTermLoadType, data.balancesheet['资产负债表'].length)
 						},
 						{
 							name:'货币资金',
@@ -143,13 +150,13 @@
 							name:'短期借款',
 							type:'bar',
 							stack: '负债',
-							data:data.balancesheet['短期借款'].concat().reverse()
+							data:ensureData(data.balancesheet, '短期借款', data.balancesheet['资产负债表'].length)
 						},
 						{
 							name:longTermLoadType,
 							type:'bar',
 							stack: '负债',
-							data:data.balancesheet[longTermLoadType].concat().reverse()
+							data:ensureData(data.balancesheet, longTermLoadType, data.balancesheet['资产负债表'].length)
 						}, 
 						{
 							name:'货币资金',
