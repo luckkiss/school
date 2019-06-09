@@ -42,6 +42,14 @@ local function getPencentStr(value)
     return string.format('%.2f', value * 100) .. '%'
 end
 
+local function getYOY(current, last)
+    if(0 == last)
+	then
+	    return 0
+	end
+	return current / last - 1
+end
+
 local function parseSheet(fileName, dataMap, mapTitle)
 	for line in io.lines(fileName)
 	do
@@ -57,6 +65,27 @@ local function parseSheet(fileName, dataMap, mapTitle)
 		end
 		dataMap[itemName] = lineArr
 	end
+end
+
+local function toJson(dataMap)
+    local jsonStr = ''
+	local tmpArr = {}
+    for key, value in pairs(dataMap)
+	do
+	    local tmpStr = '"' .. key .. '": ['
+		local tmpSubArr = {}
+		for subKey, subValue in pairs(value)
+		do
+			if('string' == type(subValue))
+			then
+			    table.insert(tmpSubArr, '"' .. subValue .. '"')
+			else
+			    table.insert(tmpSubArr, subValue)
+			end
+		end
+	    table.insert(tmpArr, tmpStr .. table.concat(tmpSubArr, ', ') .. ']')
+	end
+	return '{' .. table.concat(tmpArr, ', ') .. '}'
 end
 
 local function makeHtml(stockCode)
@@ -94,18 +123,27 @@ local function makeHtml(stockCode)
 	balancesheet['存货同比'] = {}
 	for i = 1, periodCnt - 1
 	do
-		profitstatement['营业总收入同比'][i] = profitstatement['营业总收入'][i] / profitstatement['营业总收入'][i + 1] - 1
-		profitstatement['归母净利润同比'][i] = profitstatement['其中:归属于母公司股东的净利润'][i] / profitstatement['其中:归属于母公司股东的净利润'][i + 1] - 1
-		profitstatement['毛利率同比'][i] = profitstatement['毛利率'][i] / profitstatement['毛利率'][i + 1] - 1
-		profitstatement['净利率同比'][i] = profitstatement['净利率'][i] / profitstatement['净利率'][i + 1] - 1
+		profitstatement['营业总收入同比'][i] = getYOY(profitstatement['营业总收入'][i], profitstatement['营业总收入'][i + 1])
+		profitstatement['归母净利润同比'][i] = getYOY(profitstatement['其中:归属于母公司股东的净利润'][i], profitstatement['其中:归属于母公司股东的净利润'][i + 1])
+		profitstatement['毛利率同比'][i] = getYOY(profitstatement['毛利率'][i], profitstatement['毛利率'][i + 1])
+		profitstatement['净利率同比'][i] = getYOY(profitstatement['净利率'][i], profitstatement['净利率'][i + 1])
 		
-		balancesheet['存货同比'][i] = balancesheet['存货'][i] / balancesheet['存货'][i + 1] - 1
+		balancesheet['存货同比'][i] = getYOY(balancesheet['存货'][i], balancesheet['存货'][i + 1])
 	end
+	
+	local initData = 'dataMap["' .. stockCode .. '"] = {"balancesheet": ' .. toJson(balancesheet) .. ', "profitstatement": ' .. toJson(profitstatement) .. '};\n'
+	htmlContent = string.gsub(htmlContent, '<initData>', initData)
 
 	local periods = ''
 	local shortTermLoans = ''
 	local longTermLoans = ''
 	local monetaryCapitals = ''
+	
+	local longTermLoadType = '长期借款'
+	if not(balancesheet['长期借款']) and balancesheet['应付债券']
+	then
+	    longTermLoadType = '应付债券'
+	end
 	for i = 1, periodCnt
 	do
 		if not(periods == '')
@@ -117,7 +155,15 @@ local function makeHtml(stockCode)
 		end
 		periods = '\'' .. balancesheet['资产负债表'][i] .. '\'' .. periods
 		shortTermLoans = balancesheet['短期借款'][i] .. shortTermLoans
-		longTermLoans = balancesheet['长期借款'][i] .. longTermLoans
+		if(balancesheet['长期借款'])
+		then
+		    longTermLoans = balancesheet['长期借款'][i] .. longTermLoans
+		elseif(balancesheet['应付债券'])
+		then
+		    longTermLoans = balancesheet['应付债券'][i] .. longTermLoans
+		else
+		    longTermLoans = 0 .. longTermLoans
+		end
 		monetaryCapitals = balancesheet['货币资金'][i] .. monetaryCapitals
 	end
 
@@ -148,6 +194,7 @@ local function makeHtml(stockCode)
 
 	htmlContent = string.gsub(htmlContent, '<periods>', periods)
 	htmlContent = string.gsub(htmlContent, '<shortTermLoans>', shortTermLoans)
+	htmlContent = string.gsub(htmlContent, '<longTermLoadType>', longTermLoadType)
 	htmlContent = string.gsub(htmlContent, '<longTermLoans>', longTermLoans)
 	htmlContent = string.gsub(htmlContent, '<monetaryCapitals>', monetaryCapitals)
 	htmlContent = string.gsub(htmlContent, '<periodsYOY>', periodsYOY)
